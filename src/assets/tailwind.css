@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+
+.padding-top-navbar {
+  padding-top: 62px;
+}
+
+@tailwind utilities;
