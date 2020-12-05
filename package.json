@@ -1,5 +1,5 @@
 {
-  "name": "file-reader",
+  "name": "bi-dict",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,7 +17,7 @@
     "postcss-cli": "^8.3.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-scripts": "^4.0.0-next.98",
+    "react-scripts": "^4.0.1",
     "tailwindcss": "^2.0.1",
     "typescript": "^4.1.2",
     "web-vitals": "^0.2.4"

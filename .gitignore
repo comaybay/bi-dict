@@ -3,6 +3,9 @@
 #vscode workspace settings
 .vscode
 
+#eslint
+.eslintcache
+
 # dependencies
 /node_modules
 /.pnp
