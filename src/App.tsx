@@ -1,6 +1,6 @@
 import React from "react";
-import Panel from "./Components/Panel";
-import SearchForm from "./Components/SearchForm";
+import Panel from "./components/Panel";
+import SearchForm from "./components/SearchForm";
 
 const App: React.FC = () => {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import loremText from "../Tests/loremText"
+import loremText from "../tests/loremText"
 
 const Panel: React.FC = () => {
   return (
