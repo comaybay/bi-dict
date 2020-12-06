@@ -3,6 +3,9 @@
 #vscode workspace settings
 .vscode
 
+#tailwindcss
+/src/assets/index.css
+
 #eslint
 .eslintcache
 

@@ -12,9 +12,9 @@ class MockDB {
     return wordModel ? wordModel : null;
   }
 
-  getTranslation(word: string, from: Language, to: Language): string[] | null {
+  getTranslation(word: string, from: Language, to: Language): string[] {
     const translations = this.languageMap[from][word];
-    return (translations && translations[to]) ? translations[to] : null;
+    return (translations && translations[to]) ? translations[to] : [];
   }
 }
 
@@ -22,12 +22,18 @@ interface DictDB {
   [word: string]: IWordModel,
 }
 
+
+interface Translations {
+  [language: string]: string[]
+}
+
 interface LanguageMap {
   [language: string]: { [word: string]: Translations }
 };
 
-interface Translations {
-  [language: string]: string[]
+const languageMap: LanguageMap = {
+  VN: { chín: { "EN": ["nine", "ripe"] } },
+  EN: { nine: { "VN": ["chín"] } },
 }
 
 const nineWordModel: IWordModel = {
@@ -102,13 +108,6 @@ ENWordModels.forEach((wordModel) => {
 VNWordModels.forEach((wordModel) => {
   VNDict[wordModel.word] = wordModel;
 });
-
-
-
-const languageMap: LanguageMap = {
-  VN: { chín: { "EN": ["nine, ripe"] } },
-  EN: { nine: { "VN": ["chín"] } },
-}
 
 export const mockDB: MockDB = new MockDB({ EN: ENDict, VN: VNDict }, languageMap);
 export default mockDB;
