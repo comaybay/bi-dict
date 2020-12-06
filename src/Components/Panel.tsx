@@ -1,21 +1,53 @@
 import React from "react";
-import loremText from "../tests/loremText"
+import IWordModel, { Definition, IDefinitionSection } from "../types/WordModelTypes";
 
-const Panel: React.FC = () => {
+export interface PanelProps {
+  wordModel: IWordModel;
+}
+
+const Panel: React.FC<PanelProps> = (props) => {
+  const { word, pronunciation, definitionSections } = props.wordModel;
+
+  const children = getDefinitionSectionComponents(definitionSections);
+
   return (
-    <div className="bg-gray-50  rounded-md">
+    <div className="bg-gray-50 rounded-md">
       <div className="py-4 px-6">
-        <h1 className="text-xl font-bold text-gray-700">Placeholder...</h1>
-        <h3 className="text-lg italic font-thin text-gray-500">/ˈplāsˌhōldər/</h3>
-        <ol className="pt-2 pl-8 list-decimal">
-          <li>a significant zero in the decimal representation of a number.</li>
-          <li>an element of a sentence that is required by syntactic constraints but carries little or no semantic information, for example the word it as a subject in it is a pity that she left, where the true subject is that she left.</li>
-          <li>{loremText}</li>
-        </ol>
-
+        <h1 className="text-xl font-bold text-gray-700">{word}</h1>
+        <h3 className="italic font-thin text-gray-500">{pronunciation}</h3>
+        {children}
       </div>
     </div>
   )
 }
 export default Panel;
 
+function getDefinitionSectionComponents(definitionSections: IDefinitionSection[]) {
+  const res = [];
+  for (const { type, definitions } of definitionSections) {
+    res.push(
+      <div className="pl-2 pt-2">
+        <div className="font-bold italic">{type}</div>
+        <ol className="pl-6 list-decimal">
+          {getDefinitionComponents(definitions)}
+        </ol>
+      </div>
+    )
+  }
+  return res;
+}
+
+function getDefinitionComponents(definitions: Definition[]) {
+  const res = [];
+  for (const { content, example } of definitions) {
+    const exampleComponent = (example) ? (<div className="text-gray-600 text-sm pl-2">{`"${example}"`}</div>) : null;
+    res.push(
+      <li>
+        {content}
+        {exampleComponent}
+      </li>
+    );
+  }
+
+  return res;
+}

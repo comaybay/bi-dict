@@ -7,12 +7,12 @@ export default interface IWordModel {
   definitionSections: IDefinitionSection[];
 }
 
-interface IDefinitionSection {
+export interface IDefinitionSection {
   type: string; //example: in English this will be "part-of-speech" type like noun or verb,...
   definitions: Definition[];
 }
 
-interface Definition {
+export interface Definition {
   content: string;
   example?: string;
 }
