@@ -1,38 +1,33 @@
-import React from "react";
 import WhiteButton from "./Buttons/WhiteButton"
+import LanguageSelectionDropDown from "./LanguageSelectionDropDown";
+import { SearchBox } from "./SearchBoxProps";
 
-const SearchForm: React.FC = () => {
+interface SearchFormProps {
+  searchBoxInputText: string;
+  searchBoxHandleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  sourceLangValue: string;
+  sourceLangHandleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  destLangValue: string;
+  destLangHandleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  buttonHandleClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+};
+
+const SearchForm: React.FC<SearchFormProps> = (
+  { searchBoxInputText, searchBoxHandleChange, sourceLangValue, sourceLangHandleChange, destLangValue, destLangHandleChange, buttonHandleClick }
+) => {
   return (
     <div className="flex justify-center bg-gray-100 border-b-1 border-gray-300">
-      <div className="w-full max-w-4xl pt-2 pb-2.5">
-        <SearchBox />
+      <div className="flex w-full max-w-4xl pt-2 pb-2.5">
+        <SearchBox inputText={searchBoxInputText} handleChange={searchBoxHandleChange} />
+        <LanguageSelectionDropDown value={sourceLangValue} handleChange={sourceLangHandleChange} />
+        <LanguageSelectionDropDown value={destLangValue} handleChange={destLangHandleChange} />
+        <div className="flex pl-2">
+          <WhiteButton handleClick={buttonHandleClick} />
+        </div>
       </div>
-    </div>
+    </div >
   )
 }
 export default SearchForm;
-// class SearchBox extends React.Component {
-//   render() {
-//     return (
-//       <div className="w-full flex">
-//         <input type="text" className="pl-3 text-lg flex-grow mx-2 h-11 rounded-sm focus:outline-none border-1.5
-//          bg-gray-50 border-gray-300 focus:border-indigo-200"
-//           placeholder="Tìm từ gì đây..."
-//         />
-//         <WhiteButton />
-//       </div>
-//     )
-//   }
-// }
 
-const SearchBox: React.FC = () => {
-  return (
-    <div className="w-full flex">
-      <input type="text" className="pl-3 text-lg flex-grow mx-2 h-11 rounded-sm focus:outline-none border-1.5
-         bg-gray-50 border-gray-300 focus:border-indigo-200"
-        placeholder="Tìm từ gì đây..."
-      />
-      <WhiteButton />
-    </div>
-  )
-}
+
