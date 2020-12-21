@@ -1,65 +1,63 @@
 import React, { useState } from "react";
-import Panel from "./components/Panel";
 import SearchForm from "./components/SearchForm";
-import mockDB from "./tests/mockDB";
+import SearchBox from "./components/SearchBoxProps";
+import LanguageSelectionDropDown from "./components/LanguageSelectionDropDown";
+import WhiteButton from "./components/buttons/WhiteButton";
+import DefinitionPanelEN from "./components/panels/DefinitionPanelEN"
+import DefinitionPanelVN from "./components/panels/DefinitionPanelVN"
+import useGetDefinition from "./hooks/useGetDefinition";
 import Language from "./types/LanguageType";
-import IWordModel from "./types/WordModelTypes";
+import Definition from "./types/Definition";
 
-interface WordModels {
-  source: IWordModel | null;
-  dest: IWordModel[];
-}
 
 const App: React.FC = () => {
-  const [inputText, setInputText] = useState("");
-  const [wordModels, setWordModels] = useState<WordModels>({ source: null, dest: [] });
-  const [sourceLang, setSourceLang] = useState<Language>("VN");
-  const [destLang, setDestLang] = useState<Language>("EN");
+  const [inputWord, setInputWord] = useState("");
+  const [firstLang, setFirstLang] = useState("VN");
+  const [secondLang, setSecondLang] = useState("EN");
+  const [definitionInFL, fetchDefinitionInFL] = useGetDefinition(firstLang, inputWord, secondLang);
+  const [definitionInSL, fetchDefinitionInSL] = useGetDefinition(secondLang, inputWord, secondLang);
 
   return (
     <>
-      <div className="shadow-md z-0 fixed w-full">
+      <div className="shadow-md z-10 fixed w-full">
         <SearchForm
-          searchBoxInputText={inputText}
-          searchBoxHandleChange={(e) => setInputText(e.currentTarget.value)}
-
-          buttonHandleClick={(e) => {
-            const sourceWordModel = mockDB.getWordModel(inputText, sourceLang);
-            if (!sourceWordModel) return;
-
-            const translations = mockDB.getTranslation(sourceWordModel.word, sourceLang, destLang);
-            let destWordModels: IWordModel[] = [];
-            for (const word of translations) {
-              const wordModel = mockDB.getWordModel(word, destLang);
-              if (wordModel) destWordModels.push(wordModel);
-            }
-
-            setWordModels({
-              source: sourceWordModel,
-              dest: destWordModels
-            })
-          }}
-          sourceLangValue={sourceLang}
-          sourceLangHandleChange={(e) => setSourceLang(e.currentTarget.value as Language)}
-          destLangValue={destLang}
-          destLangHandleChange={(e) => setDestLang(e.currentTarget.value as Language)}
+          searchBox={
+            <SearchBox
+              inputText={inputWord}
+              handleChange={e => setInputWord(e.target.value)}
+            />}
+          languageSelectionDropDown1={
+            <LanguageSelectionDropDown
+              value={firstLang}
+              handleChange={e => setFirstLang(e.target.value)}
+            />}
+          languageSelectionDropDown2={
+            <LanguageSelectionDropDown
+              value={secondLang}
+              handleChange={e => setSecondLang(e.target.value)}
+            />}
+          searchButton={
+            <WhiteButton handleClick={() => {
+              fetchDefinitionInSL();
+              fetchDefinitionInFL();
+            }}
+            />}
         />
       </div>
-
-      <div className="grid grid-cols-2 gap-2 padding-top-navbar px-2">
-        {wordModels.source && <PanelContainer wordModels={[wordModels.source]} />}
-        {wordModels.dest.length !== 0 && <PanelContainer wordModels={wordModels.dest} />}
+      <div className="padding-top-navbar">
+        <div className="px-2 py-2 grid grid-cols-2 gap-2">
+          {definitionInFL && getDefinitionPanelByLanguage(firstLang, definitionInFL)}
+          {definitionInSL && getDefinitionPanelByLanguage(secondLang, definitionInSL)}
+        </div>
       </div>
     </>
   )
-}
+};
 export default App;
 
-const PanelContainer: React.FC<{ wordModels: IWordModel[] }> = ({ wordModels }) => {
-  return (
-    <div className="py-2">
-      {wordModels.length && wordModels.map(wordModel => <Panel wordModel={wordModel} />)}
-    </div>
-  )
+function getDefinitionPanelByLanguage(language: string, definition: Definition) {
+  switch (language as Language) {
+    case "EN": return <DefinitionPanelEN definition={definition} />
+    case "VN": return <DefinitionPanelVN definition={definition} />
+  }
 }
-

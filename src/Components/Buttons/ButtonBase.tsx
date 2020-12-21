@@ -1,11 +1,15 @@
 import React from "react";
 
-interface Props {
+export interface ButtonProps {
+  handleClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+export interface AbstractButtonProps {
   className?: string;
   handleClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Button: React.FC<Props> = ({ handleClick, className }) => {
+const AbstractButton: React.FC<AbstractButtonProps> = ({ handleClick, className }) => {
   if (!className) className = "";
 
   return (
@@ -17,4 +21,4 @@ const Button: React.FC<Props> = ({ handleClick, className }) => {
     </button>
   )
 }
-export default Button;
+export default AbstractButton;
