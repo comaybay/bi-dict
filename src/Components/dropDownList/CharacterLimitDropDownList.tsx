@@ -13,20 +13,24 @@ export const CharacterLimitDropDownList: React.FC<CharacterLimitDropDownListProp
 
   const [minimize, setMinimize] = useState(true);
   const children = list.map(text => <p className={itemCss}>{text}</p>);
-  if (minimize && list[0])
+
+  const needsMinimization = list[0] && list[0].length > characterLimit;
+  if (needsMinimization && minimize)
     children[0] = <p className={itemCss}>{`${list[0].slice(0, characterLimit).trim()}...`}</p>;
 
   return (
     <>
       {title}
       <div className="flex">
-        <div> {/*div wrapper to prevent button from being stretch when un-minimized*/}
-          <DropDownButton handleClick={() => setMinimize(!minimize)} />
-        </div>
+        {needsMinimization &&
+          <div> {/*div wrapper to prevent button from being stretch when un-minimized*/}
+            <DropDownButton handleClick={() => setMinimize(!minimize)} />
+          </div>
+        }
         <div className="pl-1 flex items-start">
           <div className="text-gray-500 ext-lg italic">
             {minimize && children[0]}
-            {!minimize && children}
+            {(!minimize || !needsMinimization) && children}
           </div>
         </div>
       </div>

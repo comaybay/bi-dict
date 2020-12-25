@@ -9,14 +9,20 @@ export const EtymologyInnerSectionBase: React.FC<EtymologyInnerSection> = ({ ant
     <div className="pl-2">
       <p className="font-bold">{partOfSpeech}</p>
       <p className="pl-2">{inflection}</p>
-      <ol className="pl-8">
-        {definitionSections.map(ds => <li className="list-decimal"> <DefinitionSectionBase {...ds} /> </li>)}
+      <ol className="pl-2">
+        <DropDownList
+          showElementAmount={4}
+          trailingElement={<p className="relative bottom-2">...</p>}>
+          {definitionSections.map(ds => <li className="ml-4 list-decimal"> <DefinitionSectionBase {...ds} /> </li>)}
+        </DropDownList>
       </ol>
       <div className="pl-2">
         {synonyms.length !== 0 &&
-          <DropDownList title={<p>synonyms:</p>}>
-            {synonyms.map(s => <p>{s}</p>)}
-          </DropDownList>
+          <DropDownList
+            title={<p>synonyms:</p>}
+            children={synonyms.map(s => <p>{s}</p>)}
+            trailingElement={<p className="relative bottom-2">...</p>}
+          />
         }
         {antonyms.length !== 0 &&
           <DropDownList title={<p>antonyms:</p>}>

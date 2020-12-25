@@ -14,6 +14,7 @@ export const EtymologySectionBase: React.FC<EtymologySection> = ({ etymology, in
         }
         {etymology !== null &&
           <CharacterLimitDropDownList
+            characterLimit={96}
             list={[etymology]}
             itemCss="italic font-light"
           />

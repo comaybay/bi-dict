@@ -16,6 +16,18 @@ export const DefinitionSectionBase: React.FC<DefinitionSection> = ({ antonyms, d
           </ul>
         }
       </div>
+      { subDefinitions.length !== 0 &&
+        <ol className="pl-4">
+          <DropDownList
+            showElementAmount={2}
+            children={subDefinitions.map(sd =>
+              <li className="list list-decimal">
+                <DefinitionSectionBase {...sd} />
+              </li>
+            )}
+          />
+        </ol>
+      }
       <div>
         {synonyms.length !== 0 &&
           <DropDownList title={<p>synonyms:</p>}>
@@ -29,11 +41,6 @@ export const DefinitionSectionBase: React.FC<DefinitionSection> = ({ antonyms, d
             {antonyms.map(antonym => <p>{antonym}</p>)}
           </DropDownList>
         }
-      </div>
-      <div>
-        {subDefinitions.map(sd => <p className="pl-2">
-          <DefinitionSectionBase {...sd} />
-        </p>)}
       </div>
     </>
   );
