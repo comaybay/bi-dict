@@ -14,7 +14,7 @@ const AbstractButton: React.FC<AbstractButtonProps> = ({ handleClick, className 
 
   return (
     <button
-      className={`flex-initial inline-block uppercase text-center px-3 py-1 rounded-sm focus:outline-none ${className}`}
+      className={`flex-initial inline-block uppercase text-center px-3 py-1 rounded-sm  ${className}`}
       onClick={handleClick}
     >
       Search

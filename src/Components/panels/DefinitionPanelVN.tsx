@@ -1,4 +1,4 @@
-import DefinitionPanelBase, { DefinitionPanelProps, DefinitionPanelBaseProps } from "./DefinitionPanelBase"
+import DefinitionPanelBase, { DefinitionPanelProps, DefinitionPanelBaseProps } from "./DefninitionPanelBase/DefinitionPanelBase"
 
 const DefinitionPanelVN: React.FC<DefinitionPanelProps> = ({ definition }) => {
   const props: DefinitionPanelBaseProps = {
@@ -8,8 +8,6 @@ const DefinitionPanelVN: React.FC<DefinitionPanelProps> = ({ definition }) => {
         language: "Tiếng Việt",
         color: "red",
       },
-      etymology: "Từ nguyên",
-      pronunciation: "Phát âm",
     }
   }
   return (
