@@ -12,15 +12,17 @@ export const EtymologySectionBase: React.FC<EtymologySection> = ({ etymology, in
         {pronunciations.length !== 0 &&
           <PronunciationsSection pronunciations={pronunciations} />
         }
-        {etymology !== null &&
+        {etymology.length !== 0 &&
           <CharacterLimitDropDownList
             characterLimit={96}
-            list={[etymology]}
             itemCss="italic font-light"
+            list={etymology}
           />
         }
         <div>
-          {innerSections.map(innerSection => <EtymologyInnerSectionBase {...innerSection} />)}
+          {innerSections.map(innerSection =>
+            <EtymologyInnerSectionBase {...innerSection} />
+          )}
         </div>
       </div>
     </div>);

@@ -30,9 +30,11 @@ export const DefinitionSectionBase: React.FC<DefinitionSection> = ({ antonyms, d
       }
       <div>
         {synonyms.length !== 0 &&
-          <DropDownList title={<p>synonyms:</p>}>
-            {synonyms.map(synonym => <p>{synonym}</p>)}
-          </DropDownList>
+          <DropDownList
+            title={<p>synonyms:</p>}
+            children={synonyms.map(synonym => <p>{synonym}</p>)}
+            trailingElement={<p className="relative bottom-2">...</p>}
+          />
         }
       </div>
       <div>

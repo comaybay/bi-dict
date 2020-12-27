@@ -14,8 +14,8 @@ const App: React.FC = () => {
   const [inputWord, setInputWord] = useState("");
   const [firstLang, setFirstLang] = useState("VN");
   const [secondLang, setSecondLang] = useState("EN");
-  const [stateFL, fetchDefinitionInFL] = useGetDefinition(firstLang, inputWord, secondLang);
-  const [stateSL, fetchDefinitionInSL] = useGetDefinition(secondLang, inputWord, secondLang);
+  const [stateFL, fetchDefinitionInFL] = useGetDefinition();
+  const [stateSL, fetchDefinitionInSL] = useGetDefinition();
 
   return (
     <>
@@ -38,16 +38,16 @@ const App: React.FC = () => {
             />}
           searchButton={
             <WhiteButton handleClick={() => {
-              fetchDefinitionInSL();
-              fetchDefinitionInFL();
+              fetchDefinitionInFL(firstLang, inputWord, secondLang);
+              fetchDefinitionInSL(secondLang, inputWord, secondLang);
             }}
             />}
         />
       </div>
       <div className="padding-top-navbar">
-        <div className="px-2 py-2 grid grid-cols-2 gap-2">{ }
-          <PanelSection language={firstLang} fetchState={stateFL} />
-          <PanelSection language={secondLang} fetchState={stateSL} />
+        <div className="px-2 py-2 grid grid-cols-2 gap-2">
+          <PanelSection language={stateFL.definitionLanguage} fetchState={stateFL} />
+          <PanelSection language={stateSL.definitionLanguage} fetchState={stateSL} />
         </div>
       </div>
     </>

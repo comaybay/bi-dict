@@ -6,9 +6,10 @@ export const PronunciationsSection: React.FC<{ pronunciations: string[]; }> = ({
 
   const pronunciationElements = pronunciations.map(pronunciation => <p>{pronunciation}</p>);
   return (
-    <DropDownList>
-      {pronunciationElements}
-    </DropDownList>
+    <DropDownList
+      children={pronunciationElements}
+      trailingElement={<p className="relative bottom-2">...</p>}
+    />
   )
 };
 

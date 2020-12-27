@@ -9,7 +9,7 @@ export default interface Definition {
 }
 
 export interface EtymologySection {
-  etymology: string;
+  etymology: string[];
   pronunciations: string[];
   innerSections: EtymologyInnerSection[];
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import Definition from "../../../types/Definition"
-import { DropDownList } from "../../dropDownList/DropDownList";
 import Panel from "../Panel";
 import { EtymologySectionBase } from "./EtymologySectionBase";
 import { LanguageTag, LanguageTagProps } from "./getTagColorCss";
