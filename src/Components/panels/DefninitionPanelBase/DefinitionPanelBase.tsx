@@ -2,7 +2,7 @@ import React from "react";
 import Definition from "../../../types/Definition"
 import Panel from "../Panel";
 import { EtymologySectionBase } from "./EtymologySectionBase";
-import { LanguageTag, LanguageTagProps } from "./getTagColorCss";
+import { LanguageTag, LanguageTagProps } from "./LanguageTag";
 import { PronunciationsSection } from "./PronunciationsSection";
 
 export interface DefinitionPanelProps {
@@ -25,9 +25,7 @@ const DefinitionPanelBase: React.FC<DefinitionPanelBaseProps> = ({ definition, c
           {definition.word}
         </div>
         {definition.globalPronunciations.length !== 0 &&
-          <div className="-mt-1">
-            <PronunciationsSection pronunciations={definition.globalPronunciations} />
-          </div>
+          <PronunciationsSection pronunciations={definition.globalPronunciations} />
         }
         <div className="pt-2">
           {definition.etymologies.map(etymologySection =>

@@ -5,17 +5,18 @@ import LanguageSelectionDropDown from "./components/LanguageSelectionDropDown";
 import WhiteButton from "./components/buttons/WhiteButton";
 import DefinitionPanelEN from "./components/panels/DefinitionPanelEN"
 import DefinitionPanelVN from "./components/panels/DefinitionPanelVN"
-import useGetDefinition, { DefinitionFetchState } from "./hooks/useGetDefinition";
-import Language from "./types/LanguageType";
+import { DefinitionFetchState } from "./hooks/useGetDefinition";
+import { useGetDefinitionTwoWay } from "./hooks/useGetDefinitionTwoWay";
 import Definition from "./types/Definition";
+import { LanguageAbbreviation } from "./utils/LanguageAbbreviation";
 
 
 const App: React.FC = () => {
   const [inputWord, setInputWord] = useState("");
-  const [firstLang, setFirstLang] = useState("VN");
-  const [secondLang, setSecondLang] = useState("EN");
-  const [stateFL, fetchDefinitionInFL] = useGetDefinition();
-  const [stateSL, fetchDefinitionInSL] = useGetDefinition();
+  const [firstLang, setFirstLang] = useState("vi");
+  const [secondLang, setSecondLang] = useState("en");
+  const [stateFL, fetchDefinitionInFL] = useGetDefinitionTwoWay();
+  const [stateSL, fetchDefinitionInSL] = useGetDefinitionTwoWay();
 
   return (
     <>
@@ -28,18 +29,18 @@ const App: React.FC = () => {
             />}
           languageSelectionDropDown1={
             <LanguageSelectionDropDown
-              value={firstLang}
-              handleChange={e => setFirstLang(e.target.value)}
+              code={firstLang}
+              handleChange={e => setFirstLang(LanguageAbbreviation.toISOLanguageCode(e.target.value))}
             />}
           languageSelectionDropDown2={
             <LanguageSelectionDropDown
-              value={secondLang}
-              handleChange={e => setSecondLang(e.target.value)}
+              code={secondLang}
+              handleChange={e => setSecondLang(LanguageAbbreviation.toISOLanguageCode(e.target.value))}
             />}
           searchButton={
             <WhiteButton handleClick={() => {
               fetchDefinitionInFL(firstLang, inputWord, secondLang);
-              fetchDefinitionInSL(secondLang, inputWord, secondLang);
+              fetchDefinitionInSL(secondLang, inputWord, firstLang);
             }}
             />}
         />
@@ -55,23 +56,25 @@ const App: React.FC = () => {
 };
 export default App;
 
-const PanelSection: React.FC<{ language: string; fetchState: DefinitionFetchState }> = ({ language, fetchState: state }) => {
-  if (state.isError)
-    return <p>ERROR :(</p>
+const PanelSection: React.FC<{ language: string; fetchState: DefinitionFetchState }> = ({ language, fetchState }) => {
+  if (fetchState.definition)
+    return getDefinitionPanelByLanguage(language, fetchState.definition as Definition);
 
-  if (state.isLoading)
+  if (fetchState.isLoading)
     return <p>LOADING...</p>
 
-  if (state.definition)
-    return getDefinitionPanelByLanguage(language, state.definition as Definition);
+  if (fetchState.isError)
+    return <p>ERROR :(</p>
 
   return <></>;
 }
 
 function getDefinitionPanelByLanguage(language: string, definition: Definition) {
-  switch (language as Language) {
-    case "EN": return <DefinitionPanelEN definition={definition} />
-    case "VN": return <DefinitionPanelVN definition={definition} />
+  switch (language) {
+    case "en": return <DefinitionPanelEN definition={definition} />
+    case "vi": return <DefinitionPanelVN definition={definition} />
     default: return <></>
   }
 }
+
+

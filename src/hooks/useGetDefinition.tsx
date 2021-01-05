@@ -1,5 +1,4 @@
 import { useEffect, useReducer, useState } from "react";
-import { act } from "react-dom/test-utils";
 import Definition from "../types/Definition";
 
 const initialState: DefinitionFetchState = {

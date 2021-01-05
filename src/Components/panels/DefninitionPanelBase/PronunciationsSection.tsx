@@ -1,15 +1,17 @@
 import React from "react";
-import { DropDownList } from "../../dropDownList/DropDownList"
+import { HorizontalDropDownList } from "../../list/HorizontalDropDownList"
 
 export const PronunciationsSection: React.FC<{ pronunciations: string[]; }> = ({ pronunciations }) => {
   if (!pronunciations || !pronunciations.length) throw new TypeError("pronunciations cannot be empty or null");
 
-  const pronunciationElements = pronunciations.map(pronunciation => <p>{pronunciation}</p>);
   return (
-    <DropDownList
-      children={pronunciationElements}
-      trailingElement={<p className="relative bottom-2">...</p>}
-    />
+    <HorizontalDropDownList>
+      {pronunciations.map(
+        (p, index) => index % 2 ?
+          <p className="px-1 bg-gray-200">{p}</p> :
+          <p className="px-1 bg-gray-50">{p}</p>
+      )}
+    </HorizontalDropDownList>
   )
 };
 

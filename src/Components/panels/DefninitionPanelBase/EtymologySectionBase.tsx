@@ -2,21 +2,21 @@ import React from "react";
 import { EtymologySection } from "../../../types/Definition";
 import { EtymologyInnerSectionBase } from "./EtymologyInnerSectionBase";
 import { PronunciationsSection } from "./PronunciationsSection";
-import { CharacterLimitDropDownList } from "../../dropDownList/CharacterLimitDropDownList"
+import { CharacterLimitDropDownList } from "../../list/CharacterLimitDropDownList"
 
 
-export const EtymologySectionBase: React.FC<EtymologySection> = ({ etymology, innerSections, pronunciations }) => {
+export const EtymologySectionBase: React.FC<EtymologySection> = ({ etymologyTexts, innerSections, pronunciations }) => {
   return (
     <div className="bg-gray-200">
       <div className="bg-gray-100 px-3 py-2 rounded-tl-3xl">
         {pronunciations.length !== 0 &&
           <PronunciationsSection pronunciations={pronunciations} />
         }
-        {etymology.length !== 0 &&
+        {etymologyTexts.length !== 0 &&
           <CharacterLimitDropDownList
             characterLimit={96}
             itemCss="italic font-light"
-            list={etymology}
+            list={etymologyTexts}
           />
         }
         <div>
@@ -25,7 +25,8 @@ export const EtymologySectionBase: React.FC<EtymologySection> = ({ etymology, in
           )}
         </div>
       </div>
-    </div>);
+    </div>
+  );
 };
 
 

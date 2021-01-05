@@ -1,15 +1,13 @@
-import Language from "./LanguageType"
-
 export default interface Definition {
   word: string;
-  wordLanguage: Language;
-  definitionLanguage: Language;
+  wordLanguage: string;
+  definitionLanguage: string;
   globalPronunciations: string[];
   etymologies: EtymologySection[];
 }
 
 export interface EtymologySection {
-  etymology: string[];
+  etymologyTexts: string[];
   pronunciations: string[];
   innerSections: EtymologyInnerSection[];
 }

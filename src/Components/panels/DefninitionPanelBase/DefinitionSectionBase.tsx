@@ -1,6 +1,7 @@
 import React from "react";
 import { DefinitionSection } from "../../../types/Definition";
-import { DropDownList } from "../../dropDownList/DropDownList";
+import { DropDownList } from "../../list/DropDownList";
+import { DefinitionPanelDropDownList } from "./DefinitionPanelDropDownList";
 
 
 export const DefinitionSectionBase: React.FC<DefinitionSection> = ({ antonyms, definition, examples, subDefinitions, synonyms }) => {
@@ -30,18 +31,12 @@ export const DefinitionSectionBase: React.FC<DefinitionSection> = ({ antonyms, d
       }
       <div>
         {synonyms.length !== 0 &&
-          <DropDownList
-            title={<p>synonyms:</p>}
-            children={synonyms.map(synonym => <p>{synonym}</p>)}
-            trailingElement={<p className="relative bottom-2">...</p>}
-          />
+          <DefinitionPanelDropDownList title="synonyms:" items={synonyms} />
         }
       </div>
       <div>
         {antonyms.length !== 0 &&
-          <DropDownList title={<p>antonyms:</p>}>
-            {antonyms.map(antonym => <p>{antonym}</p>)}
-          </DropDownList>
+          <DefinitionPanelDropDownList title="antonyms:" items={antonyms} />
         }
       </div>
     </>
