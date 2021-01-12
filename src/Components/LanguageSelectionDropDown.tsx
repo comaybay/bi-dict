@@ -1,4 +1,4 @@
-import { LanguageAbbreviation } from "../utils/LanguageAbbreviation"
+import LanguageAbbreviation from "../utils/LanguageAbbreviation"
 
 export interface LanguageSelectionDropDownProps {
   code: string;

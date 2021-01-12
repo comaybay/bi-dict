@@ -10,7 +10,7 @@ const reverseMapping = (m: Map<string, string>): Map<string, string> => {
   return res;
 }
 
-export class LanguageAbbreviation {
+export default class LanguageAbbreviation {
   private static readonly _ISOtoAbbrMap = config;
   private static readonly _AbbrToISOMap = reverseMapping(config);
 

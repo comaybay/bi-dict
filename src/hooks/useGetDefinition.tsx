@@ -1,35 +1,34 @@
 import { useEffect, useReducer, useState } from "react";
 import Definition from "../types/Definition";
+import FetchState from "../types/FetchState"
+import FetchAction from "../types/FetchAction";
+import sendRequest from "../utils/sendRequest"
 
-const initialState: DefinitionFetchState = {
-  definitionLanguage: "",
-  word: "",
-  wordLanguage: "",
+const initialFetchState: FetchState<Definition> = {
   isError: false,
   isLoading: false,
 }
 
-export default function useGetDefinition(): [DefinitionFetchState, FetchDefinition] {
+export default function useGetDefinition(): [FetchState<Definition>, FetchDefinition] {
   const [definitionLanguage, setDefinitionLanguage] = useState("");
   const [word, setWord] = useState("");
   const [wordLanguage, setWordLanguage] = useState("");
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialFetchState);
 
   useEffect(() => {
     (async () => {
       if (word === "") return;
 
-      dispatch({ type: "FETCH_INIT", payload: { definitionLanguage, word, wordLanguage } });
+      dispatch({ type: "FETCH_INIT" });
 
-      const res = await fetch(`https://localhost:44313/api/Definition/${definitionLanguage}/${word}/${wordLanguage}`);
-      if (res.ok) {
+      const res = await sendRequest(`Definition/${definitionLanguage}/${word}/${wordLanguage}`);
+      if (!res.ok)
+        dispatch({ type: "FETCH_FAILURE" });
+      else
         dispatch({
           type: "FETCH_SUCCESS",
-          payload: await res.json()
+          payload: await res.json() as Definition
         });
-      }
-      else
-        dispatch({ type: "FETCH_FAILURE" });
     })();
   }, [definitionLanguage, word, wordLanguage]);
 
@@ -42,45 +41,25 @@ export default function useGetDefinition(): [DefinitionFetchState, FetchDefiniti
   return [state, fetchDefinition];
 }
 
-function reducer(state: DefinitionFetchState, action: Action): DefinitionFetchState {
+export type FetchDefinition = (definitionLanguage: string, word: string, wordLanguage: string) => void;
+
+function reducer(state: FetchState<Definition>, action: FetchAction<Definition>): FetchState<Definition> {
   switch (action.type) {
     case "FETCH_INIT":
       return {
-        ...action.payload,
         isLoading: true,
         isError: false,
       }
     case "FETCH_FAILURE":
       return {
-        ...state,
         isLoading: false,
         isError: true,
       }
     case "FETCH_SUCCESS":
       return {
-        ...state,
         isLoading: false,
         isError: false,
-        definition: action.payload,
+        content: action.payload,
       }
   }
 }
-
-interface FetchDefinition {
-  (definitionLanguage: string, word: string, wordLanguage: string): void;
-}
-
-export interface DefinitionFetchState {
-  word: string,
-  wordLanguage: string;
-  definitionLanguage: string;
-  isLoading: boolean;
-  isError: boolean;
-  definition?: Definition;
-}
-
-interface Action {
-  type: "FETCH_INIT" | "FETCH_SUCCESS" | "FETCH_FAILURE";
-  payload?: any;
-}
-

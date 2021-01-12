@@ -35,7 +35,7 @@ export const DropDownList: React.FC<DropDownListProps> = ({ title, showElementAm
                   {trailingElement}
                 </div>
               </>
-            }
+          }
             {(!needsMinimization || !minimize) && children}
           </div>
         </div>
