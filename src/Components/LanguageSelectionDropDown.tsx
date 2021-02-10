@@ -1,30 +1,24 @@
+import LanguageAbbreviation from "../utils/LanguageAbbreviation"
+
 export interface LanguageSelectionDropDownProps {
-  value: string;
+  code: string;
   handleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const LanguageSelectionDropDown: React.FC<LanguageSelectionDropDownProps> = ({ value, handleChange }) => {
-  const language = ["VN", "EN", "JP"];
-  const selectElems = getLanguageSelectionElements(language);
+const LanguageSelectionDropDown: React.FC<LanguageSelectionDropDownProps> = ({ code, handleChange }) => {
   return (
     <>
       <select
         className="px-1 border-1.5 text-gray-500 border-gray-300 bg-gray-50
           focus:bg-gray-100"
-        value={value}
+        value={LanguageAbbreviation.fromISOLanguageCode(code)}
         onChange={handleChange}
-      >{selectElems}</select>
+      >
+        {Array.from(LanguageAbbreviation.all()).map(language =>
+          <option value={language}>{language}</option>
+        )}
+      </select>
     </>
   );
-};
-export default LanguageSelectionDropDown;
-
-function getLanguageSelectionElements(languages: string[]) {
-  const res = [];
-  for (const language of languages) {
-    res.push(
-      <option value={language}>{language}</option>
-    );
-  }
-  return res;
 }
+export default LanguageSelectionDropDown;
