@@ -1,7 +1,6 @@
 const config = new Map(Object.entries({
   "vi": "VN",
   "en": "EN",
-  "jp": "JP",
 }));
 
 const reverseMapping = (m: Map<string, string>): Map<string, string> => {
