@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import SearchForm from "./components/SearchForm";
 import SearchBox from "./components/SearchBox";
-import LanguageSelectionDropDown from "./components/LanguageSelectionDropDown";
+import LanguageSelectionDropDown from "./components/dropdowns/LanguageSelectionDropDown";
+import LanguageSelectionDropDownPurple from "./components/dropdowns/LanguageSelectionDropDownPurple";
 import WhiteButton from "./components/buttons/WhiteButton";
 import DefinitionPanelEN from "./components/panels/DefinitionPanelEN"
 import DefinitionPanelVN from "./components/panels/DefinitionPanelVN"
-import useGetDefinitionFirstOfTwo from "./hooks/useGetDefinitionFirstOfTwo";
 import Definition from "./types/Definition";
 import LanguageAbbreviation from "./utils/LanguageAbbreviation";
 import FetchState from "./types/FetchState";
@@ -13,23 +13,26 @@ import useWordSuggestions from "./hooks/useWordSuggestions"
 import SuggestionBox from "./components/SuggestionBox"
 import WordSuggestion from "./types/WordSuggestion";
 import useHistory from "./hooks/useHistory"
+import useGetDefinition from "./hooks/useGetDefinition";
 
 //==
 const App: React.FC = () => {
   const [inputWord, setInputWord] = useState("");
   const [firstLang, setFirstLang] = useState("vi");
   const [secondLang, setSecondLang] = useState("en");
-  const [stateFL, fetchDefinitionInFL] = useGetDefinitionFirstOfTwo();
-  const [stateSL, fetchDefinitionInSL] = useGetDefinitionFirstOfTwo();
-  const [searchHistory, addToSearchHistory] = useHistory<WordSuggestion, string>()
-  const suggestionsFL = useWordSuggestions(inputWord, "vi", 5);
-  const suggestionsSL = useWordSuggestions(inputWord, "en", 5);
-  const suggestions = inputWord === "" ? searchHistory : [...suggestionsFL, ...suggestionsSL];
 
-  const fetchDefinitions = () => {
-    fetchDefinitionInFL(firstLang, inputWord, firstLang, secondLang);
-    fetchDefinitionInSL(secondLang, inputWord, firstLang, secondLang);
-  }
+  const [stateFL, fetchDefinitionFLtoFL] = useGetDefinition();
+  const [stateSL, fetchDefinitionFLtoSL] = useGetDefinition();
+
+  const [searchHistory, addToSearchHistory] = useHistory<WordSuggestion, string>()
+  let suggestions = useWordSuggestions(inputWord, firstLang, 5);
+  suggestions = inputWord === "" ? searchHistory : suggestions;
+
+  const fetchDefinitions = (word: string) => {
+    fetchDefinitionFLtoSL(secondLang, word, firstLang);
+    fetchDefinitionFLtoFL(firstLang, word, firstLang);
+  };
+
   return (
     <>
       <div className="shadow-md z-10 fixed w-full">
@@ -39,26 +42,27 @@ const App: React.FC = () => {
               inputText={inputWord}
               handleChange={e => setInputWord(e.target.value)}
             />}
-          languageSelectionDropDown1={
-            <LanguageSelectionDropDown
+          dropDown1={
+            <LanguageSelectionDropDownPurple
               code={firstLang}
               handleChange={e => setFirstLang(LanguageAbbreviation.toISOLanguageCode(e.target.value))}
             />}
-          languageSelectionDropDown2={
+          dropDown2={
             <LanguageSelectionDropDown
               code={secondLang}
               handleChange={e => setSecondLang(LanguageAbbreviation.toISOLanguageCode(e.target.value))}
             />}
           searchButton={
-            <WhiteButton handleClick={fetchDefinitions}
+            <WhiteButton handleClick={() => fetchDefinitions(inputWord)}
             />}
           suggestionBox={!suggestions.length ? null :
             <SuggestionBox
               suggestions={suggestions}
               handleClickSuggestion={(elem) => {
+                debugger;
                 const search = JSON.parse(elem.dataset.wordSuggestion as string) as WordSuggestion;
                 addToSearchHistory(search, search.word);
-                fetchDefinitions();
+                fetchDefinitions(search.word);
               }}
             />
           }
