@@ -31,8 +31,12 @@ const Suggestion: React.FC<WordSuggestion> = ({ word, meaning }) => {
       data-word-suggestion={JSON.stringify({ word, meaning } as WordSuggestion)}
     >
       <span>{word}</span>
-      " - "
-      <span className="text-gray-600 text-sm">{meaning}</span>
+      {meaning &&
+        <>
+          <span> - </span>
+          <span className="text-gray-600 text-sm">{meaning}</span>
+        </>
+      }
     </li>
   )
 }

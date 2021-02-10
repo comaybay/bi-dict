@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { DropDownButton } from "../DropDownButton";
+import { DropDownButton } from "../dropdowns/DropDownButton";
 
 export interface DropDownListProps {
   title?: React.ReactNode;
