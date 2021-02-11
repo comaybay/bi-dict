@@ -1,6 +1,6 @@
 import React from "react";
-import { EtymologyInnerSection } from "../../../types/Definition";
-import { DropDownList } from "../../list/DropDownList";
+import { EtymologyInnerSection } from "../../../../types/Definition";
+import { DropDownList } from "../../../list/DropDownList";
 import { DefinitionPanelDropDownList } from "./DefinitionPanelDropDownList";
 import { DefinitionSectionBase } from "./DefinitionSectionBase";
 

@@ -1,8 +1,8 @@
 import React from "react";
-import Definition from "../../../types/Definition"
-import Panel from "../Panel";
+import Definition from "../../../../types/Definition"
+import Panel from "../../Panel";
 import { EtymologySectionBase } from "./EtymologySectionBase";
-import { LanguageTagProps } from "./languageTags/LanguageTag";
+import { LanguageTagProps } from "../languageTags/LanguageTag";
 import { PronunciationsSection } from "./PronunciationsSection";
 
 const DefinitionPanel: React.FC<DefinitionPanelBaseProps> = ({ definition, languageTag }) => {

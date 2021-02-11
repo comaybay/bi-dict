@@ -1,6 +1,6 @@
 import React from "react";
-import { DefinitionSection } from "../../../types/Definition";
-import { DropDownList } from "../../list/DropDownList";
+import { DefinitionSection } from "../../../../types/Definition";
+import { DropDownList } from "../../../list/DropDownList";
 import { DefinitionPanelDropDownList } from "./DefinitionPanelDropDownList";
 
 

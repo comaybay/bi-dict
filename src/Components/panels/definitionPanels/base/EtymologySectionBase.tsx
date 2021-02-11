@@ -1,8 +1,8 @@
 import React from "react";
-import { EtymologySection } from "../../../types/Definition";
+import { EtymologySection } from "../../../../types/Definition";
 import { EtymologyInnerSectionBase } from "./EtymologyInnerSectionBase";
 import { PronunciationsSection } from "./PronunciationsSection";
-import { CharacterLimitDropDownList } from "../../list/CharacterLimitDropDownList"
+import { CharacterLimitDropDownList } from "../../../list/CharacterLimitDropDownList"
 
 
 export const EtymologySectionBase: React.FC<EtymologySection> = ({ etymologyTexts, innerSections, pronunciations }) => {

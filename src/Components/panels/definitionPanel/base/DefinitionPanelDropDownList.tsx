@@ -1,5 +1,5 @@
 import React from "react";
-import { DropDownList } from "../../list/DropDownList";
+import { DropDownList } from "../../../list/DropDownList";
 
 
 export const DefinitionPanelDropDownList: React.FC<{ title?: string; items: string[]; }> = ({ title, items }) => {

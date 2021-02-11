@@ -11,13 +11,12 @@ const DefinitionNotFoundPanel: React.FC<DefinitionNotFoundPanelProps> = ({ langu
       <div className="flex items-center justify-center h-full">
         <p className="bg-gray-100 py-6 px-20">
           {apologyIn[language]}
-        </p >
-      </div >
-    </div >
+        </p>
+      </div>
+    </div>
   )
 }
 export default DefinitionNotFoundPanel;
-
 
 interface ApologyIn {
   [language: string]: string;
@@ -25,5 +24,4 @@ interface ApologyIn {
 
 export interface DefinitionNotFoundPanelProps {
   language: string;
-
 }
