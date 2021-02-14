@@ -61,10 +61,11 @@ const App: React.FC = () => {
             <SuggestionBox
               suggestions={suggestions}
               handleClickSuggestion={(elem) => {
-                debugger;
-                const search = JSON.parse(elem.dataset.wordSuggestion as string) as WordSuggestion;
-                addToSearchHistory(search, search.word);
-                fetchDefinitions(search.word);
+                const index = +(elem.dataset.index as string);
+                const suggestion = suggestions[index];
+                addToSearchHistory(suggestion, suggestion.word);
+                setInputWord(suggestion.word);
+                fetchDefinitions(suggestion.word);
               }}
             />
           }

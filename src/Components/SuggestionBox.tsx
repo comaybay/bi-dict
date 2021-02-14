@@ -1,3 +1,4 @@
+import useWordSuggestions from "../hooks/useWordSuggestions";
 import WordSuggestion from "../types/WordSuggestion"
 
 export interface SuggestionBoxProps {
@@ -6,7 +7,7 @@ export interface SuggestionBoxProps {
 }
 
 const SuggestionBox: React.FC<SuggestionBoxProps> = ({ suggestions, handleClickSuggestion }) => {
-  const suggestionElems = suggestions.map(s => <Suggestion {...s} />)
+  const suggestionElems = suggestions.map((s, index) => <Suggestion key={s.word} suggestion={s} index={index} />)
   return (
     <ul
       className="shadow-md border-b border-l border-r border-gray-300 bg-gray-50 pb-2"
@@ -24,11 +25,12 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({ suggestions, handleClickS
 }
 export default SuggestionBox;
 
-const Suggestion: React.FC<WordSuggestion> = ({ word, meaning }) => {
+const Suggestion: React.FC<SuggestionProps> = ({ suggestion, index }) => {
+  const { word, meaning } = suggestion;
   return (
     <li
       className="px-3 py-1 hover:bg-gray-100 whitespace-nowrap overflow-hidden overflow-ellipsis"
-      data-word-suggestion={JSON.stringify({ word, meaning } as WordSuggestion)}
+      data-index={index}
     >
       <span>{word}</span>
       {meaning &&
@@ -39,4 +41,9 @@ const Suggestion: React.FC<WordSuggestion> = ({ word, meaning }) => {
       }
     </li>
   )
+}
+
+interface SuggestionProps {
+  suggestion: WordSuggestion;
+  index: number;
 }
