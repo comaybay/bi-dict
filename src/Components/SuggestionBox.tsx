@@ -1,4 +1,3 @@
-import useWordSuggestions from "../hooks/useWordSuggestions";
 import WordSuggestion from "../types/WordSuggestion"
 
 export interface SuggestionBoxProps {
@@ -8,15 +7,17 @@ export interface SuggestionBoxProps {
 
 const SuggestionBox: React.FC<SuggestionBoxProps> = ({ suggestions, handleClickSuggestion }) => {
   const suggestionElems = suggestions.map((s, index) => <Suggestion key={s.word} suggestion={s} index={index} />)
+
   return (
     <ul
       className="shadow-md border-b border-l border-r border-gray-300 bg-gray-50 pb-2"
+
       onClick={(e) => {
         const target = (e.target as HTMLElement).closest("li");
         if (target)
           handleClickSuggestion(target);
         else
-          return target;
+          return;
       }}
     >
       {suggestionElems}

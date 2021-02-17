@@ -1,6 +1,7 @@
 import React from "react";
 import { EtymologyInnerSection } from "../../../../types/Definition";
 import { DropDownList } from "../../../list/DropDownList";
+import { getDefinitionSectionKey } from "./DefinitionPanel";
 import { DefinitionPanelDropDownList } from "./DefinitionPanelDropDownList";
 import { DefinitionSectionBase } from "./DefinitionSectionBase";
 
@@ -17,7 +18,7 @@ export const EtymologyInnerSectionBase: React.FC<EtymologyInnerSection> =
               showElementAmount={4}
               children={
                 definitionSections.map(ds =>
-                  <li className="ml-4 list-decimal">
+                  <li key={getDefinitionSectionKey(ds)} className="ml-4 list-decimal">
                     <DefinitionSectionBase {...ds} />
                   </li>
                 )}

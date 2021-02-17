@@ -3,6 +3,7 @@ import { EtymologySection } from "../../../../types/Definition";
 import { EtymologyInnerSectionBase } from "./EtymologyInnerSectionBase";
 import { PronunciationsSection } from "./PronunciationsSection";
 import { CharacterLimitDropDownList } from "../../../list/CharacterLimitDropDownList"
+import { getEtymologyInnerSectionKey } from "./DefinitionPanel";
 
 
 export const EtymologySectionBase: React.FC<EtymologySection> = ({ etymologyTexts, innerSections, pronunciations }) => {
@@ -21,12 +22,13 @@ export const EtymologySectionBase: React.FC<EtymologySection> = ({ etymologyText
         }
         <div>
           {innerSections.map(innerSection =>
-            <EtymologyInnerSectionBase {...innerSection} />
+            <EtymologyInnerSectionBase key={getEtymologyInnerSectionKey(innerSection)} {...innerSection} />
           )}
         </div>
       </div>
     </div>
   );
 };
+
 
 

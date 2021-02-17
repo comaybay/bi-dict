@@ -8,8 +8,8 @@ export const PronunciationsSection: React.FC<{ pronunciations: string[]; }> = ({
     <HorizontalDropDownList>
       {pronunciations.map(
         (p, index) => index % 2 ?
-          <p className="px-1 bg-gray-200">{p}</p> :
-          <p className="px-1 bg-gray-50">{p}</p>
+          <p key={p} className="px-1 bg-gray-200">{p}</p> :
+          <p key={p} className="px-1 bg-gray-50">{p}</p>
       )}
     </HorizontalDropDownList>
   )
