@@ -27,7 +27,7 @@ const DefinitionSearchForm: React.FC = () => {
   suggestions = inputWord === "" ? searchHistory : suggestions;
 
   return (
-    <div className="shadow-md z-10 fixed w-full">
+    <div className="shadow-md z-50 fixed w-full">
       <SearchForm
         searchBox={
           <SearchBox

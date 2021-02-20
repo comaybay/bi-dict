@@ -2,13 +2,13 @@ import React from "react";
 import Definition, { DefinitionSection, EtymologyInnerSection, EtymologySection } from "../../../../types/Definition"
 import Panel from "../../Panel";
 import { EtymologySectionBase } from "./EtymologySectionBase";
-import { LanguageTagProps } from "../languageTags/LanguageTag";
 import { PronunciationsSection } from "./PronunciationsSection";
 
-const DefinitionPanel: React.FC<DefinitionPanelBaseProps> = ({ definition, languageTag }) => {
+const DefinitionPanel: React.FC<DefinitionPanelBaseProps> = ({ definition, tags }) => {
   return (
     <Panel>
-      {languageTag}
+      <div className="relative z-10">{tags}</div>
+
       <div className="text-gray-600 px-5 py-4 relative">
         <div className="text-gray-700 text-2xl font-bold">
           {definition.word}
@@ -62,5 +62,5 @@ export interface DefinitionPanelProps {
 
 export interface DefinitionPanelBaseProps {
   definition: Definition;
-  languageTag: React.FunctionComponentElement<LanguageTagProps>;
+  tags: JSX.Element[];
 }

@@ -4,6 +4,8 @@ export default interface Definition {
   definitionLanguage: string;
   globalPronunciations: string[];
   etymologies: EtymologySection[];
+  sourceName: string;
+  sourceLink: string;
 }
 
 export interface EtymologySection {
