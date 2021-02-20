@@ -5,16 +5,16 @@ export interface ButtonProps {
 }
 
 export interface AbstractButtonProps {
-  className?: string;
+  cssOverride?: string;
   handleClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const AbstractButton: React.FC<AbstractButtonProps> = ({ handleClick, className }) => {
-  if (!className) className = "";
+const AbstractButton: React.FC<AbstractButtonProps> = ({ handleClick, cssOverride }) => {
+  if (!cssOverride) cssOverride = "";
 
   return (
     <button
-      className={`flex-initial inline-block uppercase text-center px-3 py-1 rounded-sm  ${className}`}
+      className={`flex-initial inline-block uppercase text-center px-3 py-1 rounded-sm  ${cssOverride}`}
       onClick={handleClick}
     >
       Search
