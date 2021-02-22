@@ -5,7 +5,7 @@ import Tag from "./Tag"
 const DefinitionSourceTag: React.FC<DefinitionSourceTagProps> = ({ sourceLink, sourceName }) => {
   return (
     <a href={sourceLink} >
-      <Tag extendedClassName={"bg-green-300"} text={sourceName} />
+      <Tag extendedClassName="bg-green-300 ring-inset ring-1 ring-green-100 border-2 border-green-300" text={sourceName} />
     </a>
   )
 };

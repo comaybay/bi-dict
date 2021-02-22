@@ -10,7 +10,7 @@ const DefinitionPanel: React.FC<DefinitionPanelBaseProps> = ({ definition, tags 
 
   return (
     <Panel extendedClassName="relative">
-      <div className="absolute right-0 flex flex-row space-x-2 mt-2 mr-2">
+      <div className="absolute z-10 right-0 flex flex-row space-x-2 mt-2 mr-2 items-baseline">
         {tags}
       </div>
 
