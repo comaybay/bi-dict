@@ -3,7 +3,7 @@ import Tag from "./Tag"
 
 const LanguageTag: React.FC<LanguageTagProps> = ({ language, cssOverride }) => {
   return (
-    <Tag text={language} cssOverride={cssOverride} />
+    <Tag text={language} extendedClassName={cssOverride} />
   );
 };
 export default LanguageTag;

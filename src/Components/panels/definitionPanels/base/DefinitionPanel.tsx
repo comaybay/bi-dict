@@ -5,6 +5,9 @@ import { EtymologySectionBase } from "./EtymologySectionBase";
 import { PronunciationsSection } from "./PronunciationsSection";
 
 const DefinitionPanel: React.FC<DefinitionPanelBaseProps> = ({ definition, tags }) => {
+  const isEtymologySectionEmpty = (etymology: EtymologySection): boolean =>
+    (etymology.etymologyTexts.length === 0 && etymology.innerSections.length === 0 && etymology.pronunciations.length === 0);
+
   return (
     <Panel>
       <div className="relative z-10">{tags}</div>
@@ -17,11 +20,16 @@ const DefinitionPanel: React.FC<DefinitionPanelBaseProps> = ({ definition, tags 
           <PronunciationsSection pronunciations={definition.globalPronunciations} />
         }
         <div className="pt-2">
-          {definition.etymologies.map(etymologySection =>
-            <div key={getEtymologySectionKey(etymologySection)} className="py-2">
-              <EtymologySectionBase {...etymologySection} />
-            </div>
-          )}
+          {definition.etymologies.map(etymologySection => {
+            if (isEtymologySectionEmpty(etymologySection))
+              return null;
+            else
+              return (
+                <div key={getEtymologySectionKey(etymologySection)} className="py-2">
+                  <EtymologySectionBase {...etymologySection} />
+                </div>
+              )
+          })}
         </div>
       </div>
     </Panel>
