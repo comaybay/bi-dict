@@ -9,8 +9,10 @@ const DefinitionPanel: React.FC<DefinitionPanelBaseProps> = ({ definition, tags 
     (etymology.etymologyTexts.length === 0 && etymology.innerSections.length === 0 && etymology.pronunciations.length === 0);
 
   return (
-    <Panel>
-      <div className="relative z-10">{tags}</div>
+    <Panel extendedClassName="relative">
+      <div className="absolute right-0 flex flex-row space-x-2 mt-2 mr-2">
+        {tags}
+      </div>
 
       <div className="text-gray-600 px-5 py-4 relative">
         <div className="text-gray-700 text-2xl font-bold">

@@ -7,6 +7,10 @@ module.exports = {
 
       },
 
+      ringOffsetWidth: {
+        "-2": "-2px"
+      },
+
       borderWidth: {
         '1.5': '1.5px'
       },

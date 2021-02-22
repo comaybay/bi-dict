@@ -42,8 +42,12 @@ const App: React.FC = () => {
 
       <div className="padding-top-navbar">
         <div className="px-2 py-2 grid grid-cols-2 gap-2">
-          <PanelSection fetchState={stateFL} language={firstLang} />
-          <PanelSection fetchState={stateSL} language={secondLang} />
+          <div>
+            <PanelSection fetchState={stateFL} language={firstLang} />
+          </div>
+          <div>
+            <PanelSection fetchState={stateSL} language={secondLang} />
+          </div>
         </div>
       </div>
     </>

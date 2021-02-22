@@ -1,13 +1,10 @@
 import React from "react";
 
-const Panel: React.FC = ({ children }) => {
+const Panel: React.FC<{ extendedClassName?: string }> = ({ children, extendedClassName }) => {
   return (
-    <div>
-      <div className="bg-gray-50 rounded-md">
-        {children}
-      </div>
-    </div >
-
+    <div className={`bg-gray-50 rounded-md ${extendedClassName}`}>
+      {children}
+    </div>
   )
 }
 export default Panel;
