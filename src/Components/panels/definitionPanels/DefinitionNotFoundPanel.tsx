@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../../../App";
 
 const apologyIn: ApologyIn = {
   "vi": "Không tìm được nghĩa của từ :(",
@@ -6,10 +7,11 @@ const apologyIn: ApologyIn = {
 }
 
 const DefinitionNotFoundPanel: React.FC<DefinitionNotFoundPanelProps> = ({ language }) => {
-  return (
-    <div className="bg-gray-300 rounded-md p-2">
+  const { panel, text } = useContext(ThemeContext);
+  return (  
+    <div className={`${panel.extraLight} rounded-md p-2`}>
       <div className="flex items-center justify-center h-full">
-        <p className="bg-gray-100 py-6 px-20">
+        <p className={text.dark}>
           {apologyIn[language]}
         </p>
       </div>

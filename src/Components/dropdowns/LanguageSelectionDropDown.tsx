@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { ThemeContext } from "../../App";
 import LanguageAbbreviation from "../../utils/LanguageAbbreviation"
 
 export interface LanguageSelectionDropDownProps {
@@ -7,11 +9,12 @@ export interface LanguageSelectionDropDownProps {
 }
 
 const LanguageSelectionDropDown: React.FC<LanguageSelectionDropDownProps> = ({ code, handleChange, cssOverride = "" }) => {
+  const { text, border, languageDropDown } = useContext(ThemeContext);
   return (
     <>
       <select
-        className={`px-1 border-1.5 text-gray-500 border-gray-300 bg-gray-50
-          focus:bg-gray-100 ${cssOverride}`}
+        className={`px-1 border-1.5 ${text.light} ${border.light} ${languageDropDown.background} 
+        ${languageDropDown.focus} ${cssOverride}`}
         value={LanguageAbbreviation.fromISOLanguageCode(code)}
         onChange={handleChange}
       >

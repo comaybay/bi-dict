@@ -1,21 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../../../../App";
 import Definition, { DefinitionSection, EtymologyInnerSection, EtymologySection } from "../../../../types/Definition"
-import Panel from "../../Panel";
 import { EtymologySectionBase } from "./EtymologySectionBase";
 import { PronunciationsSection } from "./PronunciationsSection";
 
 const DefinitionPanel: React.FC<DefinitionPanelBaseProps> = ({ definition, tags }) => {
+  const { panel, text } = useContext(ThemeContext);
+
   const isEtymologySectionEmpty = (etymology: EtymologySection): boolean =>
     (etymology.etymologyTexts.length === 0 && etymology.innerSections.length === 0 && etymology.pronunciations.length === 0);
 
   return (
-    <Panel extendedClassName="relative">
+    <div className={`relative rounded-sm ${panel.extraLight}`}>
       <div className="absolute z-10 right-0 flex flex-row space-x-2 mt-2 mr-2 items-baseline">
         {tags}
       </div>
 
-      <div className="text-gray-600 px-5 py-4 relative">
-        <div className="text-gray-700 text-2xl font-bold">
+      <div className="px-5 py-4 relative">
+        <div className={`${text.dark} text-2xl font-bold`}>
           {definition.word}
         </div>
         {definition.globalPronunciations.length !== 0 &&
@@ -34,7 +36,7 @@ const DefinitionPanel: React.FC<DefinitionPanelBaseProps> = ({ definition, tags 
           })}
         </div>
       </div>
-    </Panel>
+    </div>
   )
 }
 

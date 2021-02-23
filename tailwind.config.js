@@ -4,7 +4,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        'yellow': {
+          light: '#E3DFB3',
 
+        }
       },
 
       ringOffsetWidth: {
@@ -12,7 +15,8 @@ module.exports = {
       },
 
       borderWidth: {
-        '1.5': '1.5px'
+        '1.5': '1.5px',
+        '3': '3px'
       },
 
       spacing: {

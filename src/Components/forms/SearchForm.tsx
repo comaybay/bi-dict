@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { ButtonProps } from "../buttons/ButtonBase";
+import { useContext, useState } from "react";
+import { ThemeContext } from "../../App";
+import { ButtonProps } from "../buttons/Button";
 import { LanguageSelectionDropDownProps } from "../dropdowns/LanguageSelectionDropDown";
 import { SearchBoxProps } from "../SearchBox";
 import { SuggestionBoxProps } from "../SuggestionBox";
@@ -13,11 +14,12 @@ interface SearchFormProps {
 };
 
 const SearchForm: React.FC<SearchFormProps> = (
-  { searchBox, dropDown1, dropDown2, searchButton, suggestionBox }
-) => {
+  { searchBox, dropDown1, dropDown2, searchButton, suggestionBox }) => {
   const [suggestionBoxEnabled, setSuggestionBoxEnabled] = useState(false);
+
+  const { searchForm } = useContext(ThemeContext);
   return (
-    <div className="flex justify-center bg-gray-100 border-b-1 border-gray-300">
+    <div className={`${searchForm.background} flex justify-center`}>
       <div className="flex min-w-0 w-full max-w-4xl pt-2 pb-2.5">
         <div className="flex-auto min-w-0"> {/*min-w-0 to give child elems width so they won't grow out of container*/}
           <div

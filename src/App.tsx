@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import DefinitionSearchForm from "./components/forms/DefinitionSearchForm";
 import DefinitionPanelEN from "./components/panels/definitionPanels/DefinitionPanelEN"
 import DefinitionPanelVN from "./components/panels/definitionPanels/DefinitionPanelVN"
@@ -7,9 +7,11 @@ import FetchState from "./types/FetchState";
 import useGetDefinition from "./hooks/useGetDefinition";
 import DefinitionNotFoundPanel from "./components/panels/definitionPanels/DefinitionNotFoundPanel";
 import LoadingPanel from "./components/panels/definitionPanels/LoadingPanel";
+import monochromeTheme, { Theme } from "./utils/Themes";
 
 //==
 export const AppContext = React.createContext<AppContextValue>({} as AppContextValue);
+export const ThemeContext = React.createContext<Theme>(monochromeTheme);
 
 const App: React.FC = () => {
   const [inputWord, setInputWord] = useState("");
@@ -34,6 +36,8 @@ const App: React.FC = () => {
     fetchDefinitions
   }
 
+  const { background: backgroundColor } = useContext(ThemeContext);
+  document.body.className = backgroundColor;
   return (
     <>
       <AppContext.Provider value={providerValue}>

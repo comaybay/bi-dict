@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../../../../App";
 import { DefinitionSection } from "../../../../types/Definition";
 import { DropDownList } from "../../../list/DropDownList";
 import { DefinitionPanelDropDownList } from "./DefinitionPanelDropDownList";
 
 
 export const DefinitionSectionBase: React.FC<DefinitionSection> = ({ antonyms, definition, examples, subDefinitions, synonyms }) => {
+  const { text } = useContext(ThemeContext);
   return (
     <>
       <p>{definition}</p>
@@ -12,7 +14,7 @@ export const DefinitionSectionBase: React.FC<DefinitionSection> = ({ antonyms, d
         {examples.length !== 0 &&
           <ul>
             <DropDownList>
-              {examples.map(example => <li className="ml-4 font-light italic list-disc">{example}</li>)}
+              {examples.map(example => <li className={`${text.light} ml-4 font-light italic list-disc`}>{example}</li>)}
             </DropDownList>
           </ul>
         }

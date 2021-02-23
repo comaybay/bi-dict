@@ -28,10 +28,8 @@ export const CharacterLimitDropDownList: React.FC<CharacterLimitDropDownListProp
           </div>
         }
         <div className="pl-1 flex items-start">
-          <div className="text-gray-500 ext-lg italic">
-            {needsMinimization && minimize && children[0]}
-            {(!needsMinimization || !minimize) && children}
-          </div>
+          {needsMinimization && minimize && children[0]}
+          {(!needsMinimization || !minimize) && children}
         </div>
       </div>
     </>

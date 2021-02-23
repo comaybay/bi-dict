@@ -23,21 +23,19 @@ export const DropDownList: React.FC<DropDownListProps> = ({ title, showElementAm
             <DropDownButton handleClick={toggleMinimization} />
           </div>
         }
-        <div className="pl-1 flex">
-          <div className="text-gray-500 ext-lg">
-            <div className="select-none cursor-pointer" onClick={toggleMinimization}>
-              {title}
-            </div>
-            {needsMinimization && minimize &&
-              <>
-                {children.slice(0, showElementAmount)}
-                <div className="cursor-pointer" onClick={toggleMinimization}>
-                  {trailingElement}
-                </div>
-              </>
-          }
-            {(!needsMinimization || !minimize) && children}
+        <div className="pl-1">
+          <div className="select-none cursor-pointer" onClick={toggleMinimization}>
+            {title}
           </div>
+          {needsMinimization && minimize &&
+            <>
+              {children.slice(0, showElementAmount)}
+              <div className="cursor-pointer" onClick={toggleMinimization}>
+                {trailingElement}
+              </div>
+            </>
+          }
+          {(!needsMinimization || !minimize) && children}
         </div>
       </div>
     </>

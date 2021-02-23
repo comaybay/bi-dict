@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
+import { ThemeContext } from "../../App";
 import { DropDownButton } from "../dropdowns/DropDownButton";
 
 export interface HorizontalDropDownListProps {
@@ -15,6 +16,7 @@ export const HorizontalDropDownList: React.FC<HorizontalDropDownListProps> = ({ 
   const needsMinimization = size > limit;
   const toggleMinimization = () => setMinimize(!minimize);
 
+  const { text } = useContext(ThemeContext);
   return (
     <>
       <div className="flex">
@@ -24,7 +26,7 @@ export const HorizontalDropDownList: React.FC<HorizontalDropDownListProps> = ({ 
           </div>
         }
         <div className="pl-1 flex">
-          <div className="text-gray-500 ext-lg italic">
+          <div className={`${text.light} ext-lg italic`}>
             <div className="select-none cursor-pointer" onClick={toggleMinimization}>
               {title}
             </div>

@@ -3,8 +3,7 @@ import SearchForm from "./SearchForm";
 import SearchBox from "../SearchBox";
 import SuggestionBox from "../SuggestionBox";
 import LanguageSelectionDropDown from "../dropdowns/LanguageSelectionDropDown";
-import LanguageSelectionDropDownPurple from "../dropdowns/LanguageSelectionDropDownPurple";
-import WhiteButton from "../buttons/WhiteButton";
+import Button from "../buttons/Button";
 import LanguageAbbreviation from "../../utils/LanguageAbbreviation";
 import { AppContext } from "../../App";
 import useHistory from "../../hooks/useHistory";
@@ -35,7 +34,7 @@ const DefinitionSearchForm: React.FC = () => {
             handleChange={e => setInputWord(e.target.value)}
           />}
         dropDown1={
-          <LanguageSelectionDropDownPurple
+          <LanguageSelectionDropDown
             code={firstLang}
             handleChange={e => setFirstLang(LanguageAbbreviation.toISOLanguageCode(e.target.value))}
           />}
@@ -45,8 +44,7 @@ const DefinitionSearchForm: React.FC = () => {
             handleChange={e => setSecondLang(LanguageAbbreviation.toISOLanguageCode(e.target.value))}
           />}
         searchButton={
-          <WhiteButton handleClick={() => fetchDefinitions(inputWord)}
-          />}
+          <Button handleClick={() => { fetchDefinitions(inputWord) }} />}
         suggestionBox={!suggestions.length ? null :
           <SuggestionBox
             suggestions={suggestions}
