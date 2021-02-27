@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../../../../App";
 import { DefinitionSection } from "../../../../types/Definition";
-import { DropDownList } from "../../../list/DropDownList";
+import BulletedDropDownList from "../../../list/BulletedDropDownList";
+import NumberedDropDownList from "../../../list/NumberedDropDownList";
 import { DefinitionPanelDropDownList } from "./DefinitionPanelDropDownList";
 
 
@@ -12,24 +13,20 @@ export const DefinitionSectionBase: React.FC<DefinitionSection> = ({ antonyms, d
       <p>{definition}</p>
       <div>
         {examples.length !== 0 &&
-          <ul>
-            <DropDownList>
-              {examples.map(example => <li className={`${text.paragraph2} ml-4 font-light italic list-disc`}>{example}</li>)}
-            </DropDownList>
-          </ul>
+          <BulletedDropDownList>
+            {examples.map(example => <li className={`${text.paragraph2} font-light italic`}>{example}</li>)}
+          </BulletedDropDownList>
         }
       </div>
       { subDefinitions.length !== 0 &&
-        <ol className="pl-4">
-          <DropDownList
-            showElementAmount={2}
-            children={subDefinitions.map(sd =>
-              <li className="list list-decimal">
-                <DefinitionSectionBase {...sd} />
-              </li>
-            )}
-          />
-        </ol>
+        <NumberedDropDownList
+          showElementAmount={2}
+          children={subDefinitions.map(sd =>
+            <li className="list list-decimal">
+              <DefinitionSectionBase {...sd} />
+            </li>
+          )}
+        />
       }
       <div>
         {synonyms.length !== 0 &&

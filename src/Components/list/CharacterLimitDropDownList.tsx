@@ -27,7 +27,7 @@ export const CharacterLimitDropDownList: React.FC<CharacterLimitDropDownListProp
             <DropDownButton handleClick={() => setMinimize(!minimize)} />
           </div>
         }
-        <div className="pl-1 flex items-start">
+        <div className="pl-1 flex flex-col items-start">
           {needsMinimization && minimize && children[0]}
           {(!needsMinimization || !minimize) && children}
         </div>
