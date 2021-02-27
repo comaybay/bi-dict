@@ -26,7 +26,7 @@ export const HorizontalDropDownList: React.FC<HorizontalDropDownListProps> = ({ 
           </div>
         }
         <div className="pl-1 flex">
-          <div className={`${text.light} ext-lg italic`}>
+          <div className={`${text.paragraph2} ext-lg italic`}>
             <div className="select-none cursor-pointer" onClick={toggleMinimization}>
               {title}
             </div>

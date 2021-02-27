@@ -14,7 +14,7 @@ export const DefinitionSectionBase: React.FC<DefinitionSection> = ({ antonyms, d
         {examples.length !== 0 &&
           <ul>
             <DropDownList>
-              {examples.map(example => <li className={`${text.light} ml-4 font-light italic list-disc`}>{example}</li>)}
+              {examples.map(example => <li className={`${text.paragraph2} ml-4 font-light italic list-disc`}>{example}</li>)}
             </DropDownList>
           </ul>
         }

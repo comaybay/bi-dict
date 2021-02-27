@@ -19,7 +19,7 @@ const SearchForm: React.FC<SearchFormProps> = (
 
   const { searchForm } = useContext(ThemeContext);
   return (
-    <div className={`${searchForm.background} flex justify-center`}>
+    <div className={`${searchForm} flex justify-center`}>
       <div className="flex min-w-0 w-full max-w-4xl pt-2 pb-2.5">
         <div className="flex-auto min-w-0"> {/*min-w-0 to give child elems width so they won't grow out of container*/}
           <div

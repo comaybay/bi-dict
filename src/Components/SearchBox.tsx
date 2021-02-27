@@ -7,15 +7,13 @@ export interface SearchBoxProps {
 }
 
 const SearchBox: React.FC<SearchBoxProps> = ({ inputText, handleChange }) => {
-  const theme = useContext(ThemeContext);
-  const { text, border } = theme;
-  const { searchBox } = theme.searchForm;
+  const { border, searchBox } = useContext(ThemeContext);
   return (
     <div className="flex flex-col">
       <input
         type="text"
-        className={`${text.inputPlaceholder} pl-3 text-lg h-11 rounded-sm ${searchBox.background} border-1.5 ${border.light}  
-          focus:outline-none ${border.active}`}
+        className={`pl-3 text-lg h-11 rounded-sm border-1.5 ${searchBox} ${border.color}  
+          focus:outline-none ${border.focus}`}
         placeholder="Tìm từ gì đây..." onChange={handleChange} value={inputText}
       />
     </div>

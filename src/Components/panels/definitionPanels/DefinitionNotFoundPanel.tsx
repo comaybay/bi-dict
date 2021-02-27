@@ -8,10 +8,10 @@ const apologyIn: ApologyIn = {
 
 const DefinitionNotFoundPanel: React.FC<DefinitionNotFoundPanelProps> = ({ language }) => {
   const { panel, text } = useContext(ThemeContext);
-  return (  
-    <div className={`${panel.extraLight} rounded-md p-2`}>
+  return (
+    <div className={`${panel.sectionContainer} rounded-md p-2`}>
       <div className="flex items-center justify-center h-full">
-        <p className={text.dark}>
+        <p className={text.header}>
           {apologyIn[language]}
         </p>
       </div>

@@ -12,19 +12,19 @@ export const EtymologyInnerSectionBase: React.FC<EtymologyInnerSection> =
     const { text } = useContext(ThemeContext);
     return (
       <div className="pl-2">
-        <p className={`${text.dark} font-bold`}>{partOfSpeech}</p>
-        <p className={`${text.medium} pl-2`}>{inflection}</p>
+        <p className={`${text.header} font-bold`}>{partOfSpeech}</p>
+        <p className={`${text.paragraph} pl-2`}>{inflection}</p>
         <ol className="pl-2">
           {definitionSections.length !== 0 &&
             <DropDownList
               showElementAmount={4}
               children={
                 definitionSections.map(ds =>
-                  <li key={getDefinitionSectionKey(ds)} className={`${text.medium} ml-4 list-decimal`}>
+                  <li key={getDefinitionSectionKey(ds)} className={`${text.paragraph} ml-4 list-decimal`}>
                     <DefinitionSectionBase {...ds} />
                   </li>
                 )}
-              trailingElement={<p className={`${text.medium} relative bottom-2`}>...</p>}
+              trailingElement={<p className={`${text.paragraph} relative bottom-2`}>...</p>}
             />
           }
         </ol>

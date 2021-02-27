@@ -1,12 +1,16 @@
 module.exports = {
   purge: [],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: false,
   theme: {
     extend: {
       colors: {
-        'yellow': {
-          light: '#E3DFB3',
-
+        'genshin': {
+          'yellow-medium': '#F8E9AF',
+          'yellow-light': '#F0EFD3',
+          'yellow-extra-light': '#F2F2E4',
+          'blue-medium': '#6179B3',
+          'blue-dark': '#3E5180',
+          'blue-darker': '#2F3F66',
         }
       },
 
@@ -27,7 +31,9 @@ module.exports = {
   variants: {
     extend: {
       backgroundColor: ['responsive', 'hover', 'focus', 'active'],
-      borderWidth: ['focus']
+      borderWidth: ['focus'],
+      borderColor: ['active'],
+      textColor: ['active']
     },
   },
   plugins: [],

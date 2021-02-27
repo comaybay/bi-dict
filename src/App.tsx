@@ -7,11 +7,11 @@ import FetchState from "./types/FetchState";
 import useGetDefinition from "./hooks/useGetDefinition";
 import DefinitionNotFoundPanel from "./components/panels/definitionPanels/DefinitionNotFoundPanel";
 import LoadingPanel from "./components/panels/definitionPanels/LoadingPanel";
-import monochromeTheme, { Theme } from "./utils/Themes";
+import monochromeTheme, { genshinTheme, Theme } from "./utils/Themes";
 
 //==
 export const AppContext = React.createContext<AppContextValue>({} as AppContextValue);
-export const ThemeContext = React.createContext<Theme>(monochromeTheme);
+export const ThemeContext = React.createContext<Theme>(genshinTheme);
 
 const App: React.FC = () => {
   const [inputWord, setInputWord] = useState("");

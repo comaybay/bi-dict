@@ -9,9 +9,9 @@ const loadingTextIn: LoadingTextIn = {
 const LoadingPanel: React.FC<LoadingPanelProps> = ({ language }) => {
   const { panel, text } = useContext(ThemeContext);
   return (
-    <div className={`${panel.extraLight} rounded-md p-2`}>
+    <div className={`${panel.sectionContainer} rounded-md p-2`}>
       <div className="flex items-center justify-center h-full">
-        <p className={text.dark}>
+        <p className={text.header}>
           {loadingTextIn[language]}
         </p>
       </div>

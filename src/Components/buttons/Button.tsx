@@ -9,8 +9,8 @@ const Button: React.FC<ButtonProps> = ({ handleClick }) => {
   const { button, border, text } = useContext(ThemeContext);
   return (
     <button
-      className={`${button.background} ${text.medium} flex-initial inline-block uppercase text-center px-3 py-1 rounded-sm 
-      ${button.active} border-1.5 ${border.light} ${border.focus} focus:outline-none`}
+      className={`${button.background} ${text.button} flex-initial inline-block uppercase text-center px-3 py-1 rounded-sm 
+      border-1.5 ${border.color} ${border.focus} focus:outline-none ${button.active}`}
       onClick={handleClick}
     >
       Search

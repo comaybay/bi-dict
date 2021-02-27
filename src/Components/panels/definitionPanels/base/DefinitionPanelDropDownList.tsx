@@ -7,9 +7,9 @@ export const DefinitionPanelDropDownList: React.FC<DefinitionPanelDropDownListPr
   const { text } = useContext(ThemeContext);
   return (
     <DropDownList
-      title={<p className={`${text.medium} font-semibold`}>{title}</p >}
-      children={items.map(i => <p className={text.medium}>{i}</p>)}
-      trailingElement={<p className={`relative bottom-2 ${text.medium}`} >...</p>} />
+      title={<p className={`${text.paragraph} font-semibold`}>{title}</p >}
+      children={items.map(i => <p className={text.paragraph}>{i}</p>)}
+      trailingElement={<p className={`relative bottom-2 ${text.paragraph}`} >...</p>} />
   );
 };
 
