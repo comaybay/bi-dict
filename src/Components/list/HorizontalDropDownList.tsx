@@ -11,10 +11,14 @@ export interface HorizontalDropDownListProps {
 export const HorizontalDropDownList: React.FC<HorizontalDropDownListProps> = ({ title, limit = 1, children }) => {
   if (children === null || children.length === 0) throw new TypeError("parameter 'children' cannot be an empty array or null");
 
+  const [buttonDropped, setButtonDropped] = useState(false);
   const [minimize, setMinimize] = useState(true);
   const size = children.length;
   const needsMinimization = size > limit;
-  const toggleMinimization = () => setMinimize(!minimize);
+  const toggleMinimization = () => {
+    setMinimize(!minimize)
+    setButtonDropped(!buttonDropped);
+  };
 
   const { text } = useContext(ThemeContext);
   return (
@@ -22,7 +26,10 @@ export const HorizontalDropDownList: React.FC<HorizontalDropDownListProps> = ({ 
       <div className="flex">
         {size > limit &&
           <div> {/*div wrapper to prevent button from being stretch when un-minimized*/}
-            <DropDownButton handleClick={toggleMinimization} />
+            <DropDownButton
+              dropped={buttonDropped}
+              handleClick={toggleMinimization}
+            />
           </div>
         }
         <div className="pl-1 flex">

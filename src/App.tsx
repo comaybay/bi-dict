@@ -11,7 +11,7 @@ import monochromeTheme, { genshinTheme, Theme } from "./utils/Themes";
 
 //==
 export const AppContext = React.createContext<AppContextValue>({} as AppContextValue);
-export const ThemeContext = React.createContext<Theme>(genshinTheme);
+export const ThemeContext = React.createContext<Theme>(monochromeTheme);
 
 const App: React.FC = () => {
   const [inputWord, setInputWord] = useState("");
