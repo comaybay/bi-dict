@@ -69,7 +69,7 @@ const PanelSection: React.FC<PanelSectionProps> = ({ language, fetchState }) => 
   if (fetchState.isError)
     return <DefinitionNotFoundPanel language={language} />
 
-  throw new Error("Unidentified fetch state");
+  return <></>;
 }
 
 function getDefinitionPanelByLanguage(language: string, definition: Definition) {

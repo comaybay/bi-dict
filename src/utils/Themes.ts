@@ -9,11 +9,9 @@ const monochromeTheme: Theme = {
     header: "text-gray-700",
     paragraph: "text-gray-600",
     paragraph2: "text-gray-500",
-    searchBox: "text-gray-600",
-    tag: "text-white",
   },
   searchForm: "bg-gray-50",
-  searchBox: "bg-gray-50 placeholder-gray-200 border-gray-300 focus:border-indigo-500",
+  searchBox: "bg-gray-50 placeholder-gray-200 border-gray-300 focus:border-indigo-500 text-gray-600",
   suggestion: {
     container: "hover:bg-gray-100",
     meaning: "text-gray-600 text-sm",
@@ -23,7 +21,7 @@ const monochromeTheme: Theme = {
   languageDropDown: "bg-gray-50 focus:bg-gray-100 border-gray-300 focus:border-indigo-500 text-gray-600",
   button: "bg-gray-50 text-gray-600 active:bg-gray-100 border-gray-300 active:border-indigo-500 active:text-indigo-500",
   tag: {
-    base: "",
+    base: "text-white",
     english: "bg-blue-300",
     vietnamese: "bg-red-300",
     definitionSource: "bg-green-300 ring-inset ring-1 ring-green-100 border-2 border-green-300"
@@ -33,7 +31,7 @@ export default monochromeTheme;
 
 export const genshinTheme: Theme = {
   background: "bg-genshin-blue-darker",
-  button: "bg-genshin-yellow-medium text-genshin-blue-darker border-genshin-blue-dark" +
+  button: "bg-genshin-yellow-medium border-genshin-blue-dark text-genshin-blue-dark font-medium" +
     " active:bg-genshin-blue-dark active:text-genshin-yellow-medium active:border-genshin-yellow-medium",
   languageDropDown: "bg-genshin-blue-medium border-genshin-blue-dark focus:border-genshin-blue-medium" +
     " focus:bg-genshin-blue-dark text-genshin-yellow-extra-light",
@@ -55,11 +53,9 @@ export const genshinTheme: Theme = {
     header: "text-genshin-yellow-medium",
     paragraph: "text-gray-300",
     paragraph2: "text-gray-300",
-    searchBox: "text-genshin-yellow-medium",
-    tag: "text-genshin-blue-dark"
   },
   tag: {
-    base: "rounded-full py-1 px-4",
+    base: "rounded-full py-1 px-4 text-genshin-blue-darker",
     definitionSource: "bg-genshin-yellow-light ring-inset ring-1 ring-genshin-blue-medium border-2" +
       " rounded-full border-genshin-yellow-medium",
     english: "bg-blue-200",
@@ -86,8 +82,6 @@ export interface Theme {
     header: string;
     paragraph: string;
     paragraph2: string;
-    searchBox: string;
-    tag: string;
   }
   languageDropDown: string;
   button: string;
