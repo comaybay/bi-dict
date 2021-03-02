@@ -6,11 +6,7 @@ export const PronunciationsSection: React.FC<{ pronunciations: string[]; }> = ({
 
   return (
     <HorizontalDropDownList>
-      {pronunciations.map(
-        (p, index) => index % 2 ?
-          <p key={p} className="px-1">{p}</p> :
-          <p key={p} className="px-1">{p}</p>
-      )}
+      {pronunciations.map((p) => <p key={p} className="px-1">{p}</p>)}
     </HorizontalDropDownList>
   )
 };
