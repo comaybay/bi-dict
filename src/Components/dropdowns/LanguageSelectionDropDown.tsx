@@ -9,12 +9,11 @@ export interface LanguageSelectionDropDownProps {
 }
 
 const LanguageSelectionDropDown: React.FC<LanguageSelectionDropDownProps> = ({ code, handleChange, cssOverride = "" }) => {
-  const { text, border, languageDropDown } = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
   return (
     <>
       <select
-        className={`px-1 border-1.5 ${text.languageDropDown} ${border.color} ${border.focus} ${languageDropDown.background} 
-        ${languageDropDown.focus} ${cssOverride}`}
+        className={`px-1 border-1.5 ${theme.languageDropDown} ${cssOverride}`}
         value={LanguageAbbreviation.fromISOLanguageCode(code)}
         onChange={handleChange}
       >

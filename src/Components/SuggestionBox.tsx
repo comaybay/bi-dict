@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { ThemeContext } from "../App";
 import WordSuggestion from "../types/WordSuggestion"
 
 export interface SuggestionBoxProps {
@@ -8,10 +10,10 @@ export interface SuggestionBoxProps {
 const SuggestionBox: React.FC<SuggestionBoxProps> = ({ suggestions, handleClickSuggestion }) => {
   const suggestionElems = suggestions.map((s, index) => <Suggestion key={s.word} suggestion={s} index={index} />)
 
+  const { suggestionBox: suggestionBoxTheme } = useContext(ThemeContext);
   return (
     <ul
-      className="shadow-md border-b border-l border-r border-gray-300 bg-gray-50 pb-2"
-
+      className={`shadow-md border-b border-l border-r pb-2 ${suggestionBoxTheme}`}
       onClick={(e) => {
         const target = (e.target as HTMLElement).closest("li");
         if (target)
@@ -27,18 +29,20 @@ const SuggestionBox: React.FC<SuggestionBoxProps> = ({ suggestions, handleClickS
 export default SuggestionBox;
 
 const Suggestion: React.FC<SuggestionProps> = ({ suggestion, index }) => {
+  const { suggestion: suggestionTheme } = useContext(ThemeContext);
   const { word, meaning } = suggestion;
   return (
     <li
-      className="px-3 py-1 hover:bg-gray-100 whitespace-nowrap overflow-hidden overflow-ellipsis"
+      className={`px-3 py-1 whitespace-nowrap overflow-hidden overflow-ellipsis ${suggestionTheme.container}`}
       data-index={index}
     >
-      <span>{word}</span>
+      <span className={suggestionTheme.word}>
+        {word}
+      </span>
       {meaning &&
-        <>
-          <span> - </span>
-          <span className="text-gray-600 text-sm">{meaning}</span>
-        </>
+        <span className={suggestionTheme.meaning}>
+          {` - ${meaning}`}
+        </span>
       }
     </li>
   )

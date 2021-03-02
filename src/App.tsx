@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import DefinitionSearchForm from "./components/forms/DefinitionSearchForm";
+import Header from "./components/Header";
 import DefinitionPanelEN from "./components/panels/definitionPanels/DefinitionPanelEN"
 import DefinitionPanelVN from "./components/panels/definitionPanels/DefinitionPanelVN"
 import Definition from "./types/Definition";
@@ -41,7 +41,7 @@ const App: React.FC = () => {
   return (
     <>
       <AppContext.Provider value={providerValue}>
-        <DefinitionSearchForm />
+        <Header />
       </AppContext.Provider>
 
       <div className="padding-top-navbar">
@@ -69,7 +69,7 @@ const PanelSection: React.FC<PanelSectionProps> = ({ language, fetchState }) => 
   if (fetchState.isError)
     return <DefinitionNotFoundPanel language={language} />
 
-  return <></>;
+  throw new Error("Unidentified fetch state");
 }
 
 function getDefinitionPanelByLanguage(language: string, definition: Definition) {
