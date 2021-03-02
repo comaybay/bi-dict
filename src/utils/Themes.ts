@@ -11,7 +11,7 @@ const monochromeTheme: Theme = {
     paragraph2: "text-gray-500",
   },
   searchForm: "bg-gray-50",
-  searchBox: "bg-gray-50 placeholder-gray-200 border-gray-300 focus:border-indigo-500 text-gray-600",
+  searchBox: "bg-gray-50 placeholder-gray-200 border-gray-300 focus:border-indigo-500 text-gray-600 placeholder-gray-300",
   suggestion: {
     container: "hover:bg-gray-100",
     meaning: "text-gray-600 text-sm",
