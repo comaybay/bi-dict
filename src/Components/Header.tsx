@@ -28,9 +28,12 @@ const HeaderProps: React.FC = () => {
 
   const [suggestionBoxEnabled, setSuggestionBoxEnabled] = useState(false);
 
-  const { header: searchForm } = useContext(ThemeContext);
+  const { header, text } = useContext(ThemeContext);
   return (
-    <div className={`flex justify-between fixed z-50 shadow-md w-full pt-2 pb-2.5 ${searchForm}`}>
+    <div className={`flex justify-between items-center fixed z-50 shadow-md w-full pt-2 pb-2.5 ${header}`}>
+      <div className={`md:text-2xl whitespace-nowrap ml-3 mr-2 font-semibold ${text.header}`}>
+        &#66512;Bi&#1418;Dict&#1418;&#10148;
+      </div>
       <div className="flex justify-center w-full">
         <div className="flex min-w-0 w-full max-w-4xl ">
           <div className="flex-auto min-w-0"> {/*min-w-0 to give child elems width so they won't grow out of container*/}
@@ -72,7 +75,7 @@ const HeaderProps: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="mr-3 flex items-center">
+      <div className="mr-3 ml-2">
         <Switch handleClick={switchTheme} />
       </div>
     </div>
