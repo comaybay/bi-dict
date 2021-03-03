@@ -12,12 +12,12 @@ const DefinitionPanel: React.FC<DefinitionPanelBaseProps> = ({ definition, tags 
 
   return (
     <div className={`relative rounded-sm ${panel.sectionContainer}`}>
-      <div className="absolute z-10 right-0 flex flex-row space-x-2 mt-2 mr-2 items-baseline">
+      <div className="absolute z-10 right-0 flex space-x-2 mt-2 mr-2 items-baseline">
         {tags}
       </div>
 
-      <div className="px-5 py-4 relative">
-        <div className={`${text.header} text-2xl font-bold`}>
+      <div className="px-5 py-4 relative text-xs md:text-base">
+        <div className={`${text.header} text-sm md:text-2xl font-bold`}>
           {definition.word}
         </div>
         {definition.globalPronunciations.length !== 0 &&

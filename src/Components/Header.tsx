@@ -30,12 +30,12 @@ const HeaderProps: React.FC = () => {
 
   const { header, text } = useContext(ThemeContext);
   return (
-    <div className={`flex justify-between items-center fixed z-50 shadow-md w-full pt-2 pb-2.5 ${header}`}>
+    <div className={`flex justify-between items-center fixed z-50 shadow-md w-full pt-1.5 pb-1.5 md:pt-2 md:pb-2.5 ${header}`}>
       <div className={`md:text-2xl whitespace-nowrap ml-3 mr-2 font-semibold ${text.header}`}>
         &#66512;Bi&#1418;Dict&#1418;&#10148;
       </div>
       <div className="flex justify-center w-full">
-        <div className="flex min-w-0 w-full max-w-4xl ">
+        <div className="flex min-w-0 w-full max-w-xs md:max-w-xl lg:max-w-4xl h-7 md:h-11">
           <div className="flex-auto min-w-0"> {/*min-w-0 to give child elems width so they won't grow out of container*/}
             <SearchBox
               inputText={inputWord}
@@ -43,6 +43,7 @@ const HeaderProps: React.FC = () => {
               handleFocus={() => setSuggestionBoxEnabled(true)}
               handleBlur={() => setSuggestionBoxEnabled(false)}
             />
+
             {suggestionBoxEnabled && suggestions.length !== 0 &&
               <div
                 className="h-0" /*h-0 to keep everything the same when suggestionBox appear (container's has height = 0 but child is not)*/
@@ -78,7 +79,7 @@ const HeaderProps: React.FC = () => {
       <div className="mr-3 ml-2">
         <Switch handleClick={switchTheme} />
       </div>
-    </div>
+    </div >
   )
 }
 

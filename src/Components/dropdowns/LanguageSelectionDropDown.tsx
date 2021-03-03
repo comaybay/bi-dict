@@ -13,7 +13,7 @@ const LanguageSelectionDropDown: React.FC<LanguageSelectionDropDownProps> = ({ c
   return (
     <>
       <select
-        className={`px-1 border-1.5 ${theme.languageDropDown} ${cssOverride}`}
+        className={`md:px-1 border-1.5 text-xs md:text-base ${theme.languageDropDown} ${cssOverride}`}
         value={LanguageAbbreviation.fromISOLanguageCode(code)}
         onChange={handleChange}
       >

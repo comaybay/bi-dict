@@ -50,7 +50,7 @@ const App: React.FC = () => {
         </AppContext.Provider>
 
         <div className="padding-top-navbar">
-          <div className="px-2 py-2 grid grid-cols-2 gap-2">
+          <div className="px-2 py-2 grid lg:grid-cols-2 gap-2">
             <div>
               <PanelSection fetchState={stateFL} language={firstLang} />
             </div>

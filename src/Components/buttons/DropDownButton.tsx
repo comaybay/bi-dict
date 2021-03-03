@@ -9,7 +9,7 @@ export const DropDownButton: React.FC<DropDownButtonProps> = ({ handleClick, dro
   const rotation = dropped === false ? "-rotate-90" : "rotate-0";
   return (
     <button
-      className="w-3 h-3"
+      className="w-2 md:w-3"
       onClick={(e) => {
         handleClick(e);
       }}
