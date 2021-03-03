@@ -5,6 +5,7 @@ import LanguageSelectionDropDown from "./dropdowns/LanguageSelectionDropDown";
 import Button from "./buttons/Button";
 import LanguageAbbreviation from "../utils/LanguageAbbreviation";
 import { AppContext, ThemeContext } from "../App";
+import Switch from "../components/switches/Switch";
 import useHistory from "../hooks/useHistory";
 import useWordSuggestions from "../hooks/useWordSuggestions";
 import WordSuggestion from "../types/WordSuggestion";
@@ -17,7 +18,8 @@ const HeaderProps: React.FC = () => {
     setFirstLang,
     secondLang,
     setSecondLang,
-    fetchDefinitions
+    fetchDefinitions,
+    switchTheme,
   } = useContext(AppContext);
 
   const [searchHistory, addToSearchHistory] = useHistory<WordSuggestion, string>(10);
@@ -26,11 +28,11 @@ const HeaderProps: React.FC = () => {
 
   const [suggestionBoxEnabled, setSuggestionBoxEnabled] = useState(false);
 
-  const { searchForm } = useContext(ThemeContext);
+  const { header: searchForm } = useContext(ThemeContext);
   return (
-    <div className="shadow-md z-50 fixed w-full">
-      <div className={`${searchForm} flex justify-center`}>
-        <div className="flex min-w-0 w-full max-w-4xl pt-2 pb-2.5">
+    <div className={`flex justify-between fixed z-50 shadow-md w-full pt-2 pb-2.5 ${searchForm}`}>
+      <div className="flex justify-center w-full">
+        <div className="flex min-w-0 w-full max-w-4xl ">
           <div className="flex-auto min-w-0"> {/*min-w-0 to give child elems width so they won't grow out of container*/}
             <SearchBox
               inputText={inputWord}
@@ -69,7 +71,10 @@ const HeaderProps: React.FC = () => {
             <Button handleClick={() => { fetchDefinitions(inputWord) }} />
           </div>
         </div>
-      </div >
+      </div>
+      <div className="mr-3 flex items-center">
+        <Switch handleClick={switchTheme} />
+      </div>
     </div>
   )
 }

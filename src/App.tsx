@@ -11,7 +11,7 @@ import monochromeTheme, { genshinTheme, Theme } from "./utils/Themes";
 
 //==
 export const AppContext = React.createContext<AppContextValue>({} as AppContextValue);
-export const ThemeContext = React.createContext<Theme>(genshinTheme);
+export const ThemeContext = React.createContext<Theme>(monochromeTheme);
 
 const App: React.FC = () => {
   const [inputWord, setInputWord] = useState("");
@@ -20,11 +20,15 @@ const App: React.FC = () => {
 
   const [stateFL, fetchDefinitionFLtoFL] = useGetDefinition();
   const [stateSL, fetchDefinitionFLtoSL] = useGetDefinition();
-
   const fetchDefinitions = (word: string) => {
     fetchDefinitionFLtoSL(secondLang, word, firstLang);
     fetchDefinitionFLtoFL(firstLang, word, firstLang);
   };
+
+  const [theme, setTheme] = useState(genshinTheme);
+  const switchTheme = () => {
+    setTheme(theme === genshinTheme ? monochromeTheme : genshinTheme);
+  }
 
   const providerValue: AppContextValue = {
     inputWord,
@@ -33,27 +37,29 @@ const App: React.FC = () => {
     setFirstLang,
     secondLang,
     setSecondLang,
-    fetchDefinitions
+    fetchDefinitions,
+    switchTheme
   }
 
-  const { background: backgroundColor } = useContext(ThemeContext);
-  document.body.className = backgroundColor;
+  document.body.className = theme.background;
   return (
     <>
-      <AppContext.Provider value={providerValue}>
-        <Header />
-      </AppContext.Provider>
+      <ThemeContext.Provider value={theme}>
+        <AppContext.Provider value={providerValue}>
+          <Header />
+        </AppContext.Provider>
 
-      <div className="padding-top-navbar">
-        <div className="px-2 py-2 grid grid-cols-2 gap-2">
-          <div>
-            <PanelSection fetchState={stateFL} language={firstLang} />
-          </div>
-          <div>
-            <PanelSection fetchState={stateSL} language={secondLang} />
+        <div className="padding-top-navbar">
+          <div className="px-2 py-2 grid grid-cols-2 gap-2">
+            <div>
+              <PanelSection fetchState={stateFL} language={firstLang} />
+            </div>
+            <div>
+              <PanelSection fetchState={stateSL} language={secondLang} />
+            </div>
           </div>
         </div>
-      </div>
+      </ThemeContext.Provider>
     </>
   )
 };
@@ -93,4 +99,5 @@ interface AppContextValue {
   secondLang: string;
   setSecondLang: React.Dispatch<React.SetStateAction<string>>;
   fetchDefinitions: (word: string) => void;
+  switchTheme: () => void;
 }
