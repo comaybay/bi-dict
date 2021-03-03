@@ -1,4 +1,3 @@
-import { useState } from "react"
 import dropDownArrow from "../../assets/images/drop-down-arrow.svg"
 
 interface DropDownButtonProps {

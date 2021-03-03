@@ -39,7 +39,7 @@ const HeaderProps: React.FC = () => {
               handleBlur={() => setSuggestionBoxEnabled(false)}
             />
             {suggestionBoxEnabled && suggestions.length !== 0 &&
-              <div id="suggestion-box-container"
+              <div
                 className="h-0" /*h-0 to keep everything the same when suggestionBox appear (container's has height = 0 but child is not)*/
                 onMouseDown={(e) => e.preventDefault()} /*stop searchBox's blur event (so that suggestionBox onClick handler can be called)*/
                 onClick={(e) => (document.activeElement as HTMLElement).blur()} /*after suggestionBox's onClick handler is called, hide suggestion box*/

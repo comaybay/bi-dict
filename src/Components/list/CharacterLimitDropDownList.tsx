@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { DropDownButton } from "../dropdowns/DropDownButton";
+import { DropDownButton } from "../buttons/DropDownButton";
 
 export interface CharacterLimitDropDownListProps {
   title?: React.ReactNode;

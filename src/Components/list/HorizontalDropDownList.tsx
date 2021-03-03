@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react"
 import { ThemeContext } from "../../App";
-import { DropDownButton } from "../dropdowns/DropDownButton";
+import { DropDownButton } from "../buttons/DropDownButton";
 
 export interface HorizontalDropDownListProps {
   title?: React.ReactNode;
