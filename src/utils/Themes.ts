@@ -44,8 +44,8 @@ export const genshinTheme: Theme = {
     section: "bg-genshin-blue-dark rounded-xl rounded-tl-2xl rounded-br-2xl",
     sectionDecoration: "bg-genshin-yellow-medium border-2 ring-inset ring-2 ring-genshin-blue-dark"
   },
-  searchBox: "placeholder-genshin-yellow-light placeholder-opacity-90 bg-genshin-blue-medium focus:bg-genshin-blue-dark" +
-    "focus:border-genshin-yellow-light text-genshin-yellow-medium border-genshin-blue-dark focus:border-genshin-blue-medium",
+  searchBox: "placeholder-genshin-yellow-light placeholder-opacity-90 text-genshin-yellow-medium bg-genshin-blue-medium border-genshin-blue-dark" +
+    " focus:bg-genshin-blue-dark focus:placeholder-opacity-50 focus:border-genshin-blue-medium",
   header: "bg-genshin-blue-dark",
   suggestion: {
     container: "hover:bg-genshin-blue-medium",
