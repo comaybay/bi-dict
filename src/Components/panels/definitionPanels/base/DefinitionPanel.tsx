@@ -1,30 +1,42 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../../../../App";
 import Definition, { DefinitionSection, EtymologyInnerSection, EtymologySection } from "../../../../types/Definition"
-import Panel from "../../Panel";
 import { EtymologySectionBase } from "./EtymologySectionBase";
 import { PronunciationsSection } from "./PronunciationsSection";
 
 const DefinitionPanel: React.FC<DefinitionPanelBaseProps> = ({ definition, tags }) => {
-  return (
-    <Panel>
-      <div className="relative z-10">{tags}</div>
+  const { panel, text } = useContext(ThemeContext);
 
-      <div className="text-gray-600 px-5 py-4 relative">
-        <div className="text-gray-700 text-2xl font-bold">
+  const isEtymologySectionEmpty = (etymology: EtymologySection): boolean =>
+    (etymology.etymologyTexts.length === 0 && etymology.innerSections.length === 0 && etymology.pronunciations.length === 0);
+
+  return (
+    <div className={`relative rounded-sm ${panel.sectionContainer}`}>
+      <div className="absolute z-10 right-0 flex space-x-2 mt-2 mr-2 items-baseline">
+        {tags}
+      </div>
+
+      <div className="px-5 py-4 relative text-xs md:text-base">
+        <div className={`${text.header} text-sm md:text-2xl font-bold`}>
           {definition.word}
         </div>
         {definition.globalPronunciations.length !== 0 &&
           <PronunciationsSection pronunciations={definition.globalPronunciations} />
         }
         <div className="pt-2">
-          {definition.etymologies.map(etymologySection =>
-            <div key={getEtymologySectionKey(etymologySection)} className="py-2">
-              <EtymologySectionBase {...etymologySection} />
-            </div>
-          )}
+          {definition.etymologies.map(etymologySection => {
+            if (isEtymologySectionEmpty(etymologySection))
+              return null;
+            else
+              return (
+                <div key={getEtymologySectionKey(etymologySection)} className="py-2">
+                  <EtymologySectionBase {...etymologySection} />
+                </div>
+              )
+          })}
         </div>
       </div>
-    </Panel>
+    </div>
   )
 }
 

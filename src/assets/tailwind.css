@@ -2,7 +2,13 @@
 @tailwind components;
 
 .padding-top-navbar {
-  padding-top: 62px;
+  padding-top: 38px;
+}
+
+@media (min-width: 768px) {
+  .padding-top-navbar {
+    padding-top: 64px;
+  }
 }
 
 @tailwind utilities;

@@ -1,11 +1,13 @@
 
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../../../../App";
 import Tag from "./Tag"
 
 const DefinitionSourceTag: React.FC<DefinitionSourceTagProps> = ({ sourceLink, sourceName }) => {
+  const { tag } = useContext(ThemeContext);
   return (
-    <a href={sourceLink}>
-      <Tag cssOverride={"bg-green-300"} text={sourceName} />
+    <a href={sourceLink} >
+      <Tag extendedClassName={`${tag.definitionSource}`} text={sourceName} />
     </a>
   )
 };

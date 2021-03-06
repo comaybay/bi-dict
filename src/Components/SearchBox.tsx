@@ -1,16 +1,25 @@
+import { useContext } from "react";
+import { ThemeContext } from "../App";
+
 export interface SearchBoxProps {
   inputText: string;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  handleBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
-const SearchBox: React.FC<SearchBoxProps> = ({ inputText, handleChange }) => {
+const SearchBox: React.FC<SearchBoxProps> = ({ inputText, handleChange, handleFocus, handleBlur }) => {
+  const { searchBox } = useContext(ThemeContext);
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col h-full">
       <input
         type="text"
-        className="pl-3 text-lg h-11 rounded-sm border-1.5 border-gray-300 bg-gray-50 
-          focus:outline-none focus:border-indigo-200"
-        placeholder="Tìm từ gì đây..." onChange={handleChange} value={inputText}
+        className={`h-full pl-3 text-sm md:text-lg rounded-sm border-1.5 focus:outline-none ${searchBox}`}
+        placeholder="Tìm từ gì đây..."
+        onChange={handleChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        value={inputText}
       />
     </div>
   );

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../../../../App";
 
-const LanguageTag: React.FC<TagProps> = ({ text, cssOverride }) => {
+const LanguageTag: React.FC<TagProps> = ({ text, extendedClassName }) => {
+  const { tag } = useContext(ThemeContext);
   return (
-    <div className={`float-right mr-2 mt-2 px-2 py-1 rounded-sm text-white ${cssOverride}`}>
+    <div className={`px-2 py-1 rounded-sm text-xs md:text-base ${tag.base} ${extendedClassName}`}>
       <p>{text}</p>
     </div>
   );
@@ -11,5 +13,5 @@ export default LanguageTag;
 
 interface TagProps {
   text: string;
-  cssOverride: string;
+  extendedClassName: string;
 }
