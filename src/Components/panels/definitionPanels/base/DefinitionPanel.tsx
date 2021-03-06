@@ -1,4 +1,6 @@
-import React, { useContext } from "react";
+import anime from "animejs";
+import { debug } from "console";
+import React, { useContext, useEffect } from "react";
 import { ThemeContext } from "../../../../App";
 import Definition, { DefinitionSection, EtymologyInnerSection, EtymologySection } from "../../../../types/Definition"
 import { EtymologySectionBase } from "./EtymologySectionBase";
@@ -10,8 +12,24 @@ const DefinitionPanel: React.FC<DefinitionPanelBaseProps> = ({ definition, tags 
   const isEtymologySectionEmpty = (etymology: EtymologySection): boolean =>
     (etymology.etymologyTexts.length === 0 && etymology.innerSections.length === 0 && etymology.pronunciations.length === 0);
 
+  const panelId = `definition-panel-${definition.definitionLanguage}`;
+  useEffect(() => {
+    const self = document.getElementById(panelId) as HTMLElement;
+    anime({
+      targets: self,
+      opacity: 0,
+      translateY: 20,
+      rotateX: -10,
+      rotateY: -5,
+      direction: 'reverse',
+      easing: "easeInQuad",
+      duration: 400,
+      complete: () => self.style.cssText = '',
+    });
+  }, []);
+
   return (
-    <div className={`relative rounded-sm ${panel.sectionContainer}`}>
+    <div id={panelId} className={`relative rounded-sm ${panel.sectionContainer}`}>
       <div className="absolute z-10 right-0 flex space-x-2 mt-2 mr-2 items-baseline">
         {tags}
       </div>
