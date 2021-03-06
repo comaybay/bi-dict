@@ -35,6 +35,11 @@ const HeaderProps: React.FC = () => {
   const firstLangAbbr = LanguageAbbreviation.fromISOLanguageCode(firstLang);
   const secondLangAbbr = LanguageAbbreviation.fromISOLanguageCode(secondLang);
 
+  const switchLanguages = () => {
+    setFirstLang(secondLang);
+    setSecondLang(firstLang);
+  }
+
   useEffect(() => {
     anime({
       targets: "#header",
@@ -103,7 +108,7 @@ const HeaderProps: React.FC = () => {
 
           <div className="flex-shrink-0">
             <SwitchButton
-              handleClick={() => undefined}
+              handleClick={switchLanguages}
             />
           </div>
 
