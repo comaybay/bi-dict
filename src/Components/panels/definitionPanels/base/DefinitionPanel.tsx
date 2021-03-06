@@ -1,5 +1,5 @@
 import anime from "animejs";
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { ThemeContext } from "../../../../App";
 import Definition, { DefinitionSection, EtymologyInnerSection, EtymologySection } from "../../../../types/Definition"
 import { EtymologySectionBase } from "./EtymologySectionBase";
@@ -7,6 +7,7 @@ import { PronunciationsSection } from "./PronunciationsSection";
 
 const DefinitionPanel: React.FC<DefinitionPanelBaseProps> = ({ definition, tags }) => {
   const { panel, text } = useContext(ThemeContext);
+  const [className, setClassName] = useState("hidden");
 
   const isEtymologySectionEmpty = (etymology: EtymologySection): boolean =>
     (etymology.etymologyTexts.length === 0 && etymology.innerSections.length === 0 && etymology.pronunciations.length === 0);
@@ -15,7 +16,7 @@ const DefinitionPanel: React.FC<DefinitionPanelBaseProps> = ({ definition, tags 
   useEffect(() => {
     const panel = panelRef.current;
     anime({
-      begin: () => panel.classList.remove("hidden"),
+      begin: () => setClassName(""),
       complete: () => panel.style.cssText = '',
       targets: panel,
       opacity: 0,
@@ -29,7 +30,7 @@ const DefinitionPanel: React.FC<DefinitionPanelBaseProps> = ({ definition, tags 
   }, []);
 
   return (
-    <div ref={panelRef} className={`hidden relative rounded-sm ${panel.sectionContainer}`}>
+    <div ref={panelRef} className={`relative rounded-sm ${className} ${panel.sectionContainer}`}>
       <div className="absolute z-10 right-0 flex space-x-2 mt-2 mr-2 items-baseline">
         {tags}
       </div>

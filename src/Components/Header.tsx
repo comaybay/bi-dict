@@ -15,6 +15,8 @@ import anime from "animejs";
 
 const HeaderProps: React.FC = () => {
   const { header } = useContext(ThemeContext);
+  const [extendedClassName, setExtendedClassName] = useState("hidden");
+
   const {
     inputWord,
     setInputWord,
@@ -42,10 +44,10 @@ const HeaderProps: React.FC = () => {
 
   const headerRef = useRef({} as HTMLDivElement);
   useEffect(() => {
-    const headerElem = headerRef.current
+    const headerElem = headerRef.current;
     anime({
       targets: headerElem,
-      begin: () => headerElem.classList.remove("hidden"),
+      begin: () => setExtendedClassName(""),
       translateY: -100,
       direction: "reverse",
       duration: 500,
@@ -54,7 +56,7 @@ const HeaderProps: React.FC = () => {
   }, []);
 
   return (
-    <div ref={headerRef} className={`hidden flex justify-between items-center fixed z-50 shadow-md w-full pt-1.5 pb-1.5 md:pt-2 md:pb-2.5 ${header}`}>
+    <div ref={headerRef} className={`flex justify-between items-center fixed z-50 shadow-md w-full pt-1.5 pb-1.5 md:pt-2 md:pb-2.5 ${extendedClassName} ${header}`}>
       <Logo />
       <div className="flex justify-center w-full">
         <div className="flex min-w-0 w-full max-w-xs md:max-w-xl lg:max-w-4xl h-7 md:h-11">
