@@ -1,5 +1,4 @@
 import anime from "animejs";
-import { debug } from "console";
 import React, { useContext, useEffect } from "react";
 import { ThemeContext } from "../../../../App";
 import Definition, { DefinitionSection, EtymologyInnerSection, EtymologySection } from "../../../../types/Definition"
@@ -26,7 +25,7 @@ const DefinitionPanel: React.FC<DefinitionPanelBaseProps> = ({ definition, tags 
       duration: 400,
       complete: () => self.style.cssText = '',
     });
-  }, []);
+  }, [panelId]);
 
   return (
     <div id={panelId} className={`relative rounded-sm ${panel.sectionContainer}`}>

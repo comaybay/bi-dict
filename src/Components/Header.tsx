@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import SearchBox from "./SearchBox";
 import SuggestionBox from "./SuggestionBox";
-import LanguageSelectionDropDown from "./dropdowns/LanguageSelectionDropDown";
+import DropDownSelection from "./dropdowns/DropDownSelection";
 import Button from "./buttons/Button";
+import SwitchButton from "./buttons/SwitchButton"
 import LanguageAbbreviation from "../utils/LanguageAbbreviation";
 import { AppContext, ThemeContext } from "../App";
 import Switch from "../components/switches/Switch";
@@ -30,13 +31,17 @@ const HeaderProps: React.FC = () => {
   suggestions = inputWord === "" ? searchHistory : suggestions;
 
   const [suggestionBoxEnabled, setSuggestionBoxEnabled] = useState(false);
+  const languages = Array.from(LanguageAbbreviation.all());
+  const firstLangAbbr = LanguageAbbreviation.fromISOLanguageCode(firstLang);
+  const secondLangAbbr = LanguageAbbreviation.fromISOLanguageCode(secondLang);
 
   useEffect(() => {
     anime({
       targets: "#header",
-      translateY: [-100, 1],
+      translateY: -100,
+      direction: "reverse",
       duration: 500,
-      easing: "easeOutQuad"
+      easing: "easeInQuad"
     });
   }, [])
   return (
@@ -71,15 +76,38 @@ const HeaderProps: React.FC = () => {
               </div>
             }
           </div>
-          <LanguageSelectionDropDown
-            code={firstLang}
-            handleChange={e => setFirstLang(LanguageAbbreviation.toISOLanguageCode(e.target.value))}
+
+          <DropDownSelection
+            currentOption={firstLangAbbr}
+            options={languages}
+            handleChange={e => {
+              const newFirstLang = LanguageAbbreviation.toISOLanguageCode(e.target.value);
+              if (secondLang === newFirstLang)
+                setSecondLang(firstLang);
+
+              setFirstLang(newFirstLang);
+            }}
           />
-          <LanguageSelectionDropDown
-            code={secondLang}
-            handleChange={e => setSecondLang(LanguageAbbreviation.toISOLanguageCode(e.target.value))}
+
+          <DropDownSelection
+            currentOption={secondLangAbbr}
+            options={languages}
+            handleChange={e => {
+              const newSecondLang = LanguageAbbreviation.toISOLanguageCode(e.target.value);
+              if (firstLang === newSecondLang)
+                setFirstLang(secondLang);
+
+              setSecondLang(newSecondLang);
+            }}
           />
-          <div className="flex pl-2">
+
+          <div className="flex-shrink-0">
+            <SwitchButton
+              handleClick={() => undefined}
+            />
+          </div>
+
+          <div className="pl-2">
             <Button handleClick={() => { fetchDefinitions(inputWord) }} />
           </div>
         </div>
