@@ -27,7 +27,7 @@ const Logo: React.FC = () => {
   }, []);
 
   return (
-    <div id="logo" className={`md:text-2xl whitespace-nowrap ml-3 mr-2 font-semibold ${text.header}`}>
+    <div id="logo" className={`select-none md:text-2xl whitespace-nowrap ml-3 mr-2 font-semibold ${text.header}`}>
       <span className="inline-block" id="symbol1">&#66512;</span>
       <span className="inline-block" id="symbol2">Bi</span>
       <span className="inline-block" id="symbol3">&#1418;</span>
