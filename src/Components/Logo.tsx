@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect } from "react";
 import { ThemeContext } from "../App"
 import randomf from "../utils/randomf"
 import anime from "animejs";
