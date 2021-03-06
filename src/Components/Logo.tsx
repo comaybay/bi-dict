@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { ThemeContext } from "../App"
 import randomf from "../utils/randomf"
 import anime from "animejs";
@@ -7,12 +7,6 @@ const Logo: React.FC = () => {
   const { text } = useContext(ThemeContext);
 
   useEffect(() => {
-    anime({
-      targets: "#logo",
-      duration: 5000,
-      easing: "spring(1, 30, 20, 0)"
-    });
-
     for (let i = 1; i <= 6; i++) {
       anime({
         targets: `#symbol${i}`,
@@ -27,7 +21,7 @@ const Logo: React.FC = () => {
   }, []);
 
   return (
-    <div id="logo" className={`select-none md:text-2xl whitespace-nowrap ml-3 mr-2 font-semibold ${text.header}`}>
+    <div className={`select-none md:text-2xl whitespace-nowrap ml-3 mr-2 font-semibold ${text.header}`}>
       <span className="inline-block" id="symbol1">&#66512;</span>
       <span className="inline-block" id="symbol2">Bi</span>
       <span className="inline-block" id="symbol3">&#1418;</span>

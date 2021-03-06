@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import SearchBox from "./SearchBox";
 import SuggestionBox from "./SuggestionBox";
 import DropDownSelection from "./dropdowns/DropDownSelection";
@@ -40,17 +40,21 @@ const HeaderProps: React.FC = () => {
     setSecondLang(firstLang);
   }
 
+  const headerRef = useRef({} as HTMLDivElement);
   useEffect(() => {
+    const headerElem = headerRef.current
     anime({
-      targets: "#header",
+      targets: headerElem,
+      begin: () => headerElem.classList.remove("hidden"),
       translateY: -100,
       direction: "reverse",
       duration: 500,
-      easing: "easeInQuad"
+      easing: "easeInQuad",
     });
-  }, [])
+  }, []);
+
   return (
-    <div id="header" className={`flex justify-between items-center fixed z-50 shadow-md w-full pt-1.5 pb-1.5 md:pt-2 md:pb-2.5 ${header}`}>
+    <div ref={headerRef} className={`hidden flex justify-between items-center fixed z-50 shadow-md w-full pt-1.5 pb-1.5 md:pt-2 md:pb-2.5 ${header}`}>
       <Logo />
       <div className="flex justify-center w-full">
         <div className="flex min-w-0 w-full max-w-xs md:max-w-xl lg:max-w-4xl h-7 md:h-11">
