@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Header from "./components/Header";
 import DefinitionPanelEN from "./components/panels/definitionPanels/DefinitionPanelEN"
 import DefinitionPanelVN from "./components/panels/definitionPanels/DefinitionPanelVN"
