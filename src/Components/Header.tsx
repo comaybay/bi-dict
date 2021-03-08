@@ -29,7 +29,9 @@ const HeaderProps: React.FC = () => {
   } = useContext(AppContext);
 
   const [searchHistory, addToSearchHistory] = useHistory<WordSuggestion, string>(10);
-  const suggestions = useWordSuggestions(inputWord, firstLang, 10);
+  const requestedSuggestions = useWordSuggestions(inputWord, firstLang, 10);
+  const suggestions = inputWord === "" ? searchHistory : requestedSuggestions;
+
   const [suggestionBoxEnabled, setSuggestionBoxEnabled] = useState(false);
   const languages = Array.from(LanguageAbbreviation.all());
   const firstLangAbbr = LanguageAbbreviation.fromISOLanguageCode(firstLang);
@@ -68,7 +70,7 @@ const HeaderProps: React.FC = () => {
                 onClick={(e) => (document.activeElement as HTMLElement).blur()} /*after suggestionBox's onClick handler is called, hide suggestion box*/
               >
                 <SuggestionBox
-                  suggestions={inputWord === "" ? searchHistory : suggestions}
+                  suggestions={suggestions}
                   handleClickSuggestion={(elem) => {
                     const index = +(elem.dataset.index as string);
                     const suggestion = suggestions[index];

@@ -14,7 +14,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ inputText, handleChange, handleFo
     <div className="flex flex-col h-full">
       <input
         type="text"
-        className={`h-full pl-3 text-sm md:text-lg rounded-sm border-1.5 focus:outline-none ${searchBox}`}
+        className={`h-full pl-3 text-sm md:text-lg rounded-sm border-1.5 ${searchBox}`}
         placeholder="Tìm từ gì đây..."
         onChange={handleChange}
         onFocus={handleFocus}

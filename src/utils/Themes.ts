@@ -1,5 +1,5 @@
 const monochromeTheme: Theme = {
-  background: "bg-gray-300 transition-all duration-75",
+  body: "bg-gray-300 transition-all duration-75",
   panel: {
     sectionContainer: "bg-gray-50",
     section: "bg-gray-100 rounded-tl-2xl",
@@ -39,7 +39,7 @@ const monochromeTheme: Theme = {
 export default monochromeTheme;
 
 export const genshinTheme: Theme = {
-  background: "bg-genshin-blue-darker transition-all duration-75",
+  body: "bg-genshin-blue-darker transition-all duration-75",
   button: "bg-genshin-yellow-medium border-genshin-blue-dark text-genshin-blue-dark" +
     " active:bg-genshin-blue-dark active:text-genshin-yellow-medium active:border-genshin-yellow-medium",
   dropDownSelection: "border-1.5 bg-genshin-blue-medium border-genshin-blue-dark focus:border-genshin-blue-medium" +
@@ -82,7 +82,7 @@ export const genshinTheme: Theme = {
 }
 
 export interface Theme {
-  background: string;
+  body: string;
   panel: {
     sectionContainer: string;
     section: string;
