@@ -29,18 +29,11 @@ const HeaderProps: React.FC = () => {
   } = useContext(AppContext);
 
   const [searchHistory, addToSearchHistory] = useHistory<WordSuggestion, string>(10);
-  let suggestions = useWordSuggestions(inputWord, firstLang, 10);
-  suggestions = inputWord === "" ? searchHistory : suggestions;
-
+  const suggestions = useWordSuggestions(inputWord, firstLang, 10);
   const [suggestionBoxEnabled, setSuggestionBoxEnabled] = useState(false);
   const languages = Array.from(LanguageAbbreviation.all());
   const firstLangAbbr = LanguageAbbreviation.fromISOLanguageCode(firstLang);
   const secondLangAbbr = LanguageAbbreviation.fromISOLanguageCode(secondLang);
-
-  const switchLanguages = () => {
-    setFirstLang(secondLang);
-    setSecondLang(firstLang);
-  }
 
   const headerRef = useRef({} as HTMLDivElement);
   useEffect(() => {
@@ -75,7 +68,7 @@ const HeaderProps: React.FC = () => {
                 onClick={(e) => (document.activeElement as HTMLElement).blur()} /*after suggestionBox's onClick handler is called, hide suggestion box*/
               >
                 <SuggestionBox
-                  suggestions={suggestions}
+                  suggestions={inputWord === "" ? searchHistory : suggestions}
                   handleClickSuggestion={(elem) => {
                     const index = +(elem.dataset.index as string);
                     const suggestion = suggestions[index];
@@ -114,7 +107,10 @@ const HeaderProps: React.FC = () => {
 
           <div className="flex-shrink-0">
             <SwitchButton
-              handleClick={switchLanguages}
+              handleClick={() => {
+                setFirstLang(secondLang);
+                setSecondLang(firstLang);
+              }}
             />
           </div>
 
