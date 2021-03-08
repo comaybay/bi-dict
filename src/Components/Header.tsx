@@ -29,7 +29,7 @@ const HeaderProps: React.FC = () => {
   } = useContext(AppContext);
 
   const [searchHistory, addToSearchHistory] = useHistory<WordSuggestion, string>(10);
-  let suggestions = useWordSuggestions(inputWord, firstLang, 5);
+  let suggestions = useWordSuggestions(inputWord, firstLang, 10);
   suggestions = inputWord === "" ? searchHistory : suggestions;
 
   const [suggestionBoxEnabled, setSuggestionBoxEnabled] = useState(false);
