@@ -13,9 +13,9 @@ const monochromeTheme: Theme = {
   header: "bg-gray-50",
   searchBox: "bg-gray-50 placeholder-gray-400 border-gray-300 focus:border-indigo-500 text-gray-600",
   suggestion: {
-    container: "hover:bg-gray-100",
+    container: "text-gray-600 hover:bg-gray-100",
     meaning: "text-gray-600 text-sm",
-    word: "",
+    word: "text-gray-700",
   },
   switch: {
     circle: "bg-white",
@@ -53,7 +53,7 @@ export const genshinTheme: Theme = {
     " focus:bg-genshin-blue-dark focus:placeholder-opacity-50 focus:border-genshin-blue-medium",
   header: "bg-genshin-blue-dark",
   suggestion: {
-    container: "hover:bg-genshin-blue-medium",
+    container: "text-genshin-yellow-light hover:bg-genshin-blue-medium",
     meaning: "text-genshin-yellow-light text-sm",
     word: "text-genshin-yellow-medium",
   },

@@ -33,7 +33,7 @@ const Suggestion: React.FC<SuggestionProps> = ({ suggestion, index }) => {
   const { word, meaning } = suggestion;
   return (
     <li
-      className={`px-3 py-1 whitespace-nowrap overflow-hidden overflow-ellipsis ${suggestionTheme.container}`}
+      className={`px-3 py-1 truncate ${suggestionTheme.container}`}
       data-index={index}
     >
       <span className={suggestionTheme.word}>
