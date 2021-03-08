@@ -6,7 +6,7 @@ const Button: React.FC<ButtonProps> = ({ handleClick, extendedClassName }) => {
   return (
     <button
       className={`text-xs md:text-base flex-initial inline-block uppercase text-center px-3 py-1 rounded-sm 
-      border-1.5 focus:outline-none h-full font-medium ${button} ${extendedClassName}`}
+      border-1.5 h-full font-medium ${button} ${extendedClassName}`}
       onClick={handleClick}
     >
       Search
