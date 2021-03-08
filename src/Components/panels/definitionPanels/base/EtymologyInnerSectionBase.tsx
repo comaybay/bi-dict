@@ -9,7 +9,7 @@ import { DefinitionSectionBase } from "./DefinitionSectionBase";
 
 export const EtymologyInnerSectionBase: React.FC<EtymologyInnerSection> =
   ({ antonyms, definitionSections, inflection, partOfSpeech, synonyms }) => {
-    const { text } = useContext(ThemeContext);
+    const { text, trailing } = useContext(ThemeContext);
     return (
       <div className="pl-2">
         <p className={`font-bold ${text.header}`}>{partOfSpeech}</p>
@@ -25,7 +25,7 @@ export const EtymologyInnerSectionBase: React.FC<EtymologyInnerSection> =
                   <DefinitionSectionBase {...ds} />
                 </li>
               )}
-            trailingElement={<p className={`${text.paragraph} relative bottom-2`}>...</p>}
+            trailingElement={<p className={`${text.paragraph} relative bottom-2 ${trailing.definitionSection}`}>...</p>}
           />
         }
         <div className="pl-2">

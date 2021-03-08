@@ -36,6 +36,9 @@ const monochromeTheme: Theme = {
       " active:border-indigo-500",
     svg: "fill-current text-black",
   },
+  trailing: {
+    definitionSection: "border-gray-400 border-b",
+  }
 }
 export default monochromeTheme;
 
@@ -49,7 +52,7 @@ export const genshinTheme: Theme = {
   panel: {
     sectionContainer: "bg-gradient-to-bl from-genshin-blue-medium to-genshin-blue-dark",
     section: "bg-genshin-blue-dark rounded-xl rounded-tl-2xl rounded-br-2xl",
-    sectionDecoration: "bg-genshin-yellow-medium border-2 ring-inset ring-2 ring-genshin-blue-dark"
+    sectionDecoration: "bg-genshin-yellow-medium border-2 border-genshin-yellow-extra-light ring-inset ring-2 ring-genshin-blue-dark"
   },
   searchBox: "placeholder-genshin-yellow-light placeholder-opacity-90 text-genshin-yellow-medium bg-genshin-blue-medium border-genshin-blue-dark" +
     " focus:bg-genshin-blue-dark focus:placeholder-opacity-50 focus:border-genshin-blue-medium",
@@ -81,6 +84,9 @@ export const genshinTheme: Theme = {
       " active:border-genshin-blue-medium",
     svg: "fill-current text-genshin-yellow-extra-light",
   },
+  trailing: {
+    definitionSection: "border-genshin-yellow-extra-light border-b border-r rounded-br-full",
+  }
 }
 
 export interface Theme {
@@ -120,4 +126,7 @@ export interface Theme {
     circle: string;
   }
   dropdownButtonSVG: string;
+  trailing: {
+    definitionSection: string;
+  };
 }
