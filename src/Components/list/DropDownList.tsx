@@ -8,17 +8,17 @@ export const DropDownList: React.FC<DropDownListPropsBase> =
     const [buttonDropped, setButtonDropped] = useState(false);
     const [minimize, setMinimize] = useState(true);
     const size = children.length;
-    const needsMinimization = children.length > showElementAmount;
     const toggleMinimization = () => {
       setMinimize(!minimize);
       setButtonDropped(!buttonDropped);
     };
 
+    const minimizable = size > showElementAmount;
     const pressable = size === showElementAmount ? "cursor-pointer select-none" : "";
     return (
       <>
         <div className="flex">
-          {size > showElementAmount &&
+          {minimizable &&
             <div> {/*div wrapper to prevent button from being stretch when un-minimized*/}
               <DropDownButton
                 dropped={buttonDropped}
@@ -31,15 +31,17 @@ export const DropDownList: React.FC<DropDownListPropsBase> =
               {title}
             </div>
             <ChildrenContainer>
-              {needsMinimization && minimize &&
+              {minimizable && minimize &&
                 <>
                   {children.slice(0, showElementAmount)}
-                  <div className={pressable} onClick={toggleMinimization}>
+                  <div className="cursor-pointer select-none" onClick={toggleMinimization}>
                     {trailingElement}
                   </div>
                 </>
               }
-              {(!needsMinimization || !minimize) && children}
+              {(!minimizable || !minimize) &&
+                children
+              }
             </ChildrenContainer>
           </div>
         </div>
