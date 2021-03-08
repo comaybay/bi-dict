@@ -32,7 +32,7 @@ const monochromeTheme: Theme = {
   },
   switchButton: {
     button: "bg-gray-50 border-1.5 border-gray-300 active:bg-gray-100" +
-      " active:border-indigo-500 focus:outline-none",
+      " active:border-indigo-500",
     svg: "fill-current text-black",
   },
 }
@@ -76,7 +76,7 @@ export const genshinTheme: Theme = {
   },
   switchButton: {
     button: "bg-genshin-blue-medium border-1.5 border-genshin-blue-dark active:bg-genshin-blue-dark" +
-      " active:border-genshin-blue-medium focus:outline-none",
+      " active:border-genshin-blue-medium",
     svg: "fill-current text-genshin-yellow-extra-light",
   },
 }

@@ -8,6 +8,10 @@ import useGetDefinition from "./hooks/useGetDefinition";
 import DefinitionNotFoundPanel from "./components/panels/definitionPanels/DefinitionNotFoundPanel";
 import LoadingPanel from "./components/panels/definitionPanels/LoadingPanel";
 import monochromeTheme, { genshinTheme, Theme } from "./utils/Themes";
+import OutlineNoneWhenUsingMouse from "./OutlineNoneWhenUsingMouse"
+
+//==https://stackoverflow.com/questions/31402576/enable-focus-only-on-keyboard-use-or-tab-press
+OutlineNoneWhenUsingMouse();
 
 //==
 export const AppContext = React.createContext<AppContextValue>({} as AppContextValue);
@@ -48,7 +52,6 @@ const App: React.FC = () => {
         <AppContext.Provider value={providerValue}>
           <Header />
         </AppContext.Provider>
-
 
         <div className="padding-top-navbar">
           <div className="px-2 py-2 grid lg:grid-cols-2 gap-2">
