@@ -13,7 +13,7 @@ const DropdownSelection: React.FC<DropdownSelectionProps> = ({ currentOption, ha
   return (
     <>
       <select
-        className={`md:px-1 text-xs md:text-base ${theme.DropdownSelection} ${extendedClassName}`}
+        className={`md:px-1 text-xs md:text-base ${theme.dropdownSelection} ${extendedClassName}`}
         value={currentOption}
         onChange={handleChange}
       >
