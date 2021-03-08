@@ -1,6 +1,5 @@
 import anime from "animejs";
-import { debug } from "console";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { ThemeContext } from "../../../../App";
 import Definition, { DefinitionSection, EtymologyInnerSection, EtymologySection } from "../../../../types/Definition"
 import { EtymologySectionBase } from "./EtymologySectionBase";
@@ -8,15 +7,18 @@ import { PronunciationsSection } from "./PronunciationsSection";
 
 const DefinitionPanel: React.FC<DefinitionPanelBaseProps> = ({ definition, tags }) => {
   const { panel, text } = useContext(ThemeContext);
+  const [className, setClassName] = useState("hidden");
 
   const isEtymologySectionEmpty = (etymology: EtymologySection): boolean =>
     (etymology.etymologyTexts.length === 0 && etymology.innerSections.length === 0 && etymology.pronunciations.length === 0);
 
-  const panelId = `definition-panel-${definition.definitionLanguage}`;
+  const panelRef = useRef({} as HTMLDivElement);
   useEffect(() => {
-    const self = document.getElementById(panelId) as HTMLElement;
+    const panel = panelRef.current;
     anime({
-      targets: self,
+      begin: () => setClassName(""),
+      complete: () => panel.style.cssText = '',
+      targets: panel,
       opacity: 0,
       translateY: 20,
       rotateX: -10,
@@ -24,12 +26,11 @@ const DefinitionPanel: React.FC<DefinitionPanelBaseProps> = ({ definition, tags 
       direction: 'reverse',
       easing: "easeInQuad",
       duration: 400,
-      complete: () => self.style.cssText = '',
     });
   }, []);
 
   return (
-    <div id={panelId} className={`relative rounded-sm ${panel.sectionContainer}`}>
+    <div ref={panelRef} className={`relative rounded-sm ${className} ${panel.sectionContainer}`}>
       <div className="absolute z-10 right-0 flex space-x-2 mt-2 mr-2 items-baseline">
         {tags}
       </div>

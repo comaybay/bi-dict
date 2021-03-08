@@ -1,8 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import SearchBox from "./SearchBox";
 import SuggestionBox from "./SuggestionBox";
-import LanguageSelectionDropDown from "./dropdowns/LanguageSelectionDropDown";
+import DropDownSelection from "./dropdowns/DropDownSelection";
 import Button from "./buttons/Button";
+import SwitchButton from "./buttons/SwitchButton"
 import LanguageAbbreviation from "../utils/LanguageAbbreviation";
 import { AppContext, ThemeContext } from "../App";
 import Switch from "../components/switches/Switch";
@@ -14,6 +15,8 @@ import anime from "animejs";
 
 const HeaderProps: React.FC = () => {
   const { header } = useContext(ThemeContext);
+  const [extendedClassName, setExtendedClassName] = useState("hidden");
+
   const {
     inputWord,
     setInputWord,
@@ -30,17 +33,30 @@ const HeaderProps: React.FC = () => {
   suggestions = inputWord === "" ? searchHistory : suggestions;
 
   const [suggestionBoxEnabled, setSuggestionBoxEnabled] = useState(false);
+  const languages = Array.from(LanguageAbbreviation.all());
+  const firstLangAbbr = LanguageAbbreviation.fromISOLanguageCode(firstLang);
+  const secondLangAbbr = LanguageAbbreviation.fromISOLanguageCode(secondLang);
 
+  const switchLanguages = () => {
+    setFirstLang(secondLang);
+    setSecondLang(firstLang);
+  }
+
+  const headerRef = useRef({} as HTMLDivElement);
   useEffect(() => {
+    const headerElem = headerRef.current;
     anime({
-      targets: "#header",
-      translateY: [-100, 1],
+      targets: headerElem,
+      begin: () => setExtendedClassName(""),
+      translateY: -100,
+      direction: "reverse",
       duration: 500,
-      easing: "easeOutQuad"
+      easing: "easeInQuad",
     });
-  }, [])
+  }, []);
+
   return (
-    <div id="header" className={`flex justify-between items-center fixed z-50 shadow-md w-full pt-1.5 pb-1.5 md:pt-2 md:pb-2.5 ${header}`}>
+    <div ref={headerRef} className={`flex justify-between items-center fixed z-50 shadow-md w-full pt-1.5 pb-1.5 md:pt-2 md:pb-2.5 ${extendedClassName} ${header}`}>
       <Logo />
       <div className="flex justify-center w-full">
         <div className="flex min-w-0 w-full max-w-xs md:max-w-xl lg:max-w-4xl h-7 md:h-11">
@@ -71,15 +87,38 @@ const HeaderProps: React.FC = () => {
               </div>
             }
           </div>
-          <LanguageSelectionDropDown
-            code={firstLang}
-            handleChange={e => setFirstLang(LanguageAbbreviation.toISOLanguageCode(e.target.value))}
+
+          <DropDownSelection
+            currentOption={firstLangAbbr}
+            options={languages}
+            handleChange={e => {
+              const newFirstLang = LanguageAbbreviation.toISOLanguageCode(e.target.value);
+              if (secondLang === newFirstLang)
+                setSecondLang(firstLang);
+
+              setFirstLang(newFirstLang);
+            }}
           />
-          <LanguageSelectionDropDown
-            code={secondLang}
-            handleChange={e => setSecondLang(LanguageAbbreviation.toISOLanguageCode(e.target.value))}
+
+          <DropDownSelection
+            currentOption={secondLangAbbr}
+            options={languages}
+            handleChange={e => {
+              const newSecondLang = LanguageAbbreviation.toISOLanguageCode(e.target.value);
+              if (firstLang === newSecondLang)
+                setFirstLang(secondLang);
+
+              setSecondLang(newSecondLang);
+            }}
           />
-          <div className="flex pl-2">
+
+          <div className="flex-shrink-0">
+            <SwitchButton
+              handleClick={switchLanguages}
+            />
+          </div>
+
+          <div className="pl-2">
             <Button handleClick={() => { fetchDefinitions(inputWord) }} />
           </div>
         </div>
