@@ -8,7 +8,7 @@ const DefinitionPanelDropdownList: React.FC<DefinitionPanelDropdownListProps> = 
   return (
     <DropdownList
       title={<p className={`${text.paragraph} font-semibold`}>{title}</p >}
-      children={items.map(i => <p className={text.paragraph}>{i}</p>)}
+      children={items.map(i => <p key={i} className={text.paragraph}>{i}</p>)}
       trailingElement={<p className={`relative bottom-2 ${text.paragraph}`} >...</p>} />
   );
 };

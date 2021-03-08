@@ -11,8 +11,8 @@ const DefinitionPanelVN: React.FC<DefinitionPanelProps> = ({ definition }) => {
     <DefinitionPanel
       definition={definition}
       tags={[
-        <LanguageTag language="Tiếng Việt" cssOverride={tag.vietnamese} />,
-        <DefinitionSourceTag sourceName={definition.sourceName} sourceLink={definition.sourceLink} />
+        <LanguageTag key="LanguageTag" language="Tiếng Việt" cssOverride={tag.vietnamese} />,
+        <DefinitionSourceTag key="SourceTag" sourceName={definition.sourceName} sourceLink={definition.sourceLink} />
       ]} />
   )
 }

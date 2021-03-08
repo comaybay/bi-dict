@@ -18,7 +18,7 @@ export const EtymologySectionBase: React.FC<EtymologySection> = ({ etymologyText
         {etymologyTexts.length !== 0 &&
           <CharacterLimitDropdownList
             characterLimit={96}
-            itemCss={`${text.paragraph} italic font-light`}
+            itemClassName={`${text.paragraph} italic font-light`}
             list={etymologyTexts}
           />
         }

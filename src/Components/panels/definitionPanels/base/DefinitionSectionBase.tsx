@@ -3,6 +3,7 @@ import { ThemeContext } from "../../../../App";
 import { DefinitionSection } from "../../../../types/Definition";
 import BulletedDropdownList from "../../../list/BulletedDropdownList";
 import NumberedDropdownList from "../../../list/NumberedDropdownList";
+import { getDefinitionSectionKey } from "./DefinitionPanel";
 import DefinitionPanelDropdownList from "./DefinitionPanelDropdownList";
 
 
@@ -14,7 +15,7 @@ export const DefinitionSectionBase: React.FC<DefinitionSection> = ({ antonyms, d
       <div>
         {examples.length !== 0 &&
           <BulletedDropdownList>
-            {examples.map(example => <li className={`${text.paragraph2} font-light italic`}>{example}</li>)}
+            {examples.map(example => <li key={example} className={`${text.paragraph2} font-light italic`}>{example}</li>)}
           </BulletedDropdownList>
         }
       </div>
@@ -22,7 +23,7 @@ export const DefinitionSectionBase: React.FC<DefinitionSection> = ({ antonyms, d
         <NumberedDropdownList
           showElementAmount={2}
           children={subDefinitions.map(sd =>
-            <li className="list list-decimal">
+            <li key={getDefinitionSectionKey(sd)} className="list list-decimal">
               <DefinitionSectionBase {...sd} />
             </li>
           )}

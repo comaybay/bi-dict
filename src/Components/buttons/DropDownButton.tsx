@@ -29,7 +29,7 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({ handleClick, dropped })
       }}
     >
       <svg className={dropdownButtonSVG} viewBox="0 0 41 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M2 24.5V2L39 24.5L2 47V24.5Z" stroke-width="3" stroke-linejoin="round" />
+        <path d="M2 24.5V2L39 24.5L2 47V24.5Z" strokeWidth="3" strokeLinejoin="round" />
       </svg>
     </button>
   );

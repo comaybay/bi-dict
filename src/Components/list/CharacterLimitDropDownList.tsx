@@ -5,19 +5,19 @@ export interface CharacterLimitDropdownListProps {
   title?: React.ReactNode;
   list: string[];
   characterLimit?: number;
-  itemCss?: string;
+  itemClassName?: string;
 }
 
-export const CharacterLimitDropdownList: React.FC<CharacterLimitDropdownListProps> = ({ title, characterLimit = 20, list, itemCss = "" }) => {
+export const CharacterLimitDropdownList: React.FC<CharacterLimitDropdownListProps> = ({ title, characterLimit = 20, list, itemClassName = "" }) => {
   if (list === null || list.length === 0) throw new TypeError("list cannot be empty or null");
 
   const [buttonDropped, setButtonDropped] = useState(false);
   const [minimize, setMinimize] = useState(true);
-  const children = list.map(text => <p className={itemCss}>{text}</p>);
+  const children = list.map(text => <p key={text} className={itemClassName}>{text}</p>);
 
   const needsMinimization = list[0] && list[0].length > characterLimit;
   if (needsMinimization && minimize)
-    children[0] = <p className={itemCss}>{`${list[0].slice(0, characterLimit).trim()}...`}</p>;
+    children[0] = <p className={itemClassName}>{`${list[0].slice(0, characterLimit).trim()}...`}</p>;
 
   const toggleMinimization = () => {
     setMinimize(!minimize);

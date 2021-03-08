@@ -59,30 +59,31 @@ const DefinitionPanel: React.FC<DefinitionPanelBaseProps> = ({ definition, tags 
   )
 }
 
-function getEtymologySectionKey(etymologySection: EtymologySection) {
-  let key1 = etymologySection.etymologyTexts?.[0];
-  let key2 = etymologySection.innerSections.length ?? getEtymologyInnerSectionKey(etymologySection.innerSections[0]);
-  let key3 = etymologySection.pronunciations?.[0];
+function getEtymologySectionKey(etymologySection: EtymologySection): string {
+  let key1 = etymologySection.etymologyTexts?.[0] ?? "";
+  let key2 = etymologySection.innerSections.length ? getEtymologyInnerSectionKey(etymologySection.innerSections[0]) : "";
+  let key3 = etymologySection.pronunciations?.[0] ?? "";
   return key1 + key2 + key3;
 }
 
-export function getEtymologyInnerSectionKey(innerSection: EtymologyInnerSection) {
-  const key1 = innerSection.antonyms?.[0];
-  const key2 = innerSection.definitionSections.length ?? getDefinitionSectionKey(innerSection.definitionSections?.[0]);
+export function getEtymologyInnerSectionKey(innerSection: EtymologyInnerSection): string {
+  const key1 = innerSection.antonyms?.[0] ?? "";
+  const key2 = innerSection.definitionSections.length ? getDefinitionSectionKey(innerSection.definitionSections[0]) : "";
   const key3 = innerSection.inflection;
   const key4 = innerSection.partOfSpeech;
-  const key5 = innerSection.synonyms?.[0];
+  const key5 = innerSection.synonyms?.[0] ?? "";
 
   return key1 + key2 + key3 + key4 + key5;
 }
 
-export function getDefinitionSectionKey(definitionSection: DefinitionSection) {
-  const key1 = definitionSection.antonyms?.[0];
+export function getDefinitionSectionKey(definitionSection: DefinitionSection): string {
+  const key1 = definitionSection.antonyms?.[0] ?? "";
   const key2 = definitionSection.definition;
-  const key3 = definitionSection.examples?.[0];
-  const key4 = definitionSection.synonyms?.[0];
+  const key3 = definitionSection.examples?.[0] ?? "";
+  const key4 = definitionSection.synonyms?.[0] ?? "";
+  const key5 = definitionSection.subDefinitions.length ? getDefinitionSectionKey(definitionSection.subDefinitions[0]) : "";
 
-  return key1 + key2 + key3 + key4;
+  return key1 + key2 + key3 + key4 + key5;
 }
 
 export default DefinitionPanel;
