@@ -9,10 +9,14 @@ const DefinitionPanelDropdownList: React.FC<DefinitionPanelDropdownListProps> = 
     <DropdownList
       title={<p className={`${text.paragraph} font-semibold`}>{title}</p >}
       children={items.map(i => <p key={i} className={text.paragraph}>{i}</p>)}
-      trailingElement={<p className={`relative bottom-2 ${text.paragraph}`} >...</p>} />
+      trailingElement={<p className={`relative bottom-2 ${text.paragraph}`} >...</p>}
+      ChildrenContainer={Container}
+    />
   );
 };
 export default DefinitionPanelDropdownList;
+
+const Container: React.FC = ({ children }) => <div className="ml-1">{children}</div>;
 
 interface DefinitionPanelDropdownListProps {
   title?: string;

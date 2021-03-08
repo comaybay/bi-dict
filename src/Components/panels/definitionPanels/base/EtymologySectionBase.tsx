@@ -24,7 +24,9 @@ export const EtymologySectionBase: React.FC<EtymologySection> = ({ etymologyText
         }
         <div>
           {innerSections.map(innerSection =>
-            <EtymologyInnerSectionBase key={getEtymologyInnerSectionKey(innerSection)} {...innerSection} />
+            <EtymologyInnerSectionBase key={getEtymologyInnerSectionKey(innerSection)}
+              {...innerSection}
+            />
           )}
         </div>
       </div>

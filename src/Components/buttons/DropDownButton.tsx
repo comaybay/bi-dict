@@ -9,22 +9,26 @@ interface DropdownButtonProps {
 
 const DropdownButton: React.FC<DropdownButtonProps> = ({ handleClick, dropped }) => {
   const { dropdownButtonSVG } = useContext(ThemeContext)
+  const [playAnimation, setPlayAnimation] = useState(false);
 
   const buttonRef = useRef(null);
   useEffect(() => {
-    anime({
-      targets: buttonRef.current,
-      rotate: dropped ? [0, 90] : [90, 0],
-      easing: "easeOutQuad",
-      duration: 200,
-    });
-  }, [dropped]);
+    if (playAnimation)
+      anime({
+        targets: buttonRef.current,
+        rotate: dropped ? [0, 90] : [90, 0],
+        easing: "easeOutQuad",
+        duration: 300,
+        complete: () => setPlayAnimation(false)
+      });
+  })
 
   return (
     <button
       ref={buttonRef}
       className="w-1.5 md:w-2"
       onClick={(e) => {
+        setPlayAnimation(true);
         handleClick(e);
       }}
     >
