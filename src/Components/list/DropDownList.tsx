@@ -14,7 +14,7 @@ export const DropDownList: React.FC<DropDownListPropsBase> =
     };
 
     const minimizable = size > showElementAmount;
-    const pressable = size === showElementAmount ? "cursor-pointer select-none" : "";
+    const pressable = minimizable ? "cursor-pointer select-none" : "";
     return (
       <>
         <div className="flex">
