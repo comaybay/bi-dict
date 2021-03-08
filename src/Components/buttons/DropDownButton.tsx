@@ -1,6 +1,7 @@
 import anime from "animejs";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useRef } from "react";
 import { ThemeContext } from "../../App";
+import useEffectSkipFirstRender from "../../hooks/useEffectSkipFirstRender"
 
 interface DropdownButtonProps {
   dropped: boolean;
@@ -9,26 +10,22 @@ interface DropdownButtonProps {
 
 const DropdownButton: React.FC<DropdownButtonProps> = ({ handleClick, dropped }) => {
   const { dropdownButtonSVG } = useContext(ThemeContext)
-  const [playAnimation, setPlayAnimation] = useState(false);
 
   const buttonRef = useRef(null);
-  useEffect(() => {
-    if (playAnimation)
-      anime({
-        targets: buttonRef.current,
-        rotate: dropped ? [0, 90] : [90, 0],
-        easing: "easeOutQuad",
-        duration: 300,
-        complete: () => setPlayAnimation(false)
-      });
-  })
+  useEffectSkipFirstRender(() => {
+    anime({
+      targets: buttonRef.current,
+      rotate: dropped ? [0, 90] : [90, 0],
+      easing: "easeOutQuad",
+      duration: 300,
+    });
+  }, [dropped])
 
   return (
     <button
       ref={buttonRef}
       className="w-1.5 md:w-2"
       onClick={(e) => {
-        setPlayAnimation(true);
         handleClick(e);
       }}
     >
