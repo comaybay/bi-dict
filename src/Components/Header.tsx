@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import SearchBox from "./SearchBox";
 import SuggestionBox from "./SuggestionBox";
-import DropDownSelection from "./dropdowns/DropDownSelection";
+import DropdownSelection from "./dropdowns/DropdownSelection";
 import Button from "./buttons/Button";
 import SwitchButton from "./buttons/SwitchButton"
 import LanguageAbbreviation from "../utils/LanguageAbbreviation";
@@ -83,7 +83,7 @@ const HeaderProps: React.FC = () => {
             }
           </div>
 
-          <DropDownSelection
+          <DropdownSelection
             currentOption={firstLangAbbr}
             options={languages}
             handleChange={e => {
@@ -95,7 +95,7 @@ const HeaderProps: React.FC = () => {
             }}
           />
 
-          <DropDownSelection
+          <DropdownSelection
             currentOption={secondLangAbbr}
             options={languages}
             handleChange={e => {

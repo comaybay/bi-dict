@@ -1,7 +1,7 @@
 import React, { useState } from "react"
-import { DropDownButton } from "../buttons/DropDownButton";
+import DropdownButton from "../buttons/DropdownButton";
 
-export const DropDownList: React.FC<DropDownListPropsBase> =
+const DropdownList: React.FC<DropdownListPropsBase> =
   ({ title, showElementAmount = 1, children, ChildrenContainer = Div, trailingElement }) => {
     if (children === null || children.length === 0) throw new TypeError("parameter 'children' cannot be an empty array or null");
 
@@ -20,7 +20,7 @@ export const DropDownList: React.FC<DropDownListPropsBase> =
         <div className="flex">
           {minimizable &&
             <div> {/*div wrapper to prevent button from being stretch when un-minimized*/}
-              <DropDownButton
+              <DropdownButton
                 dropped={buttonDropped}
                 handleClick={toggleMinimization}
               />
@@ -48,17 +48,17 @@ export const DropDownList: React.FC<DropDownListPropsBase> =
       </>
     )
   };
+export default DropdownList;
 
 const Div: React.FC = ({ children }) => <div>{children}</div>;
 
-
-export interface DropDownListProps {
+export interface DropdownListProps {
   title?: React.ReactNode;
   children: React.ReactNode[];
   trailingElement?: React.ReactNode;
   showElementAmount?: number;
 }
 
-export interface DropDownListPropsBase extends DropDownListProps {
+export interface DropdownListPropsBase extends DropdownListProps {
   ChildrenContainer?: React.FC<any>;
 }

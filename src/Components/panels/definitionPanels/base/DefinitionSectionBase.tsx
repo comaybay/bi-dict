@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../../../../App";
 import { DefinitionSection } from "../../../../types/Definition";
-import BulletedDropDownList from "../../../list/BulletedDropDownList";
-import NumberedDropDownList from "../../../list/NumberedDropDownList";
-import { DefinitionPanelDropDownList } from "./DefinitionPanelDropDownList";
+import BulletedDropdownList from "../../../list/BulletedDropdownList";
+import NumberedDropdownList from "../../../list/NumberedDropdownList";
+import DefinitionPanelDropdownList from "./DefinitionPanelDropdownList";
 
 
 export const DefinitionSectionBase: React.FC<DefinitionSection> = ({ antonyms, definition, examples, subDefinitions, synonyms }) => {
@@ -13,13 +13,13 @@ export const DefinitionSectionBase: React.FC<DefinitionSection> = ({ antonyms, d
       <p>{definition}</p>
       <div>
         {examples.length !== 0 &&
-          <BulletedDropDownList>
+          <BulletedDropdownList>
             {examples.map(example => <li className={`${text.paragraph2} font-light italic`}>{example}</li>)}
-          </BulletedDropDownList>
+          </BulletedDropdownList>
         }
       </div>
       { subDefinitions.length !== 0 &&
-        <NumberedDropDownList
+        <NumberedDropdownList
           showElementAmount={2}
           children={subDefinitions.map(sd =>
             <li className="list list-decimal">
@@ -30,12 +30,12 @@ export const DefinitionSectionBase: React.FC<DefinitionSection> = ({ antonyms, d
       }
       <div>
         {synonyms.length !== 0 &&
-          <DefinitionPanelDropDownList title="synonyms:" items={synonyms} />
+          <DefinitionPanelDropdownList title="synonyms:" items={synonyms} />
         }
       </div>
       <div>
         {antonyms.length !== 0 &&
-          <DefinitionPanelDropDownList title="antonyms:" items={antonyms} />
+          <DefinitionPanelDropdownList title="antonyms:" items={antonyms} />
         }
       </div>
     </>

@@ -22,7 +22,7 @@ const monochromeTheme: Theme = {
     container: "bg-gray-300",
   },
   suggestionBox: "border-gray-300 bg-gray-50 border-gray-300 focus:border-indigo-500",
-  dropDownSelection: "border-1.5 bg-gray-50 focus:bg-gray-100 border-gray-300 focus:border-indigo-500 text-gray-600",
+  DropdownSelection: "border-1.5 bg-gray-50 focus:bg-gray-100 border-gray-300 focus:border-indigo-500 text-gray-600",
   button: "bg-gray-50 text-gray-600 active:bg-gray-100 border-gray-300 active:border-indigo-500 active:text-indigo-500",
   tag: {
     base: "text-white",
@@ -42,7 +42,7 @@ export const genshinTheme: Theme = {
   body: "bg-genshin-blue-darker transition-all duration-75",
   button: "bg-genshin-yellow-medium border-genshin-blue-dark text-genshin-blue-dark" +
     " active:bg-genshin-blue-dark active:text-genshin-yellow-medium active:border-genshin-yellow-medium",
-  dropDownSelection: "border-1.5 bg-genshin-blue-medium border-genshin-blue-dark focus:border-genshin-blue-medium" +
+  DropdownSelection: "border-1.5 bg-genshin-blue-medium border-genshin-blue-dark focus:border-genshin-blue-medium" +
     " focus:bg-genshin-blue-dark text-genshin-yellow-extra-light",
   panel: {
     sectionContainer: "bg-gradient-to-bl from-genshin-blue-medium to-genshin-blue-dark",
@@ -101,7 +101,7 @@ export interface Theme {
     paragraph: string;
     paragraph2: string;
   }
-  dropDownSelection: string;
+  DropdownSelection: string;
   button: string;
   switchButton: {
     button: string;

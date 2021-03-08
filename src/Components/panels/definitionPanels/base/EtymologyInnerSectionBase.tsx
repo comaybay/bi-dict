@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../../../../App";
 import { EtymologyInnerSection } from "../../../../types/Definition";
-import NumberedDropDownList from "../../../list/NumberedDropDownList";
+import NumberedDropdownList from "../../../list/NumberedDropdownList";
 import { getDefinitionSectionKey } from "./DefinitionPanel";
-import { DefinitionPanelDropDownList } from "./DefinitionPanelDropDownList";
+import DefinitionPanelDropdownList from "./DefinitionPanelDropdownList";
 import { DefinitionSectionBase } from "./DefinitionSectionBase";
 
 
@@ -15,7 +15,7 @@ export const EtymologyInnerSectionBase: React.FC<EtymologyInnerSection> =
         <p className={`${text.header} font-bold`}>{partOfSpeech}</p>
         <p className={`${text.paragraph} pl-2`}>{inflection}</p>
         {definitionSections.length !== 0 &&
-          <NumberedDropDownList
+          <NumberedDropdownList
             showElementAmount={4}
             children={
               definitionSections.map(ds =>
@@ -28,11 +28,11 @@ export const EtymologyInnerSectionBase: React.FC<EtymologyInnerSection> =
         }
         <div className="pl-2">
           {synonyms.length !== 0 &&
-            <DefinitionPanelDropDownList title="synonyms:" items={synonyms} />
+            <DefinitionPanelDropdownList title="synonyms:" items={synonyms} />
 
           }
           {antonyms.length !== 0 &&
-            <DefinitionPanelDropDownList title="antonyms:" items={antonyms} />
+            <DefinitionPanelDropdownList title="antonyms:" items={antonyms} />
           }
         </div>
       </div>

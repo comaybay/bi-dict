@@ -1,19 +1,19 @@
 import { useContext } from "react";
 import { ThemeContext } from "../../App";
 
-export interface DropDownSelectionProps {
+export interface DropdownSelectionProps {
   currentOption: string;
   options: string[]
   handleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   extendedClassName?: string;
 }
 
-const DropDownSelection: React.FC<DropDownSelectionProps> = ({ currentOption, handleChange, options, extendedClassName = "" }) => {
+const DropdownSelection: React.FC<DropdownSelectionProps> = ({ currentOption, handleChange, options, extendedClassName = "" }) => {
   const theme = useContext(ThemeContext);
   return (
     <>
       <select
-        className={`md:px-1 text-xs md:text-base ${theme.dropDownSelection} ${extendedClassName}`}
+        className={`md:px-1 text-xs md:text-base ${theme.DropdownSelection} ${extendedClassName}`}
         value={currentOption}
         onChange={handleChange}
       >
@@ -24,4 +24,4 @@ const DropDownSelection: React.FC<DropDownSelectionProps> = ({ currentOption, ha
     </>
   );
 }
-export default DropDownSelection;
+export default DropdownSelection;

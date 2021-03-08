@@ -1,14 +1,14 @@
 import React, { useState } from "react"
-import { DropDownButton } from "../buttons/DropDownButton";
+import DropdownButton from "../buttons/DropdownButton";
 
-export interface CharacterLimitDropDownListProps {
+export interface CharacterLimitDropdownListProps {
   title?: React.ReactNode;
   list: string[];
   characterLimit?: number;
   itemCss?: string;
 }
 
-export const CharacterLimitDropDownList: React.FC<CharacterLimitDropDownListProps> = ({ title, characterLimit = 20, list, itemCss = "" }) => {
+export const CharacterLimitDropdownList: React.FC<CharacterLimitDropdownListProps> = ({ title, characterLimit = 20, list, itemCss = "" }) => {
   if (list === null || list.length === 0) throw new TypeError("list cannot be empty or null");
 
   const [buttonDropped, setButtonDropped] = useState(false);
@@ -29,7 +29,7 @@ export const CharacterLimitDropDownList: React.FC<CharacterLimitDropDownListProp
       <div className="flex">
         {needsMinimization &&
           <div> {/*div wrapper to prevent button from being stretch when un-minimized*/}
-            <DropDownButton
+            <DropdownButton
               dropped={buttonDropped}
               handleClick={toggleMinimization}
             />

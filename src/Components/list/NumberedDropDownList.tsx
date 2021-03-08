@@ -1,9 +1,9 @@
-import { DropDownList, DropDownListProps } from "./DropDownList";
+import DropdownList, { DropdownListProps } from "./DropdownList";
 
-const NumberedDropDownList: React.FC<DropDownListProps> = (props) => {
-  return (<DropDownList {...props} ChildrenContainer={Ol} />)
+const NumberedDropdownList: React.FC<DropdownListProps> = (props) => {
+  return (<DropdownList {...props} ChildrenContainer={Ol} />)
 };
-export default NumberedDropDownList;
+export default NumberedDropdownList;
 
 const Ol: React.FC = ({ children }) => <ol className="ml-5">{children}</ol>
 

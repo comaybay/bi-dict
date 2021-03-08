@@ -1,11 +1,11 @@
-import dropDownArrow from "../../assets/images/drop-down-arrow.svg"
+import DropdownArrow from "../../assets/images/drop-down-arrow.svg"
 
-interface DropDownButtonProps {
+interface DropdownButtonProps {
   dropped: boolean;
   handleClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
-export const DropDownButton: React.FC<DropDownButtonProps> = ({ handleClick, dropped }) => {
+const DropdownButton: React.FC<DropdownButtonProps> = ({ handleClick, dropped }) => {
   const rotation = dropped === false ? "-rotate-90" : "rotate-0";
   return (
     <button
@@ -14,7 +14,8 @@ export const DropDownButton: React.FC<DropDownButtonProps> = ({ handleClick, dro
         handleClick(e);
       }}
     >
-      <img className={`transform ${rotation}`} src={dropDownArrow} alt="dropdown button" />
+      <img className={`transform ${rotation}`} src={DropdownArrow} alt="Dropdown button" />
     </button>
   );
 }
+export default DropdownButton
