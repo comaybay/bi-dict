@@ -11,6 +11,22 @@
   }
 }
 
+*:focus,
+button:focus {
+  position: relative;
+  z-index: 999;
+  outline: 2px solid #ffc400e3;
+  outline-offset: 2px;
+  animation: outline-anim ease 0.1s;
+}
+
+@keyframes outline-anim {
+  0% {
+    outline-offset: 10px;
+    outline-width: 5px;
+  }
+}
+
 .using-mouse :focus {
   outline: none;
 }

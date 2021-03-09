@@ -1,9 +1,9 @@
-import { DropDownList, DropDownListProps } from "./DropDownList";
+import DropdownList, { DropdownListProps } from "./DropdownList";
 
-const BulletedDropDownList: React.FC<DropDownListProps> = (props) => {
-  return (<DropDownList {...props} ChildrenContainer={Ol} />)
+const BulletedDropdownList: React.FC<DropdownListProps> = (props) => {
+  return (<DropdownList {...props} ChildrenContainer={Ol} />)
 };
-export default BulletedDropDownList;
+export default BulletedDropdownList;
 
 const Ol: React.FC = ({ children }) => <ul className="ml-5 list-disc">{children}</ul>
 

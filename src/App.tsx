@@ -8,16 +8,14 @@ import useGetDefinition from "./hooks/useGetDefinition";
 import DefinitionNotFoundPanel from "./components/panels/definitionPanels/DefinitionNotFoundPanel";
 import LoadingPanel from "./components/panels/definitionPanels/LoadingPanel";
 import monochromeTheme, { genshinTheme, Theme } from "./utils/Themes";
-import OutlineNoneWhenUsingMouse from "./OutlineNoneWhenUsingMouse"
-
-//==https://stackoverflow.com/questions/31402576/enable-focus-only-on-keyboard-use-or-tab-press
-OutlineNoneWhenUsingMouse();
+import useNoOutlineWhenUsingMouse from "./useNoOutlineWhenUsingMouse"
 
 //==
 export const AppContext = React.createContext<AppContextValue>({} as AppContextValue);
 export const ThemeContext = React.createContext<Theme>(monochromeTheme);
 
 const App: React.FC = () => {
+  useNoOutlineWhenUsingMouse();
   const [inputWord, setInputWord] = useState("");
   const [firstLang, setFirstLang] = useState("vi");
   const [secondLang, setSecondLang] = useState("en");
@@ -45,7 +43,7 @@ const App: React.FC = () => {
     switchTheme
   }
 
-  document.body.className = theme.background;
+  document.body.className = theme.body;
   return (
     <>
       <ThemeContext.Provider value={theme}>

@@ -1,5 +1,5 @@
 const monochromeTheme: Theme = {
-  background: "bg-gray-300 transition-all duration-75",
+  body: "bg-gray-300 transition-all duration-75",
   panel: {
     sectionContainer: "bg-gray-50",
     section: "bg-gray-100 rounded-tl-2xl",
@@ -13,16 +13,17 @@ const monochromeTheme: Theme = {
   header: "bg-gray-50",
   searchBox: "bg-gray-50 placeholder-gray-400 border-gray-300 focus:border-indigo-500 text-gray-600",
   suggestion: {
-    container: "hover:bg-gray-100",
+    container: "text-gray-600 hover:bg-gray-100",
     meaning: "text-gray-600 text-sm",
-    word: "",
+    word: "text-gray-700",
   },
   switch: {
     circle: "bg-white",
     container: "bg-gray-300",
   },
   suggestionBox: "border-gray-300 bg-gray-50 border-gray-300 focus:border-indigo-500",
-  dropDownSelection: "border-1.5 bg-gray-50 focus:bg-gray-100 border-gray-300 focus:border-indigo-500 text-gray-600",
+  dropdownSelection: "border-1.5 bg-gray-50 focus:bg-gray-100 border-gray-300 focus:border-indigo-500 text-gray-600",
+  dropdownButtonSVG: "fill-current text-black",
   button: "bg-gray-50 text-gray-600 active:bg-gray-100 border-gray-300 active:border-indigo-500 active:text-indigo-500",
   tag: {
     base: "text-white",
@@ -35,25 +36,29 @@ const monochromeTheme: Theme = {
       " active:border-indigo-500",
     svg: "fill-current text-black",
   },
+  trailing: {
+    definitionSection: "border-gray-400 border-b",
+  }
 }
 export default monochromeTheme;
 
 export const genshinTheme: Theme = {
-  background: "bg-genshin-blue-darker transition-all duration-75",
+  body: "bg-genshin-blue-darker transition-all duration-75",
   button: "bg-genshin-yellow-medium border-genshin-blue-dark text-genshin-blue-dark" +
     " active:bg-genshin-blue-dark active:text-genshin-yellow-medium active:border-genshin-yellow-medium",
-  dropDownSelection: "border-1.5 bg-genshin-blue-medium border-genshin-blue-dark focus:border-genshin-blue-medium" +
+  dropdownSelection: "border-1.5 bg-genshin-blue-medium border-genshin-blue-dark focus:border-genshin-blue-medium" +
     " focus:bg-genshin-blue-dark text-genshin-yellow-extra-light",
+  dropdownButtonSVG: "fill-current text-genshin-yellow-medium",
   panel: {
     sectionContainer: "bg-gradient-to-bl from-genshin-blue-medium to-genshin-blue-dark",
     section: "bg-genshin-blue-dark rounded-xl rounded-tl-2xl rounded-br-2xl",
-    sectionDecoration: "bg-genshin-yellow-medium border-2 ring-inset ring-2 ring-genshin-blue-dark"
+    sectionDecoration: "bg-genshin-yellow-medium border-2 border-genshin-yellow-extra-light ring-inset ring-2 ring-genshin-blue-dark"
   },
   searchBox: "placeholder-genshin-yellow-light placeholder-opacity-90 text-genshin-yellow-medium bg-genshin-blue-medium border-genshin-blue-dark" +
     " focus:bg-genshin-blue-dark focus:placeholder-opacity-50 focus:border-genshin-blue-medium",
   header: "bg-genshin-blue-dark",
   suggestion: {
-    container: "hover:bg-genshin-blue-medium",
+    container: "text-genshin-yellow-light hover:bg-genshin-blue-medium",
     meaning: "text-genshin-yellow-light text-sm",
     word: "text-genshin-yellow-medium",
   },
@@ -79,10 +84,13 @@ export const genshinTheme: Theme = {
       " active:border-genshin-blue-medium",
     svg: "fill-current text-genshin-yellow-extra-light",
   },
+  trailing: {
+    definitionSection: "border-genshin-yellow-extra-light border-b border-r rounded-br-full",
+  }
 }
 
 export interface Theme {
-  background: string;
+  body: string;
   panel: {
     sectionContainer: string;
     section: string;
@@ -101,7 +109,7 @@ export interface Theme {
     paragraph: string;
     paragraph2: string;
   }
-  dropDownSelection: string;
+  dropdownSelection: string;
   button: string;
   switchButton: {
     button: string;
@@ -117,4 +125,8 @@ export interface Theme {
     container: string;
     circle: string;
   }
+  dropdownButtonSVG: string;
+  trailing: {
+    definitionSection: string;
+  };
 }

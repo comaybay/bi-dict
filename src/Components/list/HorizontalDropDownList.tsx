@@ -1,14 +1,14 @@
 import React, { useContext, useState } from "react"
 import { ThemeContext } from "../../App";
-import { DropDownButton } from "../buttons/DropDownButton";
+import DropdownButton from "../buttons/DropdownButton";
 
-export interface HorizontalDropDownListProps {
+export interface HorizontalDropdownListProps {
   title?: React.ReactNode;
   children: JSX.Element[];
   limit?: number;
 }
 
-export const HorizontalDropDownList: React.FC<HorizontalDropDownListProps> = ({ title, limit = 1, children }) => {
+export const HorizontalDropdownList: React.FC<HorizontalDropdownListProps> = ({ title, limit = 1, children }) => {
   if (children === null || children.length === 0) throw new TypeError("parameter 'children' cannot be an empty array or null");
 
   const [buttonDropped, setButtonDropped] = useState(false);
@@ -26,7 +26,7 @@ export const HorizontalDropDownList: React.FC<HorizontalDropDownListProps> = ({ 
       <div className="flex">
         {size > limit &&
           <div> {/*div wrapper to prevent button from being stretch when un-minimized*/}
-            <DropDownButton
+            <DropdownButton
               dropped={buttonDropped}
               handleClick={toggleMinimization}
             />

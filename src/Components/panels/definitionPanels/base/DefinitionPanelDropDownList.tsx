@@ -1,19 +1,24 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../../../../App";
-import { DropDownList } from "../../../list/DropDownList";
+import DropdownList from "../../../list/DropdownList";
 
 
-export const DefinitionPanelDropDownList: React.FC<DefinitionPanelDropDownListProps> = ({ title, items }) => {
+const DefinitionPanelDropdownList: React.FC<DefinitionPanelDropdownListProps> = ({ title, items }) => {
   const { text } = useContext(ThemeContext);
   return (
-    <DropDownList
+    <DropdownList
       title={<p className={`${text.paragraph} font-semibold`}>{title}</p >}
-      children={items.map(i => <p className={text.paragraph}>{i}</p>)}
-      trailingElement={<p className={`relative bottom-2 ${text.paragraph}`} >...</p>} />
+      children={items.map(i => <p key={i} className={text.paragraph}>{i}</p>)}
+      trailingElement={<p className={`relative bottom-2 ${text.paragraph}`} >...</p>}
+      ChildrenContainer={Container}
+    />
   );
 };
+export default DefinitionPanelDropdownList;
 
-interface DefinitionPanelDropDownListProps {
+const Container: React.FC = ({ children }) => <div className="ml-1">{children}</div>;
+
+interface DefinitionPanelDropdownListProps {
   title?: string;
   items: string[];
 }

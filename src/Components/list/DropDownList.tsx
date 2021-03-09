@@ -1,60 +1,64 @@
 import React, { useState } from "react"
-import { DropDownButton } from "../buttons/DropDownButton";
+import DropdownButton from "../buttons/DropdownButton";
 
-export const DropDownList: React.FC<DropDownListPropsBase> =
+const DropdownList: React.FC<DropdownListPropsBase> =
   ({ title, showElementAmount = 1, children, ChildrenContainer = Div, trailingElement }) => {
     if (children === null || children.length === 0) throw new TypeError("parameter 'children' cannot be an empty array or null");
 
     const [buttonDropped, setButtonDropped] = useState(false);
     const [minimize, setMinimize] = useState(true);
     const size = children.length;
-    const needsMinimization = children.length > showElementAmount;
     const toggleMinimization = () => {
       setMinimize(!minimize);
       setButtonDropped(!buttonDropped);
     };
+
+    const minimizable = size > showElementAmount;
+    const pressable = minimizable ? "cursor-pointer select-none" : "";
     return (
       <>
         <div className="flex">
-          {size > showElementAmount &&
+          {minimizable &&
             <div> {/*div wrapper to prevent button from being stretch when un-minimized*/}
-              <DropDownButton
+              <DropdownButton
                 dropped={buttonDropped}
                 handleClick={toggleMinimization}
               />
             </div>
           }
           <div>
-            <div className="ml-1 select-none cursor-pointer" onClick={toggleMinimization}>
+            <div className={`ml-1 ${pressable}`} onClick={toggleMinimization}>
               {title}
             </div>
             <ChildrenContainer>
-              {needsMinimization && minimize &&
+              {minimizable && minimize &&
                 <>
                   {children.slice(0, showElementAmount)}
-                  <div className="cursor-pointer" onClick={toggleMinimization}>
+                  <div className="cursor-pointer select-none" onClick={toggleMinimization}>
                     {trailingElement}
                   </div>
                 </>
               }
-              {(!needsMinimization || !minimize) && children}
+              {(!minimizable || !minimize) &&
+                children
+              }
             </ChildrenContainer>
           </div>
         </div>
       </>
     )
   };
+export default DropdownList;
 
 const Div: React.FC = ({ children }) => <div>{children}</div>;
 
-
-export interface DropDownListProps {
+export interface DropdownListProps {
   title?: React.ReactNode;
   children: React.ReactNode[];
   trailingElement?: React.ReactNode;
   showElementAmount?: number;
 }
 
-export interface DropDownListPropsBase extends DropDownListProps {
+export interface DropdownListPropsBase extends DropdownListProps {
   ChildrenContainer?: React.FC<any>;
 }

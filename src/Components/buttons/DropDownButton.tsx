@@ -1,20 +1,38 @@
-import dropDownArrow from "../../assets/images/drop-down-arrow.svg"
+import anime from "animejs";
+import { useContext, useRef } from "react";
+import { ThemeContext } from "../../App";
+import useEffectSkipFirstRender from "../../hooks/useEffectSkipFirstRender"
 
-interface DropDownButtonProps {
+interface DropdownButtonProps {
   dropped: boolean;
   handleClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
-export const DropDownButton: React.FC<DropDownButtonProps> = ({ handleClick, dropped }) => {
-  const rotation = dropped === false ? "-rotate-90" : "rotate-0";
+const DropdownButton: React.FC<DropdownButtonProps> = ({ handleClick, dropped }) => {
+  const theme = useContext(ThemeContext)
+
+  const buttonRef = useRef(null);
+  useEffectSkipFirstRender(() => {
+    anime({
+      targets: buttonRef.current,
+      rotate: dropped ? [0, 90] : [90, 0],
+      easing: "easeOutQuad",
+      duration: 300,
+    });
+  }, [dropped])
+
   return (
     <button
-      className="w-2 md:w-3"
+      ref={buttonRef}
+      className="w-1.5 md:w-2"
       onClick={(e) => {
         handleClick(e);
       }}
     >
-      <img className={`transform ${rotation}`} src={dropDownArrow} alt="dropdown button" />
+      <svg className={theme.dropdownButtonSVG} viewBox="0 0 41 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 24.5V2L39 24.5L2 47V24.5Z" strokeWidth="3" strokeLinejoin="round" />
+      </svg>
     </button>
   );
 }
+export default DropdownButton
