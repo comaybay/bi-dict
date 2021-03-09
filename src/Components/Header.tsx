@@ -15,7 +15,6 @@ const HeaderProps: React.FC = () => {
 
   const {
     inputWord,
-    setInputWord,
     firstLang,
     setFirstLang,
     secondLang,
