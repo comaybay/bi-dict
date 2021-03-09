@@ -9,7 +9,7 @@ interface DropdownButtonProps {
 }
 
 const DropdownButton: React.FC<DropdownButtonProps> = ({ handleClick, dropped }) => {
-  const { dropdownButtonSVG } = useContext(ThemeContext)
+  const theme = useContext(ThemeContext)
 
   const buttonRef = useRef(null);
   useEffectSkipFirstRender(() => {
@@ -29,7 +29,7 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({ handleClick, dropped })
         handleClick(e);
       }}
     >
-      <svg className={dropdownButtonSVG} viewBox="0 0 41 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg className={theme.dropdownButtonSVG} viewBox="0 0 41 49" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M2 24.5V2L39 24.5L2 47V24.5Z" strokeWidth="3" strokeLinejoin="round" />
       </svg>
     </button>
