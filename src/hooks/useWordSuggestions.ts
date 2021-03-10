@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import WordSuggestion from "../types/WordSuggestion";
 import sendRequest from "../utils/sendRequest";
 
-let currentInput: string = "";
-
-export default function useWordSuggestions(input: string, language: string, maxSuggestions: number = Infinity) {
+let currentInput = "";
+export default function useWordSuggestions(): [WordSuggestion[], FetchSuggestions] {
+  const [input, setInput] = useState("");
+  const [language, setLanguage] = useState("");
+  const [suggestionLimit, setSuggestionLimit] = useState(Infinity);
   const [suggestions, setSuggestions] = useState<WordSuggestion[]>([]);
   currentInput = input;
 
@@ -20,14 +22,25 @@ export default function useWordSuggestions(input: string, language: string, maxS
         setSuggestions([]);
         return;
       }
-      //user already type in something else
-      if (currentInput !== input)
+
+      //not update suggestions if user already type in something else
+      if (currentInput !== input) {
         return;
+      }
 
       const suggestions = await response.json() as WordSuggestion[];
-      setSuggestions(suggestions.length <= maxSuggestions ? suggestions : suggestions.slice(0, maxSuggestions));
+      setSuggestions(suggestions.length <= suggestionLimit ? suggestions : suggestions.slice(0, suggestionLimit));
     })();
-  }, [input, language, maxSuggestions]);
+  }, [input, language, suggestionLimit]);
 
-  return suggestions;
+  const fetchSuggestions: FetchSuggestions = (input, language, suggestionLimit) => {
+    setInput(input);
+    setLanguage(language);
+    if (suggestionLimit !== undefined)
+      setSuggestionLimit(suggestionLimit);
+  }
+
+  return [suggestions, fetchSuggestions];
 }
+
+type FetchSuggestions = (input: string, language: string, suggestionLimit?: number) => void;

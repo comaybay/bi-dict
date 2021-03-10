@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export type AddToHistory<T, ID> = (item: T, id: ID) => void;
-export default function useHistory<T, ID>(limit: number): [T[], AddToHistory<T, ID>] {
+export default function useHistory<T, ID>(limit: number): [T[], AddToHistory<T, ID>, ClearHistory] {
   if (limit < 0)
     throw new RangeError("suggestion limit must be larger than -1");
 
@@ -23,6 +23,10 @@ export default function useHistory<T, ID>(limit: number): [T[], AddToHistory<T, 
     return newHistory;
   });
 
+  const clear: ClearHistory = () => setHistory(new Map());
+
   const historyAsList = Array.from(history.values()).reverse();
-  return [historyAsList, add];
+  return [historyAsList, add, clear];
 }
+
+type ClearHistory = () => void;
