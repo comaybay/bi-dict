@@ -2,13 +2,15 @@ import { useCallback, useEffect, useState } from "react";
 import WordSuggestion from "../types/WordSuggestion";
 import sendRequest from "../utils/sendRequest";
 
+//variables used to check changes inside async code
 let currentInput = "";
-export default function useWordSuggestions(): [WordSuggestion[], FetchSuggestions] {
+let currentLanguage = "";
+
+export default function useWordSuggestions(initialSuggestionLimit: number): [WordSuggestion[], FetchSuggestions] {
   const [input, setInput] = useState("");
   const [language, setLanguage] = useState("");
-  const [suggestionLimit, setSuggestionLimit] = useState(Infinity);
+  const [suggestionLimit, setSuggestionLimit] = useState(initialSuggestionLimit);
   const [suggestions, setSuggestions] = useState<WordSuggestion[]>([]);
-  currentInput = input;
 
   useEffect(() => {
     (async () => {
@@ -23,10 +25,9 @@ export default function useWordSuggestions(): [WordSuggestion[], FetchSuggestion
         return;
       }
 
-      //not update suggestions if user already type in something else
-      if (currentInput !== input) {
+      //discard suggestions if user already type in something else
+      if (currentInput !== input || currentLanguage !== language)
         return;
-      }
 
       const suggestions = await response.json() as WordSuggestion[];
       setSuggestions(suggestions.length <= suggestionLimit ? suggestions : suggestions.slice(0, suggestionLimit));
@@ -34,6 +35,8 @@ export default function useWordSuggestions(): [WordSuggestion[], FetchSuggestion
   }, [input, language, suggestionLimit]);
 
   const fetchSuggestions: FetchSuggestions = (input, language, suggestionLimit) => {
+    currentInput = input;
+    currentLanguage = language;
     setInput(input);
     setLanguage(language);
     if (suggestionLimit !== undefined)

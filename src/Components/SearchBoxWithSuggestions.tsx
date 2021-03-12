@@ -13,13 +13,13 @@ const SearchBoxWithSuggestions: React.FC = () => {
   const [keyboardHoverIndex, setKeyboardHoverIndex] = useState(0);
 
   const [searchHistory, addToSearchHistory, clearHistory] = useHistory<WordSuggestion, string>(10);
-  const [requestedSuggestions, fetchSuggestions] = useWordSuggestions();
+  const [requestedSuggestions, fetchSuggestions] = useWordSuggestions(10);
   const suggestions = inputWord === "" ? searchHistory : requestedSuggestions;
 
   useEffect(() => clearHistory(),
     [firstLang, clearHistory]);
 
-  useEffect(() => fetchSuggestions(inputWord, firstLang, 10),
+  useEffect(() => fetchSuggestions(inputWord, firstLang),
     [inputWord, firstLang, fetchSuggestions]);
 
   return (

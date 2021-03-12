@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import DefinitionPanelEN from "./components/panels/definitionPanels/DefinitionPanelEN"
 import DefinitionPanelVN from "./components/panels/definitionPanels/DefinitionPanelVN"
@@ -43,7 +43,22 @@ const App: React.FC = () => {
     switchTheme
   }
 
-  document.body.className = theme.body;
+  useEffect(() => {
+    document.body.className = theme.body;
+  }, [theme.body]);
+
+  useEffect(() => {
+    const switchLanguages = (e: KeyboardEvent) => {
+      if (e.shiftKey && e.key === " ") {
+        setFirstLang(secondLang);
+        setSecondLang(firstLang);
+        e.preventDefault();
+      };
+    };
+    document.body.addEventListener("keydown", switchLanguages);
+    return () => document.body.removeEventListener("keydown", switchLanguages);
+  }, [firstLang, secondLang]);
+
   return (
     <>
       <ThemeContext.Provider value={theme}>
