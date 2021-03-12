@@ -16,7 +16,6 @@ const SearchBoxWithSuggestions: React.FC = () => {
   const [requestedSuggestions, fetchSuggestions] = useWordSuggestions();
   const suggestions = inputWord === "" ? searchHistory : requestedSuggestions;
 
-
   useEffect(() => clearHistory(),
     [firstLang, clearHistory]);
 
@@ -68,7 +67,6 @@ const SearchBoxWithSuggestions: React.FC = () => {
         <div
           className="h-0" /*h-0 to keep everything the same when suggestionBox appear (container's has height = 0 but child is not)*/
           onMouseDown={(e) => e.preventDefault()} /*stop searchBox's blur event (so that suggestionBox onClick handler can be called)*/
-          onClick={(e) => setSuggestionBoxEnabled(false)} /*after suggestionBox's onClick handler is called, hide suggestion box*/
         >
           <SuggestionBox
             suggestions={suggestions}
@@ -79,6 +77,7 @@ const SearchBoxWithSuggestions: React.FC = () => {
               addToSearchHistory(suggestion, suggestion.word);
               setInputWord(suggestion.word);
               fetchDefinitions(suggestion.word);
+              setSuggestionBoxEnabled(false);
             }}
           />
         </div>}
