@@ -72,7 +72,7 @@ const SearchBoxWithSuggestions: React.FC = () => {
             suggestions={suggestions}
             keyboardIndex={keyboardHoverIndex}
             handleClickSuggestion={(elem) => {
-              const index = +(elem.dataset.index as string);
+              const index = parseInt(elem.dataset.index as string);
               const suggestion = suggestions[index];
               addToSearchHistory(suggestion, suggestion.word);
               setInputWord(suggestion.word);
