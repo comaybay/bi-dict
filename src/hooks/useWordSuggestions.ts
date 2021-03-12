@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import WordSuggestion from "../types/WordSuggestion";
 import sendRequest from "../utils/sendRequest";
 
@@ -39,8 +39,9 @@ export default function useWordSuggestions(): [WordSuggestion[], FetchSuggestion
     if (suggestionLimit !== undefined)
       setSuggestionLimit(suggestionLimit);
   }
+  const mFetchSuggestions = useCallback(fetchSuggestions, []);
 
-  return [suggestions, fetchSuggestions];
+  return [suggestions, mFetchSuggestions];
 }
 
 type FetchSuggestions = (input: string, language: string, suggestionLimit?: number) => void;

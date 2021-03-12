@@ -4,7 +4,7 @@ import DefinitionPanelEN from "./components/panels/definitionPanels/DefinitionPa
 import DefinitionPanelVN from "./components/panels/definitionPanels/DefinitionPanelVN"
 import Definition from "./types/Definition";
 import FetchState from "./types/FetchState";
-import useGetDefinition from "./hooks/useGetDefinition";
+import useWordDefinition from "./hooks/useWordDefinition";
 import DefinitionNotFoundPanel from "./components/panels/definitionPanels/DefinitionNotFoundPanel";
 import LoadingPanel from "./components/panels/definitionPanels/LoadingPanel";
 import monochromeTheme, { genshinTheme, Theme } from "./utils/Themes";
@@ -20,8 +20,8 @@ const App: React.FC = () => {
   const [firstLang, setFirstLang] = useState("vi");
   const [secondLang, setSecondLang] = useState("en");
 
-  const [stateFL, fetchDefinitionFLtoFL] = useGetDefinition();
-  const [stateSL, fetchDefinitionFLtoSL] = useGetDefinition();
+  const [stateFL, fetchDefinitionFLtoFL] = useWordDefinition();
+  const [stateSL, fetchDefinitionFLtoSL] = useWordDefinition();
   const fetchDefinitions = (word: string) => {
     fetchDefinitionFLtoSL(secondLang, word, firstLang);
     fetchDefinitionFLtoFL(firstLang, word, firstLang);

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 export type AddToHistory<T, ID> = (item: T, id: ID) => void;
 export default function useHistory<T, ID>(limit: number): [T[], AddToHistory<T, ID>, ClearHistory] {
@@ -22,11 +22,13 @@ export default function useHistory<T, ID>(limit: number): [T[], AddToHistory<T, 
 
     return newHistory;
   });
+  const mAdd = useCallback(add, [limit]);
 
-  const clear: ClearHistory = () => setHistory(new Map());
+  const clearHistory: ClearHistory = () => setHistory(new Map());
+  const mClearHistory = useCallback(clearHistory, []);
 
   const historyAsList = Array.from(history.values()).reverse();
-  return [historyAsList, add, clear];
+  return [historyAsList, mAdd, mClearHistory];
 }
 
 type ClearHistory = () => void;

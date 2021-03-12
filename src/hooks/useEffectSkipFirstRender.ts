@@ -7,7 +7,7 @@ export default function useEffectSkipFirstRender(effect: React.EffectCallback, d
       setIsFirstRender(false);
     else
       return effect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 }
 

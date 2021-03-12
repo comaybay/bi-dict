@@ -16,8 +16,12 @@ const SearchBoxWithSuggestions: React.FC = () => {
   const [requestedSuggestions, fetchSuggestions] = useWordSuggestions();
   const suggestions = inputWord === "" ? searchHistory : requestedSuggestions;
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => clearHistory(), [firstLang]);
+
+  useEffect(() => clearHistory(),
+    [firstLang, clearHistory]);
+
+  useEffect(() => fetchSuggestions(inputWord, firstLang, 10),
+    [inputWord, firstLang, fetchSuggestions]);
 
   return (
     <>
@@ -25,14 +29,11 @@ const SearchBoxWithSuggestions: React.FC = () => {
         inputText={inputWord}
         handleChange={e => {
           const newInputWord = e.target.value;
-          setInputWord((inputWord) => {
-            if (!suggestionBoxEnabled && newInputWord !== inputWord)
-              setSuggestionBoxEnabled(true);
+          if (!suggestionBoxEnabled && newInputWord !== inputWord)
+            setSuggestionBoxEnabled(true);
 
-            return newInputWord;
-          });
+          setInputWord(newInputWord);
           setKeyboardHoverIndex(-1);
-          fetchSuggestions(newInputWord, firstLang, 10);
         }}
         handleFocus={() => setSuggestionBoxEnabled(true)}
         handleBlur={() => setSuggestionBoxEnabled(false)}

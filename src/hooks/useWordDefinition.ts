@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from "react";
+import { useCallback, useEffect, useReducer, useState } from "react";
 import Definition from "../types/Definition";
 import FetchState from "../types/FetchState"
 import FetchAction from "../types/FetchAction";
@@ -9,7 +9,7 @@ const initialFetchState: FetchState<Definition> = {
   isLoading: false,
 }
 
-export default function useGetDefinition(): [FetchState<Definition>, FetchDefinition] {
+export default function useWordDefinition(): [FetchState<Definition>, FetchDefinition] {
   const [definitionLanguage, setDefinitionLanguage] = useState("");
   const [word, setWord] = useState("");
   const [wordLanguage, setWordLanguage] = useState("");
@@ -37,8 +37,9 @@ export default function useGetDefinition(): [FetchState<Definition>, FetchDefini
     setWord(word);
     setWordLanguage(wordLanguage);
   }
+  const mFetchDefinition = useCallback(fetchDefinition, []);
 
-  return [state, fetchDefinition];
+  return [state, mFetchDefinition];
 }
 
 export type FetchDefinition = (definitionLanguage: string, word: string, wordLanguage: string) => void;
