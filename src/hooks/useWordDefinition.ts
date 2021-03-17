@@ -4,12 +4,17 @@ import FetchState from "../types/FetchState"
 import FetchAction from "../types/FetchAction";
 import sendRequest from "../utils/sendRequest"
 
-const initialFetchState: FetchState<Definition> = {
+const initialFetchState: WordDefinitionState = {
   isError: false,
   isLoading: false,
+  inputs: {
+    definitionLanguage: "",
+    word: "",
+    wordLanguage: "",
+  },
 }
 
-export default function useWordDefinition(): [FetchState<Definition>, FetchDefinition] {
+export default function useWordDefinition(): [WordDefinitionState, FetchDefinition] {
   const [definitionLanguage, setDefinitionLanguage] = useState("");
   const [word, setWord] = useState("");
   const [wordLanguage, setWordLanguage] = useState("");
@@ -19,7 +24,8 @@ export default function useWordDefinition(): [FetchState<Definition>, FetchDefin
     (async () => {
       if (word === "") return;
 
-      dispatch({ type: "FETCH_INIT" });
+      const payload: WordDefinitionInput = { word, wordLanguage, definitionLanguage };
+      dispatch({ type: "FETCH_INIT", payload });
 
       const res = await sendRequest(`Definition/${definitionLanguage}/${word}/${wordLanguage}`);
       if (!res.ok)
@@ -42,25 +48,39 @@ export default function useWordDefinition(): [FetchState<Definition>, FetchDefin
   return [state, mFetchDefinition];
 }
 
-export type FetchDefinition = (definitionLanguage: string, word: string, wordLanguage: string) => void;
-
-function reducer(state: FetchState<Definition>, action: FetchAction<Definition>): FetchState<Definition> {
+function reducer(state: WordDefinitionState, action: FetchAction<Definition | WordDefinitionInput>): WordDefinitionState {
   switch (action.type) {
     case "FETCH_INIT":
       return {
+        ...state,
+        inputs: action.payload as WordDefinitionInput,
         isLoading: true,
         isError: false,
       }
     case "FETCH_FAILURE":
       return {
+        ...state,
         isLoading: false,
         isError: true,
       }
     case "FETCH_SUCCESS":
       return {
+        ...state,
         isLoading: false,
         isError: false,
-        content: action.payload,
+        content: action.payload as Definition,
       }
   }
 }
+
+export interface WordDefinitionState extends FetchState<Definition> {
+  inputs: WordDefinitionInput;
+}
+
+interface WordDefinitionInput {
+  definitionLanguage: string,
+  word: string,
+  wordLanguage: string,
+}
+
+export type FetchDefinition = (definitionLanguage: string, word: string, wordLanguage: string) => void;

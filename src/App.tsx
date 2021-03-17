@@ -4,7 +4,7 @@ import DefinitionPanelEN from "./components/panels/definitionPanels/DefinitionPa
 import DefinitionPanelVN from "./components/panels/definitionPanels/DefinitionPanelVN"
 import Definition from "./types/Definition";
 import FetchState from "./types/FetchState";
-import useWordDefinition from "./hooks/useWordDefinition";
+import useWordDefinition, { WordDefinitionState } from "./hooks/useWordDefinition";
 import DefinitionNotFoundPanel from "./components/panels/definitionPanels/DefinitionNotFoundPanel";
 import LoadingPanel from "./components/panels/definitionPanels/LoadingPanel";
 import monochromeTheme, { genshinTheme, Theme } from "./utils/Themes";
@@ -69,10 +69,10 @@ const App: React.FC = () => {
         <div className="padding-top-navbar">
           <div className="px-2 py-2 grid lg:grid-cols-2 gap-2">
             <div>
-              <PanelSection fetchState={stateFL} language={firstLang} />
+              <PanelSection state={stateFL} />
             </div>
             <div>
-              <PanelSection fetchState={stateSL} language={secondLang} />
+              <PanelSection state={stateSL} />
             </div>
           </div>
         </div>
@@ -82,15 +82,15 @@ const App: React.FC = () => {
 };
 export default App;
 
-const PanelSection: React.FC<PanelSectionProps> = ({ language, fetchState }) => {
-  if (fetchState.content)
-    return getDefinitionPanelByLanguage(fetchState.content.definitionLanguage, fetchState.content);
+const PanelSection: React.FC<{ state: WordDefinitionState }> = ({ state }) => {
+  if (state.content)
+    return getDefinitionPanelByLanguage(state.content.definitionLanguage, state.content);
 
-  if (fetchState.isLoading)
-    return <LoadingPanel language={language} />
+  if (state.isLoading)
+    return <LoadingPanel language={state.inputs.definitionLanguage} />
 
-  if (fetchState.isError)
-    return <DefinitionNotFoundPanel language={language} />
+  if (state.isError)
+    return <DefinitionNotFoundPanel language={state.inputs.definitionLanguage} />
 
   return <></>;
 }
@@ -101,11 +101,6 @@ function getDefinitionPanelByLanguage(language: string, definition: Definition) 
     case "vi": return <DefinitionPanelVN definition={definition} />
     default: return <></>
   }
-}
-
-interface PanelSectionProps {
-  language: string;
-  fetchState: FetchState<Definition>;
 }
 
 interface AppContextValue {
