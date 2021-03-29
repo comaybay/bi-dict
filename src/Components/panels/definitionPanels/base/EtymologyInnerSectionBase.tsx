@@ -13,7 +13,9 @@ export const EtymologyInnerSectionBase: React.FC<EtymologyInnerSection> =
     return (
       <div className="pl-2">
         <p className={`font-bold ${text.header}`}>{partOfSpeech}</p>
-        <p className={`pl-2 ${text.paragraph}`}>{inflection}</p>
+        { inflection.length !== 0 &&
+          <p className={`font-bold ${text.paragraph}`}>{`(${inflection})`}</p>
+        }
         {senses.length !== 0 &&
           <NumberedDropdownList
             showElementAmount={4}

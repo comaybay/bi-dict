@@ -8,7 +8,8 @@ const monochromeTheme: Theme = {
   text: {
     header: "text-gray-700",
     paragraph: "text-gray-600",
-    paragraph2: "text-gray-500",
+    paragraph2: "text-gray-500 font-light italic",
+    paragraph3: "text-indigo-500 font-light italic",
   },
   header: "bg-gray-50",
   searchBox: "bg-gray-50 placeholder-gray-400 border-gray-300 focus:border-indigo-500 text-gray-600",
@@ -72,7 +73,8 @@ export const genshinTheme: Theme = {
   text: {
     header: "text-genshin-yellow-medium",
     paragraph: "text-gray-300",
-    paragraph2: "text-gray-300",
+    paragraph2: "text-gray-300 font-light italic",
+    paragraph3: "text-genshin-yellow-medium font-light italic"
   },
   tag: {
     base: "rounded-full py-1 px-4 text-genshin-blue-darker",
@@ -111,6 +113,7 @@ export interface Theme {
     header: string;
     paragraph: string;
     paragraph2: string;
+    paragraph3: string;
   }
   dropdownSelection: string;
   button: string;
