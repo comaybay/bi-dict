@@ -1,7 +1,7 @@
 import anime from "animejs";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { ThemeContext } from "../../../../App";
-import Definition, { DefinitionSection, EtymologyInnerSection, EtymologySection } from "../../../../types/Definition"
+import Definition, { Sense, EtymologyInnerSection, Etymology } from "../../../../types/Definition"
 import { EtymologySectionBase } from "./EtymologySectionBase";
 import { PronunciationsSection } from "./PronunciationsSection";
 
@@ -9,8 +9,8 @@ const DefinitionPanel: React.FC<DefinitionPanelBaseProps> = ({ definition, tags 
   const { panel, text } = useContext(ThemeContext);
   const [className, setClassName] = useState("hidden");
 
-  const isEtymologySectionEmpty = (etymology: EtymologySection): boolean =>
-    (etymology.etymologyTexts.length === 0 && etymology.innerSections.length === 0 && etymology.pronunciations.length === 0);
+  const isEtymologySectionEmpty = (etymology: Etymology): boolean =>
+    (etymology.origin.length === 0 && etymology.innerSections.length === 0 && etymology.pronunciations.length === 0);
 
   const panelRef = useRef({} as HTMLDivElement);
   useEffect(() => {
@@ -59,8 +59,8 @@ const DefinitionPanel: React.FC<DefinitionPanelBaseProps> = ({ definition, tags 
   )
 }
 
-function getEtymologySectionKey(etymologySection: EtymologySection): string {
-  let key1 = etymologySection.etymologyTexts?.[0] ?? "";
+function getEtymologySectionKey(etymologySection: Etymology): string {
+  let key1 = etymologySection.origin?.[0] ?? "";
   let key2 = etymologySection.innerSections.length ? getEtymologyInnerSectionKey(etymologySection.innerSections[0]) : "";
   let key3 = etymologySection.pronunciations?.[0] ?? "";
   return key1 + key2 + key3;
@@ -68,7 +68,7 @@ function getEtymologySectionKey(etymologySection: EtymologySection): string {
 
 export function getEtymologyInnerSectionKey(innerSection: EtymologyInnerSection): string {
   const key1 = innerSection.antonyms?.[0] ?? "";
-  const key2 = innerSection.definitionSections.length ? getDefinitionSectionKey(innerSection.definitionSections[0]) : "";
+  const key2 = innerSection.senses.length ? getDefinitionSectionKey(innerSection.senses[0]) : "";
   const key3 = innerSection.inflection;
   const key4 = innerSection.partOfSpeech;
   const key5 = innerSection.synonyms?.[0] ?? "";
@@ -76,12 +76,12 @@ export function getEtymologyInnerSectionKey(innerSection: EtymologyInnerSection)
   return key1 + key2 + key3 + key4 + key5;
 }
 
-export function getDefinitionSectionKey(definitionSection: DefinitionSection): string {
+export function getDefinitionSectionKey(definitionSection: Sense): string {
   const key1 = definitionSection.antonyms?.[0] ?? "";
-  const key2 = definitionSection.definition;
+  const key2 = definitionSection.meaning;
   const key3 = definitionSection.examples?.[0] ?? "";
   const key4 = definitionSection.synonyms?.[0] ?? "";
-  const key5 = definitionSection.subDefinitions.length ? getDefinitionSectionKey(definitionSection.subDefinitions[0]) : "";
+  const key5 = definitionSection.subSenses.length ? getDefinitionSectionKey(definitionSection.subSenses[0]) : "";
 
   return key1 + key2 + key3 + key4 + key5;
 }

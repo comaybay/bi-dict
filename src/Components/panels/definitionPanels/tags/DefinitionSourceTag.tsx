@@ -6,7 +6,7 @@ import Tag from "./Tag"
 const DefinitionSourceTag: React.FC<DefinitionSourceTagProps> = ({ sourceLink, sourceName }) => {
   const { tag } = useContext(ThemeContext);
   return (
-    <a href={sourceLink} >
+    <a href={sourceLink} rel="noreferrer" target="_blank" >
       <Tag extendedClassName={`${tag.definitionSource}`} text={sourceName} />
     </a>
   )

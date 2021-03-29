@@ -52,7 +52,6 @@ function reducer(state: WordDefinitionState, action: FetchAction<Definition | Wo
   switch (action.type) {
     case "FETCH_INIT":
       return {
-        ...state,
         inputs: action.payload as WordDefinitionInput,
         isLoading: true,
         isError: false,

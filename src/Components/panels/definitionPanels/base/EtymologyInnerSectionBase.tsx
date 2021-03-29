@@ -8,17 +8,17 @@ import { DefinitionSectionBase } from "./DefinitionSectionBase";
 
 
 export const EtymologyInnerSectionBase: React.FC<EtymologyInnerSection> =
-  ({ antonyms, definitionSections, inflection, partOfSpeech, synonyms }) => {
+  ({ antonyms, senses, inflection, partOfSpeech, synonyms }) => {
     const { text, trailing } = useContext(ThemeContext);
     return (
       <div className="pl-2">
         <p className={`font-bold ${text.header}`}>{partOfSpeech}</p>
         <p className={`pl-2 ${text.paragraph}`}>{inflection}</p>
-        {definitionSections.length !== 0 &&
+        {senses.length !== 0 &&
           <NumberedDropdownList
             showElementAmount={4}
             children={
-              definitionSections.map(ds =>
+              senses.map(ds =>
                 <li key={getDefinitionSectionKey(ds)}
                   className={`${text.paragraph} list-decimal`}
                 >
