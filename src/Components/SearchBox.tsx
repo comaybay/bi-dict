@@ -6,9 +6,10 @@ export interface SearchBoxProps {
   handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   handleBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  handleKeydown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-const SearchBox: React.FC<SearchBoxProps> = ({ inputText, handleChange, handleFocus, handleBlur }) => {
+const SearchBox: React.FC<SearchBoxProps> = ({ inputText, handleChange, handleFocus, handleBlur, handleKeydown }) => {
   const { searchBox } = useContext(ThemeContext);
   return (
     <div className="flex flex-col h-full">
@@ -19,6 +20,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ inputText, handleChange, handleFo
         onChange={handleChange}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        onKeyDown={handleKeydown}
         value={inputText}
       />
     </div>

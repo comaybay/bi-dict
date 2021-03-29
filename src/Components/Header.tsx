@@ -9,7 +9,7 @@ import Switch from "../components/switches/Switch";
 import Logo from "./Logo"
 import anime from "animejs";
 
-const HeaderProps: React.FC = () => {
+const Header: React.FC = () => {
   const { header } = useContext(ThemeContext);
   const [extendedClassName, setExtendedClassName] = useState("hidden");
 
@@ -95,4 +95,4 @@ const HeaderProps: React.FC = () => {
   )
 }
 
-export default HeaderProps
+export default Header

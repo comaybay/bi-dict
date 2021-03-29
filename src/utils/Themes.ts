@@ -14,6 +14,7 @@ const monochromeTheme: Theme = {
   searchBox: "bg-gray-50 placeholder-gray-400 border-gray-300 focus:border-indigo-500 text-gray-600",
   suggestion: {
     container: "text-gray-600 hover:bg-gray-100",
+    keyboardHovered: "bg-gray-100",
     meaning: "text-gray-600 text-sm",
     word: "text-gray-700",
   },
@@ -59,6 +60,7 @@ export const genshinTheme: Theme = {
   header: "bg-genshin-blue-dark",
   suggestion: {
     container: "text-genshin-yellow-light hover:bg-genshin-blue-medium",
+    keyboardHovered: "bg-genshin-blue-medium",
     meaning: "text-genshin-yellow-light text-sm",
     word: "text-genshin-yellow-medium",
   },
@@ -100,6 +102,7 @@ export interface Theme {
   searchBox: string;
   suggestion: {
     container: string;
+    keyboardHovered: string;
     word: string;
     meaning: string;
   };
