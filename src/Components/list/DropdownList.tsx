@@ -15,6 +15,7 @@ const DropdownList: React.FC<DropdownListPropsBase> =
 
     const minimizable = size > showElementAmount;
     const pressable = minimizable ? "cursor-pointer select-none" : "";
+    //TODO: Move DropdownButton to the end
     return (
       <>
         <div className="flex">
