@@ -67,23 +67,23 @@ const App: React.FC = () => {
     <>
       <ThemeContext.Provider value={theme}>
         <div className="z-50 fixed bottom-0 left-0 ml-4 mb-4">
-          <MinimizeButton />
+          <MinimizeButton onClick={toggleMinimization} minimize={globalMinimize} />
         </div>
 
         <AppContext.Provider value={providerValue}>
           <Header />
-        </AppContext.Provider>
 
-        <div className="padding-top-navbar">
-          <div className="px-2 py-2 grid lg:grid-cols-2 gap-2">
-            <div>
-              <PanelSection state={stateFL} />
-            </div>
-            <div>
-              <PanelSection state={stateSL} />
+          <div className="padding-top-navbar">
+            <div className="px-2 py-2 grid lg:grid-cols-2 gap-2">
+              <div>
+                <PanelSection state={stateFL} />
+              </div>
+              <div>
+                <PanelSection state={stateSL} />
+              </div>
             </div>
           </div>
-        </div>
+        </AppContext.Provider>
       </ThemeContext.Provider>
     </>
   )

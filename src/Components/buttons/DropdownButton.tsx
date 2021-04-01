@@ -15,7 +15,7 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({ handleClick, dropped })
   useEffectSkipFirstRender(() => {
     anime({
       targets: buttonRef.current,
-      rotate: dropped ? [0, 90] : [90, 0],
+      rotate: dropped ? [90, 0] : [0, 90],
       easing: "easeOutQuad",
       duration: 300,
     });
