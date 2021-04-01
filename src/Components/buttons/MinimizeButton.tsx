@@ -2,18 +2,18 @@ import anime from "animejs";
 import { MouseEventHandler, useContext, useEffect, useRef } from "react";
 import { ThemeContext } from "../../App"
 
-const MinimizeButton: React.FC<MinimizeButtonProps> = ({ onClick, minimize }) => {
+const MinimizeButton: React.FC<MinimizeButtonProps> = ({ onClick, toggle }) => {
   const theme = useContext(ThemeContext);
   const buttonRef = useRef(null);
 
   useEffect(() => {
     anime({
       targets: buttonRef.current,
-      rotate: minimize ? [0, 90] : [90, 0],
+      rotate: toggle ? [90, 0] : [0, 90],
       easing: "easeOutQuad",
       duration: 50,
     });
-  }, [minimize])
+  }, [toggle])
 
   return (
     //content-center only works if flex-wrap exists.
@@ -31,5 +31,5 @@ export default MinimizeButton;
 
 interface MinimizeButtonProps {
   onClick: MouseEventHandler<HTMLButtonElement>;
-  minimize: boolean;
+  toggle: boolean;
 }

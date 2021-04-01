@@ -21,7 +21,7 @@ const DropdownList: React.FC<DropdownListPropsBase> =
           {minimizable &&
             <div> {/*div wrapper to prevent button from being stretch when un-minimized*/}
               <DropdownButton
-                dropped={buttonDropped}
+                toggle={buttonDropped}
                 handleClick={toggleMinimization}
               />
             </div>

@@ -9,17 +9,14 @@ export interface HorizontalDropdownListProps {
   globalMinimize: boolean;
 }
 
-export const HorizontalDropdownList: React.FC<HorizontalDropdownListProps> = ({ title, limit = 1, children, globalMinimize = false }) => {
+export const HorizontalDropdownList: React.FC<HorizontalDropdownListProps> = ({ title, limit = 1, children, globalMinimize }) => {
   if (children === null || children.length === 0) throw new TypeError("parameter 'children' cannot be an empty array or null");
 
-  const [buttonDropped, setButtonDropped] = useState(false);
   const [minimize, setMinimize] = useState(true);
+  const toggleMinimization = () => setMinimize(minimize => !minimize);
+
   const size = children.length;
   const needsMinimization = size > limit;
-  const toggleMinimization = () => {
-    setMinimize(!minimize)
-    setButtonDropped(!buttonDropped);
-  };
 
   useEffect(() => {
     setMinimize(globalMinimize);
@@ -32,7 +29,7 @@ export const HorizontalDropdownList: React.FC<HorizontalDropdownListProps> = ({ 
         {size > limit &&
           <div> {/*div wrapper to prevent button from being stretch when un-minimized*/}
             <DropdownButton
-              dropped={buttonDropped}
+              toggle={!minimize}
               handleClick={toggleMinimization}
             />
           </div>
