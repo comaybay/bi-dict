@@ -42,7 +42,7 @@ const Header: React.FC = () => {
   }, []);
 
   return (
-    <div ref={headerRef} className={`flex justify-between items-center fixed z-50 shadow-md w-full pt-1.5 pb-1.5 md:pt-2 md:pb-2.5 ${extendedClassName} ${header}`}>
+    <div ref={headerRef} className={`flex justify-between items-center fixed z-40 shadow-md w-full pt-1.5 pb-1.5 md:pt-2 md:pb-2.5 ${extendedClassName} ${header}`}>
       <Logo />
 
       <div className="flex min-w-0 w-full max-w-xs md:max-w-xl lg:max-w-4xl h-7 md:h-11">

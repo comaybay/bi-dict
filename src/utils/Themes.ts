@@ -41,7 +41,8 @@ const monochromeTheme: Theme = {
   speakerButton: "stroke-current text-black",
   trailing: {
     definitionSection: "border-gray-400 border-b",
-  }
+  },
+  globalMinimizeButton: "bg-gray-400 "
 }
 export default monochromeTheme;
 
@@ -92,7 +93,8 @@ export const genshinTheme: Theme = {
   speakerButton: "text-genshin-yellow-medium",
   trailing: {
     definitionSection: "border-genshin-yellow-extra-light border-b border-r rounded-br-full",
-  }
+  },
+  globalMinimizeButton: "bg-genshin-blue-medium",
 }
 
 export interface Theme {
@@ -138,4 +140,5 @@ export interface Theme {
     definitionSection: string;
   };
   speakerButton: string;
+  globalMinimizeButton: string;
 }
