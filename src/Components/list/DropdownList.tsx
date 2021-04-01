@@ -1,16 +1,18 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import DropdownButton from "../buttons/DropdownButton";
 
 const DropdownList: React.FC<DropdownListPropsBase> =
-  ({ title, showElementAmount = 1, children, ChildrenContainer = Div, trailingElement }) => {
+  ({ title, showElementAmount = 1, children, ChildrenContainer = Div, trailingElement, toggle }) => {
     if (children === null || children.length === 0) throw new TypeError("parameter 'children' cannot be an empty array or null");
 
-    const [buttonDropped, setButtonDropped] = useState(false);
     const [minimize, setMinimize] = useState(true);
+    useEffect(() => {
+      setMinimize(toggle);
+    }, [toggle])
+
     const size = children.length;
     const toggleMinimization = () => {
       setMinimize(!minimize);
-      setButtonDropped(!buttonDropped);
     };
 
     const minimizable = size > showElementAmount;
@@ -21,7 +23,7 @@ const DropdownList: React.FC<DropdownListPropsBase> =
           {minimizable &&
             <div> {/*div wrapper to prevent button from being stretch when un-minimized*/}
               <DropdownButton
-                toggle={buttonDropped}
+                toggle={!minimize}
                 handleClick={toggleMinimization}
               />
             </div>
@@ -57,6 +59,7 @@ export interface DropdownListProps {
   children: React.ReactNode[];
   trailingElement?: React.ReactNode;
   showElementAmount?: number;
+  toggle: boolean;
 }
 
 export interface DropdownListPropsBase extends DropdownListProps {

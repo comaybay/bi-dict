@@ -5,11 +5,13 @@ import { PronunciationsSection } from "./PronunciationsSection";
 import { CharacterLimitDropdownList } from "../../../list/CharacterLimitDropdownList"
 import { getEtymologyInnerSectionKey } from "./DefinitionPanel";
 import SpeakerButton from "../../../buttons/SpeakerButton"
-import { ThemeContext } from "../../../../App";
+import { AppContext, ThemeContext } from "../../../../App";
 
 
 export const EtymologySectionBase: React.FC<Etymology> = ({ origin, innerSections, pronunciations, audio }) => {
   const { panel: { section, sectionDecoration }, text } = useContext(ThemeContext);
+  const { globalMinimize } = useContext(AppContext);
+
   return (
     <div className={sectionDecoration}>
       <div className={`px-3 py-2  ${section}`}>
@@ -28,6 +30,7 @@ export const EtymologySectionBase: React.FC<Etymology> = ({ origin, innerSection
             characterLimit={96}
             itemClassName={`${text.paragraph} italic font-light`}
             list={origin}
+            toggle={globalMinimize}
           />
         }
         <div>

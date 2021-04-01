@@ -8,7 +8,7 @@ export const PronunciationsSection: React.FC<{ pronunciations: string[]; }> = ({
   const { globalMinimize } = useContext(AppContext);
 
   return (
-    <HorizontalDropdownList globalMinimize={globalMinimize}>
+    <HorizontalDropdownList toggle={globalMinimize}>
       {pronunciations.map((p) => <p key={p} className="px-1">{p}</p>)}
     </HorizontalDropdownList>
   )

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ThemeContext } from "../../../../App";
+import { AppContext, ThemeContext } from "../../../../App";
 import { Sense } from "../../../../types/Definition";
 import BulletedDropdownList from "../../../list/BulletedDropdownList";
 import NumberedDropdownList from "../../../list/NumberedDropdownList";
@@ -10,6 +10,8 @@ import DefinitionPanelDropdownList from "./DefinitionPanelDropdownList";
 export const DefinitionSectionBase: React.FC<Sense> =
   ({ antonyms, meaning, grammaticalNote, region, senseRegisters, examples, subSenses, synonyms }) => {
     const { text, trailing } = useContext(ThemeContext);
+    const { globalMinimize } = useContext(AppContext);
+
     return (
       <>
         <p>
@@ -26,14 +28,14 @@ export const DefinitionSectionBase: React.FC<Sense> =
         </p>
         <div>
           {examples.length !== 0 &&
-            <BulletedDropdownList>
+            <BulletedDropdownList toggle={globalMinimize}>
               {examples.map(example => <li key={example} className={`${text.paragraph2}`}>{example}</li>)}
             </BulletedDropdownList>
           }
         </div>
         {
           subSenses.length !== 0 &&
-          <NumberedDropdownList
+          <NumberedDropdownList toggle={globalMinimize}
             showElementAmount={2}
             children={subSenses.map(sd =>
               <li key={getDefinitionSectionKey(sd)} className="list list-decimal">

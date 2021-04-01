@@ -67,7 +67,7 @@ const App: React.FC = () => {
     <>
       <ThemeContext.Provider value={theme}>
         <div className="z-50 fixed bottom-0 left-0 ml-4 mb-4">
-          <MinimizeButton onClick={toggleMinimization}  toggle={globalMinimize} />
+          <MinimizeButton onClick={toggleMinimization} toggle={globalMinimize} />
         </div>
 
         <AppContext.Provider value={providerValue}>

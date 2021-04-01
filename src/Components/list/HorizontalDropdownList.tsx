@@ -6,10 +6,10 @@ export interface HorizontalDropdownListProps {
   title?: React.ReactNode;
   children: JSX.Element[];
   limit?: number;
-  globalMinimize: boolean;
+  toggle: boolean;
 }
 
-export const HorizontalDropdownList: React.FC<HorizontalDropdownListProps> = ({ title, limit = 1, children, globalMinimize }) => {
+export const HorizontalDropdownList: React.FC<HorizontalDropdownListProps> = ({ title, limit = 1, children, toggle }) => {
   if (children === null || children.length === 0) throw new TypeError("parameter 'children' cannot be an empty array or null");
 
   const [minimize, setMinimize] = useState(true);
@@ -19,8 +19,8 @@ export const HorizontalDropdownList: React.FC<HorizontalDropdownListProps> = ({ 
   const needsMinimization = size > limit;
 
   useEffect(() => {
-    setMinimize(globalMinimize);
-  }, [globalMinimize]);
+    setMinimize(toggle);
+  }, [toggle]);
 
   const { text } = useContext(ThemeContext);
   return (
