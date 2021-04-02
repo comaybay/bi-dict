@@ -4,22 +4,23 @@ import { ThemeContext } from "../../App";
 import useEffectSkipFirstRender from "../../hooks/useEffectSkipFirstRender"
 
 interface DropdownButtonProps {
-  dropped: boolean;
+  toggle: boolean;
   handleClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
-const DropdownButton: React.FC<DropdownButtonProps> = ({ handleClick, dropped }) => {
+//TODO: something wrong with animation when parent button is clicked.
+const DropdownButton: React.FC<DropdownButtonProps> = ({ handleClick, toggle }) => {
   const theme = useContext(ThemeContext)
 
   const buttonRef = useRef(null);
   useEffectSkipFirstRender(() => {
     anime({
       targets: buttonRef.current,
-      rotate: dropped ? [0, 90] : [90, 0],
+      rotate: toggle ? [0, 90] : [90, 0],
       easing: "easeOutQuad",
       duration: 300,
     });
-  }, [dropped])
+  }, [toggle])
 
   return (
     <button

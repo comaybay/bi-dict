@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ThemeContext } from "../../../../App";
+import { AppContext, ThemeContext } from "../../../../App";
 import { EtymologyInnerSection } from "../../../../types/Definition";
 import NumberedDropdownList from "../../../list/NumberedDropdownList";
 import { getDefinitionSectionKey } from "./DefinitionPanel";
@@ -8,23 +8,27 @@ import { DefinitionSectionBase } from "./DefinitionSectionBase";
 
 
 export const EtymologyInnerSectionBase: React.FC<EtymologyInnerSection> =
-  ({ antonyms, definitionSections, inflection, partOfSpeech, synonyms }) => {
+  ({ antonyms, senses, inflection, partOfSpeech, synonyms }) => {
     const { text, trailing } = useContext(ThemeContext);
+    const { globalMinimize } = useContext(AppContext);
     return (
       <div className="pl-2">
         <p className={`font-bold ${text.header}`}>{partOfSpeech}</p>
-        <p className={`pl-2 ${text.paragraph}`}>{inflection}</p>
-        {definitionSections.length !== 0 &&
+        { inflection.length !== 0 &&
+          <p className={`font-bold ${text.paragraph}`}>{`(${inflection})`}</p>
+        }
+        {senses.length !== 0 &&
           <NumberedDropdownList
             showElementAmount={4}
             children={
-              definitionSections.map(ds =>
+              senses.map(ds =>
                 <li key={getDefinitionSectionKey(ds)}
                   className={`${text.paragraph} list-decimal`}
                 >
                   <DefinitionSectionBase {...ds} />
                 </li>
               )}
+            toggle={globalMinimize}
             trailingElement={<p className={`${text.paragraph} relative bottom-2 ${trailing.definitionSection}`}>...</p>}
           />
         }

@@ -8,7 +8,8 @@ const monochromeTheme: Theme = {
   text: {
     header: "text-gray-700",
     paragraph: "text-gray-600",
-    paragraph2: "text-gray-500",
+    paragraph2: "text-gray-500 font-light italic",
+    paragraph3: "text-indigo-500 font-light italic",
   },
   header: "bg-gray-50",
   searchBox: "bg-gray-50 placeholder-gray-400 border-gray-300 focus:border-indigo-500 text-gray-600",
@@ -35,11 +36,18 @@ const monochromeTheme: Theme = {
   switchButton: {
     button: "bg-gray-50 border-1.5 border-gray-300 active:bg-gray-100" +
       " active:border-indigo-500",
-    svg: "fill-current text-black",
+    svg: "text-black",
   },
+  speakerButton: "stroke-current text-black",
   trailing: {
     definitionSection: "border-gray-400 border-b",
-  }
+  },
+  minimizeButton: "bg-gray-200",
+  footer: {
+    container: "bg-gray-500",
+    link: "text-indigo-300 hover:text-indigo-200 active:text-gray-200",
+    text: "text-gray-200",
+  },
 }
 export default monochromeTheme;
 
@@ -72,7 +80,8 @@ export const genshinTheme: Theme = {
   text: {
     header: "text-genshin-yellow-medium",
     paragraph: "text-gray-300",
-    paragraph2: "text-gray-300",
+    paragraph2: "text-gray-300 font-light italic",
+    paragraph3: "text-genshin-yellow-medium font-light italic"
   },
   tag: {
     base: "rounded-full py-1 px-4 text-genshin-blue-darker",
@@ -84,10 +93,17 @@ export const genshinTheme: Theme = {
   switchButton: {
     button: "bg-genshin-blue-medium border-1.5 border-genshin-blue-dark active:bg-genshin-blue-dark" +
       " active:border-genshin-blue-medium",
-    svg: "fill-current text-genshin-yellow-extra-light",
+    svg: "text-genshin-yellow-extra-light",
   },
+  speakerButton: "text-genshin-yellow-medium",
   trailing: {
     definitionSection: "border-genshin-yellow-extra-light border-b border-r rounded-br-full",
+  },
+  minimizeButton: "bg-genshin-blue-medium",
+  footer: {
+    container: "bg-genshin-blue-dark",
+    text: "text-gray-300",
+    link: "text-genshin-yellow-medium hover:text-genshin-yellow-extra-light active:text-gray-300"
   }
 }
 
@@ -111,6 +127,7 @@ export interface Theme {
     header: string;
     paragraph: string;
     paragraph2: string;
+    paragraph3: string;
   }
   dropdownSelection: string;
   button: string;
@@ -131,5 +148,12 @@ export interface Theme {
   dropdownButtonSVG: string;
   trailing: {
     definitionSection: string;
+  };
+  speakerButton: string;
+  minimizeButton: string;
+  footer: {
+    container: string;
+    text: string;
+    link: string;
   };
 }

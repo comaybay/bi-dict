@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { ThemeContext } from "../../App";
 import DropdownButton from "../buttons/DropdownButton";
 
@@ -6,19 +6,21 @@ export interface HorizontalDropdownListProps {
   title?: React.ReactNode;
   children: JSX.Element[];
   limit?: number;
+  toggle: boolean;
 }
 
-export const HorizontalDropdownList: React.FC<HorizontalDropdownListProps> = ({ title, limit = 1, children }) => {
+export const HorizontalDropdownList: React.FC<HorizontalDropdownListProps> = ({ title, limit = 1, children, toggle }) => {
   if (children === null || children.length === 0) throw new TypeError("parameter 'children' cannot be an empty array or null");
 
-  const [buttonDropped, setButtonDropped] = useState(false);
   const [minimize, setMinimize] = useState(true);
+  const toggleMinimization = () => setMinimize(minimize => !minimize);
+
   const size = children.length;
   const needsMinimization = size > limit;
-  const toggleMinimization = () => {
-    setMinimize(!minimize)
-    setButtonDropped(!buttonDropped);
-  };
+
+  useEffect(() => {
+    setMinimize(toggle);
+  }, [toggle]);
 
   const { text } = useContext(ThemeContext);
   return (
@@ -27,7 +29,7 @@ export const HorizontalDropdownList: React.FC<HorizontalDropdownListProps> = ({ 
         {size > limit &&
           <div> {/*div wrapper to prevent button from being stretch when un-minimized*/}
             <DropdownButton
-              dropped={buttonDropped}
+              toggle={!minimize}
               handleClick={toggleMinimization}
             />
           </div>

@@ -3,14 +3,15 @@ export default interface Definition {
   wordLanguage: string;
   definitionLanguage: string;
   globalPronunciations: string[];
-  etymologies: EtymologySection[];
+  etymologies: Etymology[];
   sourceName: string;
   sourceLink: string;
 }
 
-export interface EtymologySection {
-  etymologyTexts: string[];
+export interface Etymology {
+  origin: string[];
   pronunciations: string[];
+  audio: string;
   innerSections: EtymologyInnerSection[];
 }
 
@@ -19,14 +20,17 @@ export interface EtymologyInnerSection {
   inflection: string;
   synonyms: string[];
   antonyms: string[];
-  definitionSections: DefinitionSection[];
+  senses: Sense[];
 }
 
-export interface DefinitionSection {
-  definition: string;
+export interface Sense {
+  meaning: string;
+  grammaticalNote: string;
+  senseRegisters: string;
+  region: string;
   examples: string[];
   synonyms: string[];
   antonyms: string[];
-  subDefinitions: DefinitionSection[];
+  subSenses: Sense[];
 }
 
