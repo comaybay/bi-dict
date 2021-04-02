@@ -10,7 +10,7 @@ const DefinitionNotFoundPanel: React.FC<DefinitionNotFoundPanelProps> = ({ langu
   const { panel, text } = useContext(ThemeContext);
   return (
     <div className={`opacity-80 rounded-sm p-2 ${panel.sectionContainer}`}>
-      <div className="flex items-center justify-center h-full">
+      <div className="grid place-items-center h-full">
         <p className={text.header}>
           {apologyIn[language]}
         </p>

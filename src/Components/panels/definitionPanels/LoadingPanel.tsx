@@ -33,7 +33,7 @@ const LoadingPanel: React.FC<LoadingPanelProps> = ({ language }) => {
 
   return (
     <div ref={panelRef} className={`${panel.sectionContainer} rounded-md p-2`}>
-      <div className="flex items-center justify-center h-full">
+      <div className="grid place-items-center h-full">
         <p className={text.header}>
           {loadingTextIn[language]}
         </p>
