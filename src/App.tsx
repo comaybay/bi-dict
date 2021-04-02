@@ -63,6 +63,14 @@ const App: React.FC = () => {
     return () => document.body.removeEventListener("keydown", switchLanguages);
   }, [firstLang, secondLang]);
 
+  useEffect(() => {
+    const toggleMinimization = (e: KeyboardEvent) => {
+      if (e.ctrlKey && (e.key === "m" || e.key === "M"))
+        setGlobalMinimize(minimize => !minimize);
+    }
+    document.body.addEventListener("keydown", toggleMinimization);
+  }, []);
+
   return (
     <>
       <ThemeContext.Provider value={theme}>
