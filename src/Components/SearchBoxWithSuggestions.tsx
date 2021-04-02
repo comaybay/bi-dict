@@ -51,7 +51,7 @@ const SearchBoxWithSuggestions: React.FC = () => {
             setSuggestionBoxEnabled(false);
 
             if (keyboardHoverIndex === -1 || keyboardHoverIndex === size - 1) {
-              fetchDefinitions(inputWord);
+              fetchDefinitions(inputWord.trim());
               return;
             }
 
