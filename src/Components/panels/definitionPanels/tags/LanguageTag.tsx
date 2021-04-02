@@ -1,14 +1,14 @@
 import React from "react";
 import Tag from "./Tag"
 
-const LanguageTag: React.FC<LanguageTagProps> = ({ language, cssOverride }) => {
+const LanguageTag: React.FC<LanguageTagProps> = ({ language, extendedClassName }) => {
   return (
-    <Tag text={language} extendedClassName={cssOverride} />
+    <Tag text={language} extendedClassName={extendedClassName} />
   );
 };
 export default LanguageTag;
 
 export interface LanguageTagProps {
   language: string;
-  cssOverride: string;
+  extendedClassName: string;
 }

@@ -10,7 +10,7 @@ const DefinitionPanelEN: React.FC<DefinitionPanelProps> = ({ definition }) => {
     <DefinitionPanel
       definition={definition}
       tags={[
-        <LanguageTag key="LanguageTag" language="English" cssOverride={tag.english} />,
+        <LanguageTag key="LanguageTag" language="English" extendedClassName={tag.english} />,
         <DefinitionSourceTag key="SourceTag" sourceName={definition.sourceName} sourceLink={definition.sourceLink} />
       ]} />
   )
