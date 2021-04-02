@@ -12,6 +12,7 @@ export const EtymologySectionBase: React.FC<Etymology> = ({ origin, innerSection
   const { panel: { section, sectionDecoration }, text } = useContext(ThemeContext);
   const { globalMinimize } = useContext(AppContext);
 
+  //TODO: mèo vn-en => ERROR!
   return (
     <div className={sectionDecoration}>
       <div className={`px-3 py-2  ${section}`}>
