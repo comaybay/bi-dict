@@ -9,6 +9,7 @@ import LoadingPanel from "./components/panels/definitionPanels/LoadingPanel";
 import monochromeTheme, { genshinTheme, Theme } from "./utils/Themes";
 import useNoOutlineWhenUsingMouse from "./useNoOutlineWhenUsingMouse"
 import MinimizeButton from "./components/buttons/MinimizeButton"
+import Footer from "./components/Footer"
 
 //==
 export const AppContext = React.createContext<AppContextValue>({} as AppContextValue);
@@ -72,9 +73,9 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <ThemeContext.Provider value={theme}>
-        <div className="z-50 fixed bottom-0 left-0 ml-4 mb-4">
+        <div className="z-50 fixed bottom-0 left-0 ml-4 mb-8">
           <MinimizeButton onClick={toggleMinimization} toggle={globalMinimize} />
         </div>
 
@@ -92,8 +93,14 @@ const App: React.FC = () => {
             </div>
           </div>
         </AppContext.Provider>
+
+        <div className="h-20"></div>
+
+        <div className="mt-auto">
+          <Footer />
+        </div>
       </ThemeContext.Provider>
-    </>
+    </div>
   )
 };
 export default App;

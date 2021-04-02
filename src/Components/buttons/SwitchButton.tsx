@@ -4,7 +4,7 @@ import { ThemeContext } from "../../App";
 interface SwitchButtonProps {
   handleClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
-
+//TODO: Better switch animation.
 const SwitchButton: React.FC<SwitchButtonProps> = ({ handleClick }) => {
   const { switchButton } = useContext(ThemeContext);
   return (

@@ -8,6 +8,7 @@ interface DropdownButtonProps {
   handleClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
+//TODO: something wrong with animation when parent button is clicked.
 const DropdownButton: React.FC<DropdownButtonProps> = ({ handleClick, toggle }) => {
   const theme = useContext(ThemeContext)
 

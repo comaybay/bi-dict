@@ -42,7 +42,12 @@ const monochromeTheme: Theme = {
   trailing: {
     definitionSection: "border-gray-400 border-b",
   },
-  minimizeButton: "bg-gray-200"
+  minimizeButton: "bg-gray-200",
+  footer: {
+    container: "bg-gray-500",
+    link: "text-indigo-300 hover:text-indigo-200 active:text-gray-200",
+    text: "text-gray-200",
+  },
 }
 export default monochromeTheme;
 
@@ -95,6 +100,11 @@ export const genshinTheme: Theme = {
     definitionSection: "border-genshin-yellow-extra-light border-b border-r rounded-br-full",
   },
   minimizeButton: "bg-genshin-blue-medium",
+  footer: {
+    container: "bg-genshin-blue-dark",
+    text: "text-gray-300",
+    link: "text-genshin-yellow-medium hover:text-genshin-yellow-extra-light active:text-gray-300"
+  }
 }
 
 export interface Theme {
@@ -141,4 +151,9 @@ export interface Theme {
   };
   speakerButton: string;
   minimizeButton: string;
+  footer: {
+    container: string;
+    text: string;
+    link: string;
+  };
 }
