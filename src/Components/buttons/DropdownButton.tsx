@@ -20,7 +20,7 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({ handleClick, toggle }) 
       easing: "easeOutQuad",
       duration: 300,
     });
-  }, [toggle])
+  }, [toggle]);
 
   return (
     <button

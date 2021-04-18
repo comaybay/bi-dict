@@ -17,6 +17,10 @@ const DropdownList: React.FC<DropdownListPropsBase> =
 
     const minimizable = size > showElementAmount;
     const pressable = minimizable ? "cursor-pointer select-none" : "";
+
+    const showedChildren = children.slice(0, showElementAmount);
+    const others = children.slice(showElementAmount);
+
     return (
       <>
         <div className="flex">
@@ -33,16 +37,14 @@ const DropdownList: React.FC<DropdownListPropsBase> =
               {title}
             </div>
             <ChildrenContainer>
+              {showedChildren}
+              <div className={(minimizable && minimize) ? "hidden" : ""}>
+                {others}
+              </div>
               {minimizable && minimize &&
-                <>
-                  {children.slice(0, showElementAmount)}
-                  <div className="cursor-pointer select-none" onClick={toggleMinimization}>
-                    {trailingElement}
-                  </div>
-                </>
-              }
-              {(!minimizable || !minimize) &&
-                children
+                <div className="cursor-pointer select-none" onClick={toggleMinimization}>
+                  {trailingElement}
+                </div>
               }
             </ChildrenContainer>
           </div>
