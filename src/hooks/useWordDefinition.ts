@@ -21,13 +21,18 @@ export default function useWordDefinition(): [WordDefinitionState, FetchDefiniti
   const [state, dispatch] = useReducer(reducer, initialFetchState);
 
   useEffect(() => {
-    (async () => {
+    let didCancel = false;
+
+    async function fetchDefinition() {
       if (word === "") return;
 
       const payload: WordDefinitionInput = { word, wordLanguage, definitionLanguage };
       dispatch({ type: "FETCH_INIT", payload });
 
       const res = await sendRequest(`Definition/${definitionLanguage}/${word}/${wordLanguage}`);
+      if (didCancel)
+        return;
+
       if (!res.ok)
         dispatch({ type: "FETCH_FAILURE" });
       else
@@ -35,7 +40,10 @@ export default function useWordDefinition(): [WordDefinitionState, FetchDefiniti
           type: "FETCH_SUCCESS",
           payload: await res.json() as Definition
         });
-    })();
+    };
+
+    fetchDefinition();
+    return () => { didCancel = true; }
   }, [definitionLanguage, word, wordLanguage]);
 
   const fetchDefinition: FetchDefinition = (definitionLanguage, word, wordLanguage) => {
