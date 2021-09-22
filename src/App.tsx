@@ -13,7 +13,7 @@ import Footer from "./components/Footer"
 
 //==
 export const AppContext = React.createContext<AppContextValue>({} as AppContextValue);
-export const ThemeContext = React.createContext<Theme>(monochromeTheme);
+export const ThemeContext = React.createContext<Theme>({} as Theme);
 
 const App: React.FC = () => {
   useNoOutlineWhenUsingMouse();
@@ -31,7 +31,7 @@ const App: React.FC = () => {
   const [globalMinimize, setGlobalMinimize] = useState(true);
   const toggleMinimization = () => setGlobalMinimize(globalMinimize => !globalMinimize);
 
-  const [theme, setTheme] = useState(genshinTheme);
+  const [theme, setTheme] = useState(monochromeTheme);
   const switchTheme = () => {
     setTheme(theme === genshinTheme ? monochromeTheme : genshinTheme);
   }

@@ -16,11 +16,14 @@ export const HorizontalDropdownList: React.FC<HorizontalDropdownListProps> = ({ 
   const toggleMinimization = () => setMinimize(minimize => !minimize);
 
   const size = children.length;
-  const needsMinimization = size > limit;
+  const minimizable = size > limit;
 
   useEffect(() => {
     setMinimize(toggle);
   }, [toggle]);
+
+  const showedChildren = children.slice(0, limit);
+  const others = children.slice(limit);
 
   const { text } = useContext(ThemeContext);
   return (
@@ -40,12 +43,10 @@ export const HorizontalDropdownList: React.FC<HorizontalDropdownListProps> = ({ 
               {title}
             </div>
             <div className="flex flex-row">
-              {needsMinimization && minimize &&
-                children.slice(0, limit)
-              }
-              {(!needsMinimization || !minimize) &&
-                children
-              }
+              {showedChildren}
+              <div className={(minimizable && minimize ? "hidden" : "")}>
+                {others}
+              </div>
             </div>
           </div>
         </div>
