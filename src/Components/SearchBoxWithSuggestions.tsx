@@ -19,7 +19,10 @@ const SearchBoxWithSuggestions: React.FC = () => {
   useEffect(() => clearHistory(),
     [firstLang, clearHistory]);
 
-  useEffect(() => fetchSuggestions(inputWord, firstLang),
+  useEffect(() => {
+    if (inputWord.trim() !== "")
+      fetchSuggestions(inputWord, firstLang);
+  },
     [inputWord, firstLang, fetchSuggestions]);
 
   return (
